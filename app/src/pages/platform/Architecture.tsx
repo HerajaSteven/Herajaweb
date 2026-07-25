@@ -2,6 +2,7 @@ import Layout from '@/components/layout/Layout';
 import ArchitectureDiagram from '@/components/diagrams/ArchitectureDiagram';
 import EcosystemExplorer from '@/components/diagrams/EcosystemExplorer';
 import CTABlock from '@/components/sections/CTABlock';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Layers, Cloud, Shield, Database } from 'lucide-react';
@@ -11,6 +12,7 @@ export default function Architecture() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Layout>
+      <Seo title="The Complete Infrastructure Stack" description="A five-layer architecture that connects organizations, applications, workflows, services, and cloud infrastructure into a unified operational environment." />
       <section className="relative overflow-hidden bg-surface py-20 sm:py-24 md:py-28">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

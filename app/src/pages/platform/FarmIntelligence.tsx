@@ -53,6 +53,7 @@ export default function FarmIntelligence() {
       overline="Farm Intelligence Platform"
       title="Operational Visibility From the Farm Up"
       description="Production monitoring, field reporting, and operational visibility across every farm operation in the network — the foundation that traceability, logistics, and market access are built on."
+      launchCta={{ label: 'Launch Farm Intelligence', href: 'https://farm.heraja.com' }}
       heroCta={{ label: 'See the Poultry & Fish Farming Pilot', href: '/ecosystem/pilot-programs' }}
       problemTitle="Production Happens Without Structured Visibility"
       problemDescription="Most producers operate without digital records of what's happening on the ground. Coordinators and buyers are left guessing at production status, and issues are only discovered after they've become losses."

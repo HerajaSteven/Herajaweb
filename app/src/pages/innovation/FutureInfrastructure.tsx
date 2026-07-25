@@ -1,5 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import CTABlock from '@/components/sections/CTABlock';
+import Seo from '@/components/Seo';
 import { motion } from 'framer-motion';
 import { Globe, Cpu, Shield, Zap } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -15,6 +16,7 @@ export default function FutureInfrastructure() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Layout>
+      <Seo title="Future Infrastructure" description="What's next after the current platform — global interoperability, autonomous coordination, and capabilities still in development." />
       <section className="relative overflow-hidden bg-surface py-20 sm:py-24 md:py-28">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

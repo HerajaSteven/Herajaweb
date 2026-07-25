@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Building2, Users, Globe, FileText, MapPin, Sprout } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
+import Seo from '@/components/Seo';
 import CTABlock from '@/components/sections/CTABlock';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
@@ -18,6 +19,10 @@ export default function EcosystemOverview() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Layout>
+      <Seo
+        title="The Heraja Ecosystem"
+        description="Every enterprise client, technology partner, and pilot program running on Heraja — the network, not just the platform."
+      />
       <section className="relative overflow-hidden bg-surface py-20 sm:py-24 md:py-28">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

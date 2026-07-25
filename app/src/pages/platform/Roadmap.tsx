@@ -1,5 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import CTABlock from '@/components/sections/CTABlock';
+import Seo from '@/components/Seo';
 import { motion } from 'framer-motion';
 import { Check, Circle, Clock, MapPin } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -51,6 +52,7 @@ export default function Roadmap() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Layout>
+      <Seo title="Building Infrastructure for the Future of Agriculture" description="A phased build-out — starting with the poultry and fish farming pilot in West Africa, then expanding capability and geography from there." />
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

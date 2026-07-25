@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import Layout from './Layout';
 import CTABlock from '@/components/sections/CTABlock';
 import FAQAccordion from '@/components/sections/FAQAccordion';
+import Seo from '@/components/Seo';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import type { FAQItem } from '@/types';
 
@@ -40,6 +41,7 @@ export default function SolutionTemplate({
 
   return (
     <Layout>
+      <Seo title={title} description={description} />
       {/* Hero */}
       <section className="relative overflow-hidden bg-surface py-20 sm:py-24 md:py-28">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">

@@ -1,19 +1,23 @@
+import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
+import Seo from '@/components/Seo';
 import CTABlock from '@/components/sections/CTABlock';
 import { motion } from 'framer-motion';
-import { Building2, BarChart3 } from 'lucide-react';
+import { Building2, ArrowRight } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const clients = [
-  { name: 'ZIMO Clan', industry: 'Multi-Sector Agriculture', modules: ['HAOS', 'Marketplace', 'Traceability', 'Intelligence'], outcome: 'Digital coordination across agricultural operations' },
-  { name: 'Regional Cooperative Federation', industry: 'Cooperative Union', modules: ['HAOS', 'Traceability'], outcome: 'Member coordination and quality verification' },
-  { name: 'East African Grains Council', industry: 'Trade Association', modules: ['Marketplace', 'Traceability'], outcome: 'Trade coordination and compliance' },
+  { name: 'ZIMO Clan', industry: 'Digital Agriculture Marketplace', modules: ['HAOS', 'Marketplace', 'Logistics'], outcome: 'A Lagos-based platform connecting digital investors with verified farms, and farms directly with institutional buyers — built on the Heraja Agricultural Operating System.', href: '/ecosystem/zimo-clan' },
 ];
 
 export default function EnterpriseClients() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Layout>
+      <Seo
+        title="Enterprise Clients"
+        description="Organizations building their day-to-day agricultural operations on Heraja."
+      />
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />
@@ -28,7 +32,7 @@ export default function EnterpriseClients() {
             </div>
             <p className="text-overline mb-4">Ecosystem</p>
             <h1 className="text-display max-w-4xl mb-6">Enterprise Clients</h1>
-            <p className="text-body-large text-neutral-700 max-w-2xl">The organizations already running their day-to-day agricultural operations on Heraja — from cooperatives to enterprise agribusiness.</p>
+            <p className="text-body-large text-neutral-700 max-w-2xl">Organizations building their day-to-day agricultural operations on Heraja.</p>
           </motion.div>
         </div>
       </section>
@@ -53,13 +57,16 @@ export default function EnterpriseClients() {
                       ))}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-brand-secondary">
-                    <BarChart3 className="w-4 h-4" />
-                    <span className="text-body-small font-medium">Verified Outcomes</span>
-                  </div>
+                  <Link to={client.href} className="btn-secondary self-start whitespace-nowrap">View Story <ArrowRight className="w-4 h-4" /></Link>
                 </div>
               </motion.div>
             ))}
+            <div className="bg-surface rounded-lg border border-dashed border-neutral-300 p-6 lg:p-8 text-center">
+              <p className="text-body text-neutral-600">We're onboarding new enterprise partners as the platform scales beyond our current Poultry &amp; Fish Farming pilot.</p>
+              <Link to="/company/contact" className="inline-flex items-center gap-2 text-brand-secondary hover:underline font-medium mt-3">
+                Talk to us about becoming a partner <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

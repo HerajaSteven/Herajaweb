@@ -1,5 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import CTABlock from '@/components/sections/CTABlock';
+import Seo from '@/components/Seo';
 import { motion } from 'framer-motion';
 import { FileText, Download } from 'lucide-react';
 
@@ -20,6 +21,7 @@ const sections = [
 export default function Whitepaper() {
   return (
     <Layout>
+      <Seo title="HAOS Technical Whitepaper" description="Comprehensive technical overview of Heraja Agricultural Operating Infrastructure — architecture, components, security model, and implementation approach." />
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

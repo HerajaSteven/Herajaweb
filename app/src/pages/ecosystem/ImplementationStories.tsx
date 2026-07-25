@@ -1,4 +1,5 @@
 import Layout from '@/components/layout/Layout';
+import Seo from '@/components/Seo';
 import CTABlock from '@/components/sections/CTABlock';
 import { motion } from 'framer-motion';
 import { ArrowRight, Building2, CheckCircle } from 'lucide-react';
@@ -6,14 +7,17 @@ import { Link } from 'react-router-dom';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const stories = [
-  { org: 'ZIMO Clan', industry: 'Multi-Sector', modules: ['HAOS', 'Marketplace', 'Traceability'], outcomes: ['Digital coordination', 'Verified operations', 'Market access'], href: '/ecosystem/zimo-clan' },
-  { org: 'Regional Cooperative Federation', industry: 'Cooperatives', modules: ['HAOS', 'Identity'], outcomes: ['Member coordination', 'Quality verification'], href: '/ecosystem/enterprise-clients' },
+  { org: 'ZIMO Clan', industry: 'Digital Agriculture Marketplace', modules: ['HAOS', 'Marketplace', 'Logistics'], outcomes: ['500+ partner farms', '₦2B+ production value facilitated', '24-hour buyer matching'], href: '/ecosystem/zimo-clan' },
 ];
 
 export default function ImplementationStories() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Layout>
+      <Seo
+        title="Implementation Stories"
+        description="What actually happened when real organizations put Heraja into production — results, not case-study marketing."
+      />
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

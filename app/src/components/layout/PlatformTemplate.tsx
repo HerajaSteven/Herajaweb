@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import Layout from './Layout';
 import CTABlock from '@/components/sections/CTABlock';
 import FAQAccordion from '@/components/sections/FAQAccordion';
+import Seo from '@/components/Seo';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import type { FAQItem } from '@/types';
 
@@ -12,6 +13,8 @@ interface PlatformTemplateProps {
   title: string;
   description: string;
   heroCta?: { label: string; href: string };
+  /** External link to the real, live HAOS app for this product (opens in a new tab) — distinct from heroCta, which is always an internal marketing-site route. */
+  launchCta?: { label: string; href: string };
   problemTitle: string;
   problemDescription: string;
   whyTitle: string;
@@ -31,6 +34,7 @@ export default function PlatformTemplate({
   title,
   description,
   heroCta,
+  launchCta,
   problemTitle,
   problemDescription,
   whyTitle,
@@ -50,6 +54,7 @@ export default function PlatformTemplate({
 
   return (
     <Layout>
+      <Seo title={title} description={description} />
       {/* Hero */}
       <section className="relative overflow-hidden bg-surface py-20 sm:py-24 md:py-28">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -70,11 +75,18 @@ export default function PlatformTemplate({
             <p className="text-overline mb-4">{overline}</p>
             <h1 className="text-display max-w-4xl mb-6">{title}</h1>
             <p className="text-body-large text-neutral-700 max-w-2xl mb-8">{description}</p>
-            {heroCta && (
-              <Link to={heroCta.href} className="btn-primary">
-                {heroCta.label} <ArrowRight className="w-4 h-4" />
-              </Link>
-            )}
+            <div className="flex flex-wrap items-center gap-4">
+              {launchCta && (
+                <a href={launchCta.href} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                  {launchCta.label} <ArrowRight className="w-4 h-4" />
+                </a>
+              )}
+              {heroCta && (
+                <Link to={heroCta.href} className={launchCta ? 'btn-secondary' : 'btn-primary'}>
+                  {heroCta.label} <ArrowRight className="w-4 h-4" />
+                </Link>
+              )}
+            </div>
           </motion.div>
         </div>
       </section>

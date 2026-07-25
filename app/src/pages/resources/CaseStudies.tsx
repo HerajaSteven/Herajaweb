@@ -1,17 +1,18 @@
 import Layout from '@/components/layout/Layout';
 import CTABlock from '@/components/sections/CTABlock';
+import Seo from '@/components/Seo';
 import { motion } from 'framer-motion';
 import { Building2, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const studies = [
-  { org: 'ZIMO Clan', industry: 'Multi-Sector Agriculture', outcome: 'Digital coordination across operations', modules: ['HAOS', 'Marketplace', 'Traceability'], href: '/ecosystem/zimo-clan' },
-  { org: 'Regional Cooperative', industry: 'Cooperative Federation', outcome: 'Member coordination and quality tracking', modules: ['HAOS', 'Identity'], href: '/ecosystem/implementation-stories' },
+  { org: 'ZIMO Clan', industry: 'Digital Agriculture Marketplace', outcome: '500+ partner farms, ₦2B+ in production value facilitated, 24-hour buyer matching — built on the Heraja Agricultural Operating System.', modules: ['HAOS', 'Marketplace', 'Logistics'], href: '/ecosystem/zimo-clan' },
 ];
 
 export default function CaseStudies() {
   return (
     <Layout>
+      <Seo title="Case Studies" description="What happened, with numbers attached — verified outcomes from organizations running on Heraja." />
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

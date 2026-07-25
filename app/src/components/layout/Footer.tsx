@@ -11,10 +11,9 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4" aria-label="Heraja Home">
               <img
-                src="/assets/heraja-logo.png"
+                src="/assets/heraja-logo-white.png"
                 alt="Heraja"
                 className="h-7 w-auto"
-                style={{ filter: 'brightness(0) invert(1)' }}
               />
             </Link>
             <p className="text-sm text-neutral-400 leading-relaxed mb-4">

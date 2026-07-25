@@ -1,9 +1,11 @@
 import Layout from '@/components/layout/Layout';
+import Seo from '@/components/Seo';
 import { motion } from 'framer-motion';
 
 export default function Privacy() {
   return (
     <Layout>
+      <Seo title="Privacy Policy" description="How Heraja Agro Technologies collects, uses, and protects your data." />
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

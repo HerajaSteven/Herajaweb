@@ -1,4 +1,5 @@
 import Layout from '@/components/layout/Layout';
+import Seo from '@/components/Seo';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, FileText, Shield } from 'lucide-react';
@@ -11,6 +12,7 @@ const legalAreas = [
 export default function Legal() {
   return (
     <Layout>
+      <Seo title="Legal" description="Legal information, terms of service, and privacy policy." />
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

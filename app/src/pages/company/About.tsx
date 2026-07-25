@@ -1,5 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import CTABlock from '@/components/sections/CTABlock';
+import Seo from '@/components/Seo';
 import { motion } from 'framer-motion';
 import { Target, Eye, Heart } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -14,6 +15,7 @@ export default function About() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Layout>
+      <Seo title="About Heraja" description="Heraja Agro Technologies is a Digital Agricultural Infrastructure Company building the operating backbone for modern agriculture." />
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

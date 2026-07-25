@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
+import Seo from '@/components/Seo';
 import { ArrowRight } from 'lucide-react';
 import { useEffect } from 'react';
 
@@ -16,6 +17,7 @@ export default function NotFound() {
 
   return (
     <Layout showBreadcrumb={false}>
+      <Seo title="Page Not Found" description="This page doesn't exist, or it moved. Try the platform overview, or head back home." />
       <section className="section-padding bg-surface min-h-[50vh] flex items-center">
         <div className="container-heraja max-w-2xl text-center">
           <p className="text-overline mb-4 text-brand-secondary">404</p>

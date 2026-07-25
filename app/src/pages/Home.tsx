@@ -16,6 +16,7 @@ import {
   Microscope,
 } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
+import Seo from '@/components/Seo';
 import EcosystemExplorer from '@/components/diagrams/EcosystemExplorer';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
@@ -111,6 +112,10 @@ function PathwayCard({ title, description, href, delay }: {
 export default function Home() {
   return (
     <Layout showBreadcrumb={false}>
+      <Seo
+        title="The Operating Infrastructure for Modern Agriculture"
+        description="Heraja builds the digital backbone that connects production, coordination, and market access."
+      />
       {/* ─── Hero ─── */}
       <section className="min-h-[60vh] md:min-h-[85vh] flex items-center relative overflow-hidden bg-surface py-12 lg:py-0">
         <div className="container-heraja w-full">
@@ -205,10 +210,10 @@ export default function Home() {
       <section className="bg-surface-elevated border-y border-neutral-100">
         <div className="container-heraja py-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <MetricCard display="12,450+" label="Active Farms on HAOS" delay={0} />
-            <MetricCard display="94.2%" label="Traceability Rate" delay={0.1} />
-            <MetricCard display="3" label="Regions Operational" delay={0.2} />
-            <MetricCard display="2" label="Sectors in Pilot — Poultry & Fish Farming" delay={0.3} />
+            <MetricCard display="2" label="Sectors in Pilot — Poultry & Fish Farming" delay={0} />
+            <MetricCard display="6" label="Integrated Platform Applications" delay={0.1} />
+            <MetricCard display="Built-in" label="End-to-End Traceability by Design" delay={0.2} />
+            <MetricCard display="Multi-Region" label="Architecture Built for Regional Scale" delay={0.3} />
           </div>
         </div>
       </section>
@@ -318,7 +323,7 @@ export default function Home() {
         <div className="container-heraja">
           <div className="text-center mb-12">
             <p className="text-overline mb-3">Enterprise Trust</p>
-            <h2 className="text-h1 max-w-2xl mx-auto text-white">Organizations Building on Heraja</h2>
+            <h2 className="text-h1 max-w-2xl mx-auto text-white">Built for Every Agricultural Organization</h2>
           </div>
           <div className="grid sm:grid-cols-3 gap-8 mb-12">
             <div className="text-center">
@@ -326,12 +331,12 @@ export default function Home() {
               <p className="text-body text-neutral-300">Organization Types Supported</p>
             </div>
             <div className="text-center">
-              <p className="text-4xl font-bold text-brand-secondary mb-2">50+</p>
-              <p className="text-body text-neutral-300">Operational Workflows</p>
+              <p className="text-4xl font-bold text-brand-secondary mb-2">Composable</p>
+              <p className="text-body text-neutral-300">Workflow Engine Across Every Module</p>
             </div>
             <div className="text-center">
               <p className="text-4xl font-bold text-brand-secondary mb-2">99.9%</p>
-              <p className="text-body text-neutral-300">Infrastructure Uptime</p>
+              <p className="text-body text-neutral-300">Uptime Target</p>
             </div>
           </div>
           <div className="text-center">

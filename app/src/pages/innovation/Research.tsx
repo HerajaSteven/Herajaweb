@@ -1,5 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import CTABlock from '@/components/sections/CTABlock';
+import Seo from '@/components/Seo';
 import { motion } from 'framer-motion';
 import { Microscope, BookOpen, Users, Globe } from 'lucide-react';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -15,6 +16,7 @@ export default function Research() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Layout>
+      <Seo title="Research" description="Studying what actually makes agricultural coordination work at scale — and publishing what we learn." />
       <section className="relative overflow-hidden bg-surface py-20 sm:py-24 md:py-28">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

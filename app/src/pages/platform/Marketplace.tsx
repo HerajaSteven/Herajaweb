@@ -52,6 +52,7 @@ export default function Marketplace() {
       overline="Marketplace Infrastructure"
       title="Coordinating Agricultural Markets Through Shared Infrastructure"
       description="Infrastructure that connects verified agricultural supply with authenticated demand — enabling transparent trade coordination, quality verification, and settlement workflows."
+      launchCta={{ label: 'Launch Marketplace', href: 'https://marketplace.heraja.com' }}
       heroCta={{ label: 'Explore Traceability', href: '/platform/traceability' }}
       problemTitle="Agricultural Markets Lack Coordination Infrastructure"
       problemDescription="Buyers struggle to find verified supply. Suppliers lack access to authenticated demand. Quality claims are difficult to verify. Pricing is opaque. Settlement is manual and slow."

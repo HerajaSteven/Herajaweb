@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FileText, BookOpen, Code, BarChart3, Microscope, Newspaper, HelpCircle, Image } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import CTABlock from '@/components/sections/CTABlock';
+import Seo from '@/components/Seo';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const resources = [
@@ -20,6 +21,7 @@ export default function ResourcesOverview() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Layout>
+      <Seo title="Knowledge Hub" description="Everything for understanding the platform, evaluating it, and building on it — docs, research, and real outcomes." />
       <section className="relative overflow-hidden bg-surface py-20 sm:py-24 md:py-28">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

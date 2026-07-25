@@ -1,4 +1,5 @@
 import Layout from '@/components/layout/Layout';
+import Seo from '@/components/Seo';
 import CTABlock from '@/components/sections/CTABlock';
 import { motion } from 'framer-motion';
 import { Bird, Fish, Check, TrendingUp, Repeat, Layers, Gauge } from 'lucide-react';
@@ -40,6 +41,10 @@ export default function PilotPrograms() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Layout>
+      <Seo
+        title="Starting with Poultry & Fish Farming. Scaling Through Infrastructure."
+        description="Heraja's initial rollout focuses on two fast-cycling protein sectors — poultry and fish farming."
+      />
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />

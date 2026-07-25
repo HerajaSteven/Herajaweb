@@ -1,4 +1,5 @@
 import Layout from '@/components/layout/Layout';
+import Seo from '@/components/Seo';
 import CTABlock from '@/components/sections/CTABlock';
 import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
@@ -14,6 +15,10 @@ export default function RegionalPrograms() {
   const { ref, isVisible } = useScrollReveal();
   return (
     <Layout>
+      <Seo
+        title="Regional Programs"
+        description="Where we're live today, and where we're headed next — starting from a Lagos base and expanding region by region."
+      />
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />
