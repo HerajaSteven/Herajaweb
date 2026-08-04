@@ -1,4 +1,5 @@
 import PlatformTemplate from '@/components/layout/PlatformTemplate';
+import { launchCtaFor } from '@/config/liveApps';
 import {
   Truck,
   MapPin,
@@ -52,7 +53,7 @@ export default function Logistics() {
       overline="Logistics Platform"
       title="Coordinated Movement, From Aggregation to Delivery"
       description="Movement coordination for aggregation, transportation, and operational delivery across regions — with live tracking and proof-of-delivery built into every shipment."
-      launchCta={{ label: 'Launch Logistics', href: 'https://logistics.heraja.com' }}
+      launchCta={launchCtaFor('logistics')}
       heroCta={{ label: 'Explore Traceability', href: '/platform/traceability' }}
       problemTitle="Fragmented Logistics Drive Losses and Delays"
       problemDescription="Without coordinated movement, product sits too long at aggregation points, routes are planned reactively, and buyers have no visibility into when a shipment will actually arrive — driving post-production losses and weak buyer confidence."
