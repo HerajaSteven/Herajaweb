@@ -20,7 +20,7 @@ export default function NotFound() {
       <Seo title="Page Not Found" description="This page doesn't exist, or it moved. Try the platform overview, or head back home." />
       <section className="section-padding bg-surface min-h-[50vh] flex items-center">
         <div className="container-heraja max-w-2xl text-center">
-          <p className="text-overline mb-4 text-brand-secondary">404</p>
+          <p className="text-overline mb-4 text-brand-accent">404</p>
           <h1 className="text-display mb-4">Page Not Found</h1>
           <p className="text-body-large text-neutral-700 mb-8">
             This page doesn't exist, or it moved. Try the platform overview, or head back home.

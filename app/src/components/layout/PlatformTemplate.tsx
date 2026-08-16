@@ -5,6 +5,9 @@ import Layout from './Layout';
 import CTABlock from '@/components/sections/CTABlock';
 import FAQAccordion from '@/components/sections/FAQAccordion';
 import Seo from '@/components/Seo';
+import ProductEvidenceGallery from '@/components/evidence/ProductEvidenceGallery';
+import type { EvidenceItem } from '@/config/productEvidence';
+import { track } from '@/lib/analytics';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import type { FAQItem } from '@/types';
 
@@ -21,12 +24,40 @@ interface PlatformTemplateProps {
   whyDescription: string;
   whyPoints?: string[];
   architecture?: React.ReactNode;
+  /*
+   * Screens from the running application.
+   *
+   * Optional because evidence depth genuinely differs between products —
+   * Farm Intelligence has six captured screens, the others have one each —
+   * and forcing every page to fill the same slot would mean either padding
+   * the thin ones or holding the deep one back. A page with no evidence
+   * simply omits the section.
+   */
+  productEvidence?: { title: string; intro?: string; items: EvidenceItem[] };
   capabilities: { title: string; description: string; icon?: React.ReactNode }[];
   workflow?: { step: string; description: string }[];
   benefits?: string[];
   faq: FAQItem[];
   relatedPages: { title: string; href: string; description: string }[];
   resources?: { title: string; href: string; type: string }[];
+}
+
+/*
+ * Collapse entries that now point at the same place.
+ *
+ * The Phase 1 migration merged several pages into one — Traceability and
+ * Operational Intelligence both became sections of /platform/haos, Whitepaper
+ * and Media Kit both became the corporate brochure. Any page that linked to
+ * both halves of a merged pair ends up listing the same destination twice,
+ * which renders as a duplicated link and, because these lists are keyed by
+ * href, triggers React's duplicate-key warning.
+ *
+ * Deduping here rather than hand-editing each page's list means the same
+ * thing cannot break again the next time two pages merge.
+ */
+function byHref<T extends { href: string }>(items: T[]): T[] {
+  const seen = new Set<string>();
+  return items.filter((item) => (seen.has(item.href) ? false : (seen.add(item.href), true)));
 }
 
 export default function PlatformTemplate({
@@ -41,6 +72,7 @@ export default function PlatformTemplate({
   whyDescription,
   whyPoints,
   architecture,
+  productEvidence,
   capabilities,
   workflow,
   benefits,
@@ -77,12 +109,27 @@ export default function PlatformTemplate({
             <p className="text-body-large text-neutral-700 max-w-2xl mb-8">{description}</p>
             <div className="flex flex-wrap items-center gap-4">
               {launchCta && (
-                <a href={launchCta.href} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                <a
+                  href={launchCta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary"
+                  /*
+                   * Someone leaving for a real application is the strongest
+                   * engagement signal this site produces — and, because it
+                   * navigates away, the one a pageview chart cannot see.
+                   */
+                  onClick={() => track('application_launch', { application: title })}
+                >
                   {launchCta.label} <ArrowRight className="w-4 h-4" />
                 </a>
               )}
               {heroCta && (
-                <Link to={heroCta.href} className={launchCta ? 'btn-secondary' : 'btn-primary'}>
+                <Link
+                  to={heroCta.href}
+                  className={launchCta ? 'btn-secondary' : 'btn-primary'}
+                  onClick={() => track('cta_click', { label: heroCta.label, page: title })}
+                >
                   {heroCta.label} <ArrowRight className="w-4 h-4" />
                 </Link>
               )}
@@ -96,12 +143,12 @@ export default function PlatformTemplate({
         <div className="bg-surface-elevated border-b border-neutral-100">
           <div className="container-heraja py-3 flex items-center gap-4 text-body-small overflow-x-auto">
             <span className="text-neutral-500 whitespace-nowrap flex-shrink-0">Related:</span>
-            {relatedPages.slice(0, 3).map((p) => (
-              <Link key={p.href} to={p.href} className="text-neutral-500 hover:text-brand-secondary transition-colors whitespace-nowrap">
+            {byHref(relatedPages).slice(0, 3).map((p) => (
+              <Link key={p.href} to={p.href} className="text-neutral-500 hover:text-brand-accent transition-colors whitespace-nowrap">
                 {p.title}
               </Link>
             ))}
-            <Link to="/ecosystem/zimo-clan" className="text-brand-secondary hover:underline whitespace-nowrap font-medium ml-auto flex-shrink-0">
+            <Link to="/evidence/zimo-clan" className="text-brand-accent hover:underline whitespace-nowrap font-medium ml-auto flex-shrink-0">
               See This in Action
             </Link>
           </div>
@@ -130,7 +177,7 @@ export default function PlatformTemplate({
                   {whyPoints.map((p) => (
                     <li key={p} className="flex items-center gap-3 text-body">
                       <div className="w-5 h-5 rounded-full bg-brand-secondary/20 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-brand-secondary" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        <svg className="w-3 h-3 text-brand-accent" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                       </div>
                       {p}
                     </li>
@@ -146,6 +193,19 @@ export default function PlatformTemplate({
           </div>
         </div>
       </section>
+
+      {/*
+        Product evidence sits directly after the argument for why this exists
+        and before the list of what it does — so the reader sees the running
+        product before reading any claim about it.
+      */}
+      {productEvidence && (
+        <ProductEvidenceGallery
+          title={productEvidence.title}
+          intro={productEvidence.intro}
+          items={productEvidence.items}
+        />
+      )}
 
       {/* Capabilities */}
       <section className="section-padding bg-surface-elevated">
@@ -192,7 +252,7 @@ export default function PlatformTemplate({
                   >
                     <div className="flex flex-col items-center">
                       <div className="w-10 h-10 rounded-full bg-brand-secondary/20 flex items-center justify-center flex-shrink-0">
-                        <span className="text-sm font-bold text-brand-secondary">{i + 1}</span>
+                        <span className="text-sm font-bold text-brand-primary">{i + 1}</span>
                       </div>
                       {i < workflow.length - 1 && <div className="w-px flex-1 bg-neutral-200 my-2" />}
                     </div>
@@ -226,7 +286,7 @@ export default function PlatformTemplate({
                   className="flex items-start gap-3"
                 >
                   <div className="w-6 h-6 rounded-full bg-brand-secondary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-3.5 h-3.5 text-brand-secondary" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <svg className="w-3.5 h-3.5 text-brand-accent" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </div>
                   <p className="text-body">{b}</p>
                 </motion.div>
@@ -252,13 +312,13 @@ export default function PlatformTemplate({
         <div className="container-heraja">
           <h3 className="text-h3 mb-6">Related Infrastructure</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {relatedPages.map((p) => (
-              <Link key={p.href} to={p.href} className="group flex items-center gap-3 p-4 bg-surface rounded-lg border border-neutral-100 hover:border-brand-secondary transition-colors">
+            {byHref(relatedPages).map((p) => (
+              <Link key={p.href} to={p.href} className="group flex items-center gap-3 p-4 bg-surface rounded-lg border border-neutral-100 hover:border-brand-accent transition-colors">
                 <div>
-                  <p className="font-medium text-brand-primary group-hover:text-brand-secondary transition-colors">{p.title}</p>
+                  <p className="font-medium text-brand-primary group-hover:text-brand-accent transition-colors">{p.title}</p>
                   <p className="text-body-small text-neutral-500">{p.description}</p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-brand-secondary group-hover:translate-x-1 transition-all ml-auto flex-shrink-0" />
+                <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-brand-accent group-hover:translate-x-1 transition-all ml-auto flex-shrink-0" />
               </Link>
             ))}
           </div>
@@ -271,8 +331,8 @@ export default function PlatformTemplate({
           <div className="container-heraja">
             <h3 className="text-h3 mb-6">Resources</h3>
             <div className="flex flex-wrap gap-3">
-              {resources.map((r) => (
-                <Link key={r.href} to={r.href} className="inline-flex items-center gap-2 px-4 py-2 bg-surface-elevated rounded-full border border-neutral-200 text-sm text-brand-primary hover:border-brand-secondary transition-colors">
+              {byHref(resources).map((r) => (
+                <Link key={r.href} to={r.href} className="inline-flex items-center gap-2 px-4 py-2 bg-surface-elevated rounded-full border border-neutral-200 text-sm text-brand-primary hover:border-brand-accent transition-colors">
                   {r.title} <span className="text-neutral-400">({r.type})</span>
                 </Link>
               ))}
@@ -285,7 +345,7 @@ export default function PlatformTemplate({
       <CTABlock
         title="Ready to Explore Implementation?"
         description="See how organizations are building on this infrastructure today."
-        primaryCta={{ label: 'View Enterprise Clients', href: '/ecosystem/enterprise-clients' }}
+        primaryCta={{ label: 'View Enterprise Clients', href: '/evidence/zimo-clan' }}
         secondaryCta={{ label: 'Contact Our Team', href: '/company/contact' }}
       />
     </Layout>

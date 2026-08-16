@@ -1,5 +1,6 @@
 import PlatformTemplate from '@/components/layout/PlatformTemplate';
 import { launchCtaFor } from '@/config/liveApps';
+import { FARM_INTELLIGENCE_EVIDENCE } from '@/config/productEvidence';
 import {
   Sprout,
   ClipboardList,
@@ -55,7 +56,13 @@ export default function FarmIntelligence() {
       title="Operational Visibility From the Farm Up"
       description="Production monitoring, field reporting, and operational visibility across every farm operation in the network — the foundation that traceability, logistics, and market access are built on."
       launchCta={launchCtaFor('farmIntelligence')}
-      heroCta={{ label: 'See the Poultry & Fish Farming Pilot', href: '/ecosystem/pilot-programs' }}
+      productEvidence={{
+        title: 'Farm Intelligence, running',
+        intro:
+          'Six screens from the application, captured against a demonstration farm mid-cycle — a broiler batch on day 24 of 41.',
+        items: FARM_INTELLIGENCE_EVIDENCE,
+      }}
+      heroCta={{ label: 'See the Poultry & Fish Farming Pilot', href: '/evidence/pilot' }}
       problemTitle="Production Happens Without Structured Visibility"
       problemDescription="Most producers operate without digital records of what's happening on the ground. Coordinators and buyers are left guessing at production status, and issues are only discovered after they've become losses."
       whyTitle="Visibility Starts at the Farm"
@@ -67,10 +74,10 @@ export default function FarmIntelligence() {
       faq={faq}
       relatedPages={[
         { title: 'HAOS', href: '/platform/haos', description: 'Operating infrastructure' },
-        { title: 'Coordination Network', href: '/platform/coordination-network', description: 'Real-time communication' },
-        { title: 'Traceability', href: '/platform/traceability', description: 'Verified operations' },
+        { title: 'Coordination Network', href: '/platform/roadmap', description: 'Real-time communication' },
+        { title: 'Traceability', href: '/platform/haos', description: 'Verified operations' },
         { title: 'Logistics', href: '/platform/logistics', description: 'Movement coordination' },
-        { title: 'Operational Intelligence', href: '/platform/operational-intelligence', description: 'Analytics' },
+        { title: 'Operational Intelligence', href: '/platform/haos', description: 'Analytics' },
       ]}
     />
   );

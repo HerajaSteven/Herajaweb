@@ -76,7 +76,7 @@ export default function Careers() {
                 {benefits.map((b, i) => (
                   <motion.div key={b} initial={{ opacity: 0, x: -10 }} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ delay: i * 0.1 }}
                     className="flex items-center gap-3">
-                    <Check className="w-4 h-4 text-brand-secondary flex-shrink-0" />
+                    <Check className="w-4 h-4 text-brand-accent flex-shrink-0" />
                     <span className="text-body">{b}</span>
                   </motion.div>
                 ))}

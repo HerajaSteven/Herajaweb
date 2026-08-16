@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
+import { readRoutes } from './routes.mjs';
 
 // Derives the sitemap from src/App.tsx's real <Route path="..."> list — the
 // true source of truth for what routes exist — instead of a hand-maintained
@@ -7,14 +8,24 @@ import { readFileSync, writeFileSync } from 'fs';
 // finding #4).
 
 const SITE_URL = 'https://www.heraja.com';
-const appSource = readFileSync(new URL('../src/App.tsx', import.meta.url), 'utf-8');
 
-const routePaths = [...appSource.matchAll(/<Route\s+path="([^"]+)"/g)]
-  .map((m) => m[1])
-  .filter((path) => path !== '*'); // NotFound catch-all doesn't belong in a sitemap
+// Comment-aware — see scripts/routes.mjs. A commented-out route (currently
+// /company/leadership, held back until real content exists) must not reach a
+// crawler, and the previous inline parse put it in the sitemap.
+let routePaths = readRoutes(new URL('../src/App.tsx', import.meta.url));
 
-if (routePaths.length === 0) {
-  throw new Error('generate-sitemap: found zero <Route path="..."> entries in src/App.tsx — regex probably broke, check the file.');
+/*
+ * /company/leadership is registered unconditionally but only publishes itself
+ * once someone has been added in the HAOS admin. The page renders the 404
+ * while it is empty, so advertising it here would point a crawler at a 404 —
+ * both read the same content file so they cannot disagree.
+ */
+const siteContent = JSON.parse(
+  readFileSync(new URL('../src/content/site-content.json', import.meta.url), 'utf-8'),
+);
+if (!Array.isArray(siteContent.leadership) || siteContent.leadership.length === 0) {
+  routePaths = routePaths.filter((path) => path !== '/company/leadership');
+  console.log('generate-sitemap: leadership is empty — omitting /company/leadership.');
 }
 
 const today = new Date().toISOString().slice(0, 10);

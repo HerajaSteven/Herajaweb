@@ -30,7 +30,7 @@ const regions = [
 ];
 
 function StatusIcon({ status }: { status: string }) {
-  if (status === 'complete') return <Check className="w-4 h-4 text-brand-secondary" />;
+  if (status === 'complete') return <Check className="w-4 h-4 text-brand-accent" />;
   if (status === 'current') return <Circle className="w-4 h-4 text-brand-tertiary" />;
   return <Clock className="w-4 h-4 text-neutral-400" />;
 }
@@ -129,9 +129,9 @@ export default function Roadmap() {
                 transition={{ delay: i * 0.1 }}
                 className="bg-surface rounded-lg border border-neutral-100 p-6"
               >
-                <MapPin className="w-6 h-6 text-brand-secondary mb-3" />
+                <MapPin className="w-6 h-6 text-brand-accent mb-3" />
                 <h3 className="text-h4 mb-1">{region.name}</h3>
-                <p className="text-label text-brand-secondary mb-2">{region.status}</p>
+                <p className="text-label text-brand-accent mb-2">{region.status}</p>
                 <p className="text-body-small text-neutral-600">{region.milestones}</p>
               </motion.div>
             ))}
@@ -162,7 +162,7 @@ export default function Roadmap() {
       <CTABlock
         title="Join the Infrastructure Journey"
         description="Partner with us to shape the future of agricultural infrastructure."
-        primaryCta={{ label: 'Become a Partner', href: '/ecosystem/partners' }}
+        primaryCta={{ label: 'Become a Partner', href: '/evidence' }}
         secondaryCta={{ label: 'Contact Our Team', href: '/company/contact' }}
       />
     </Layout>

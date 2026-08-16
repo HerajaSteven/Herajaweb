@@ -1,4 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+/*
+ * Fonts are self-hosted — see src/fonts.css for why and how to regenerate.
+ *
+ * This @import is resolved by Vite at build time and inlined into the single
+ * output stylesheet, so it costs no extra request. That is the difference
+ * between importing a local file and importing a remote one: the earlier
+ * version of this line pointed at fonts.googleapis.com and did cost a serial
+ * round trip before first paint.
+ *
+ * Families: Inter (body), Syne (display — shared with the HAOS product
+ * estate), DM Mono (labels and data — likewise).
+ */
+@import './fonts.css';
 
 @tailwind base;
 @tailwind components;
@@ -32,6 +44,18 @@
     --color-brand-primary: #231F20;
     --color-brand-secondary: #7AC142;
     --color-brand-tertiary: #F99D1C;
+
+    /*
+     * Light-surface counterparts. See the SURFACE RULE in tailwind.config.js:
+     * the logo green and orange are 2.20:1 and 2.13:1 on white and cannot
+     * carry text or UI on a light ground. These are the same hues at values
+     * that clear AA, and they are what --color-focus-ring and every green
+     * text token below resolve to.
+     */
+    --color-brand-accent: #3A7F27;       /* 4.95:1 on white */
+    --color-brand-accent-warm: #9A5B00;  /* 5.43:1 on white */
+    --color-focus-ring: #3A7F27;
+    --color-focus-ring-on-dark: #7AC142; /* 7.40:1 on brand charcoal */
     --color-surface: #FFFFFF;
     --color-surface-elevated: #F6F7F5;
     --color-surface-dark: #231F20;
@@ -41,19 +65,23 @@
     --color-neutral-300: #D8D6D5;
     --color-neutral-100: #F3F3F2;
 
-    /* Infrastructure Module Colors */
+    /* Infrastructure Module Colors — kept in step with tailwind.config.js */
     --infra-haos: #231F20;
-    --infra-marketplace: #7AC142;
-    --infra-traceability: #4F9D5C;
-    --infra-ai: #C9782B;
-    --infra-identity: #F99D1C;
-    --infra-api: #5FA83D;
+    --infra-marketplace: #3A7F27;
+    --infra-traceability: #336B47;
+    --infra-ai: #8A5216;
+    --infra-identity: #9A5B00;
+    --infra-api: #43792B;
 
-    /* Semantic Colors */
-    --color-success: #7AC142;
-    --color-warning: #F99D1C;
-    --color-error: #EF4444;
-    --color-info: #4F9D5C;
+    /*
+     * Semantic Colors. --color-error was #EF4444 here while tailwind.config.js
+     * declared #D64545 — two different reds depending on which source a
+     * component happened to reach for. One value now, matching the config.
+     */
+    --color-success: #3A7F27;
+    --color-warning: #9A5B00;
+    --color-error: #C0392B;
+    --color-info: #336B47;
 
     /* Motion Tokens */
     --duration-instant: 100ms;
@@ -122,10 +150,63 @@
     font-weight: 600;
   }
 
-  /* Focus visible for accessibility */
+  /*
+   * Syne on the display levels only. It is the face the HAOS applications
+   * use, so the product screenshots this site publishes sit on a page that
+   * shares their voice. h4 and below stay on Inter — Syne is wide and
+   * characterful, and running it down to card titles makes the page noisy
+   * without making it more distinctive.
+   */
+  h1, h2, h3 {
+    font-family: 'Syne', 'Inter', system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /*
+   * Headings must break rather than overrun.
+   *
+   * Syne is materially wider than Inter at the same size, so headings that
+   * fitted before the face changed no longer do — a single long word such as
+   * "Implementation?" in a CTA heading pushed past a 390px viewport and, since
+   * every page ends with a CTA, put a horizontal scrollbar on the whole site.
+   *
+   * overflow-wrap only engages when a word genuinely cannot fit, so normal
+   * headings are unaffected; it is a floor, not a layout choice. text-wrap
+   * balance keeps multi-line headings from leaving one orphaned word.
+   */
+  h1, h2, h3, h4, h5, h6,
+  .text-display, .text-h1, .text-h2, .text-h3 {
+    overflow-wrap: break-word;
+    text-wrap: balance;
+  }
+
+  /*
+   * Focus indicator — WCAG 2.2 AA (2.4.11 Focus Appearance).
+   *
+   * This was 2px of --color-brand-secondary (#7AC142), which measures 2.20:1
+   * on white. That is under the 3:1 a focus indicator requires, so the site's
+   * entire keyboard affordance was failing on every light surface — the most
+   * consequential single instance of the surface rule, because it affected
+   * every interactive element on every page at once.
+   *
+   * Now 3px of #3A7F27: 4.58:1 on the page ground and 3.30:1 on the brand
+   * charcoal, so one value clears 3:1 on both. Dark bands still switch to the
+   * brighter logo green below, where it reaches 7.40:1 and simply reads
+   * better.
+   *
+   * `outline` rather than `box-shadow` is deliberate: an outline is not
+   * clipped by an ancestor's overflow:hidden, which is what makes rings
+   * silently disappear inside scroll containers and cropped cards.
+   */
   *:focus-visible {
-    outline: 2px solid var(--color-brand-secondary);
+    outline: 3px solid var(--color-focus-ring);
     outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .section-dark *:focus-visible,
+  .bg-surface-dark *:focus-visible {
+    outline-color: var(--color-focus-ring-on-dark);
   }
 
   /* Skip link */
@@ -174,40 +255,64 @@
     @apply max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
   }
 
-  /* Typography */
+  /* Typography — display levels carry Syne, the HAOS product estate's face */
   .text-display {
+    font-family: 'Syne', 'Inter', system-ui, sans-serif;
     font-size: clamp(2.25rem, 5vw, 4rem);
     line-height: 1.1;
-    letter-spacing: -0.02em;
-    font-weight: 700;
+    letter-spacing: -0.03em;
+    font-weight: 800;
   }
 
   .text-h1 {
+    font-family: 'Syne', 'Inter', system-ui, sans-serif;
     font-size: clamp(1.75rem, 4vw, 3rem);
     line-height: 1.15;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.025em;
     font-weight: 700;
   }
 
   .text-h2 {
+    font-family: 'Syne', 'Inter', system-ui, sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.25rem);
     line-height: 1.2;
-    letter-spacing: -0.01em;
-    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-weight: 700;
   }
 
   .text-h3 {
+    font-family: 'Syne', 'Inter', system-ui, sans-serif;
     font-size: clamp(1.25rem, 2vw, 1.5rem);
     line-height: 1.3;
+    letter-spacing: -0.015em;
     font-weight: 600;
   }
 
+  /*
+   * Eyebrow / overline. Two changes:
+   *
+   * Colour — was --color-brand-secondary, the logo green, at 2.20:1 on white.
+   * This class is the section label on nearly every page in the site, so it
+   * was the most widespread instance of the contrast failure. Now the
+   * light-ground accent at 4.95:1.
+   *
+   * Face — DM Mono rather than Inter. Setting structural labels in the mono
+   * distinguishes them from content at a glance, and it is the same mono the
+   * products use.
+   */
   .text-overline {
+    font-family: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
     font-size: 0.75rem;
     line-height: 1.4;
-    letter-spacing: 0.05em;
-    font-weight: 600;
+    letter-spacing: 0.12em;
+    font-weight: 500;
     text-transform: uppercase;
+    color: var(--color-brand-accent);
+  }
+
+  /* On dark bands the logo green is correct and reaches 7.40:1. */
+  .section-dark .text-overline,
+  .bg-surface-dark .text-overline {
     color: var(--color-brand-secondary);
   }
 
@@ -216,16 +321,34 @@
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-body font-semibold rounded-sm transition-all duration-fast;
   }
 
+  /*
+   * Primary. The hover was #1a3a5c — navy, left over from a palette this
+   * brand no longer uses and present nowhere else in the token set, so every
+   * primary button on the site turned blue on hover. It is now a lift of the
+   * brand charcoal itself, which is what a charcoal button should do.
+   *
+   * active:scale is gone too: a button that shrinks reads as consumer-playful
+   * rather than institutional, and it is a transform firing on a control
+   * where the pressed state is better carried by colour.
+   */
   .btn-primary {
-    @apply btn-heraja bg-brand-primary text-white hover:bg-[#1a3a5c] active:scale-[0.98];
+    @apply btn-heraja bg-brand-primary text-white hover:bg-[#3D3738] active:bg-[#151213];
   }
 
   .btn-secondary {
-    @apply btn-heraja bg-transparent border border-neutral-300 text-brand-primary hover:bg-surface-elevated hover:border-brand-primary;
+    @apply btn-heraja bg-transparent border border-neutral-300 text-brand-primary hover:bg-surface-elevated hover:border-brand-primary active:bg-neutral-300;
   }
 
+  /* Tertiary hover moves to the light-ground accent — the old brand-secondary
+     was 2.20:1 as text, which is exactly what this control is. */
   .btn-tertiary {
-    @apply btn-heraja bg-transparent text-brand-primary hover:text-brand-secondary p-0;
+    @apply btn-heraja bg-transparent text-brand-primary hover:text-brand-accent p-0;
+  }
+
+  /* Disabled applies to any variant. Non-interactive, and visibly so. */
+  .btn-heraja:disabled,
+  .btn-heraja[aria-disabled='true'] {
+    @apply opacity-50 cursor-not-allowed pointer-events-none;
   }
 
   /* Card hover */
@@ -237,7 +360,14 @@
   .card-elevate:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
-    border-color: var(--color-brand-secondary);
+    border-color: var(--color-brand-accent);
+  }
+
+  /* Reduced motion: keep the border and shadow cue, drop the movement. */
+  @media (prefers-reduced-motion: reduce) {
+    .card-elevate:hover {
+      transform: none;
+    }
   }
 
   /* Scroll progress */
@@ -246,14 +376,9 @@
     transform-origin: left;
   }
 
-  /* Infrastructure accent glow */
-  .infra-glow {
-    box-shadow: var(--shadow-glow);
-  }
-
   /* Code / mono text */
   .font-mono-data {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
     font-size: 0.875rem;
     line-height: 1.5;
   }

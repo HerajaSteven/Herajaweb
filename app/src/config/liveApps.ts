@@ -13,12 +13,18 @@
  * leaves the rest of the page exactly as it was; flipping it back to true
  * is the whole re-enable.
  *
- * Verified against the live domains on 2026-08-04:
- *   marketplace.heraja.com  200  <title>HAOS Marketplace</title>
- *   echimusika.heraja.com   200  <title>e-Chimusika</title>
- *   logistics.heraja.com    200  <title>HAOS Logistics</title>
- *   farm.heraja.com         404  DEPLOYMENT_NOT_FOUND
- *   coordination.heraja.com 404  DEPLOYMENT_NOT_FOUND
+ * Verified against the live domains on 2026-08-16:
+ *   marketplace.heraja.com      200  <title>HAOS Marketplace</title>
+ *   echimusika.heraja.com       200  <title>e-Chimusika</title>
+ *   logistics.heraja.com        200  <title>HAOS Logistics</title>
+ *   farm-web.heraja.com         200  <title>Heraja Farm Intelligence</title>
+ *   coordination-web.heraja.com 404  not deployed
+ *
+ * The 2026-08-04 pass recorded Farm Intelligence as unavailable. It was
+ * not: the URL checked was `farm.heraja.com`, and the application lives at
+ * `farm-web.heraja.com`. A wrong hostname and an undeployed app are
+ * indistinguishable from a 404, which is why the checked URL is recorded
+ * above rather than only its result.
  */
 export interface LiveApp {
   /** Button text, e.g. "Launch Marketplace". */
@@ -44,13 +50,25 @@ export const LIVE_APPS = {
     label: 'Launch e-Chimusika',
     url: 'https://echimusika.heraja.com',
     live: true,
-    note: 'Deployed and reachable, but this site has no e-Chimusika page to launch it from yet.',
   },
   farmIntelligence: {
     label: 'Launch Farm Intelligence',
-    url: 'https://farm.heraja.com',
-    live: false,
-    note: 'Vercel returns DEPLOYMENT_NOT_FOUND — the domain is attached to a project with no deployment. Set live: true once farm-web is deployed.',
+    /*
+     * `farm-web.heraja.com`, NOT `farm.heraja.com`.
+     *
+     * The original entry pointed at `farm.heraja.com`, which does answer
+     * 404 — but the application was never there. It is deployed at
+     * `farm-web.heraja.com` and has been all along, so the gating logic
+     * below did exactly what it was designed to do, against a hostname
+     * that was simply wrong.
+     *
+     * The cost of that was a live product with its launch button hidden on
+     * the page describing it. Worth remembering when adding an app here:
+     * this file's `live` flag is only as truthful as the URL beside it, so
+     * verify the URL answers before trusting the flag.
+     */
+    url: 'https://farm-web.heraja.com',
+    live: true,
   },
   logistics: {
     label: 'Launch Logistics',
@@ -59,7 +77,10 @@ export const LIVE_APPS = {
   },
   coordinationNetwork: {
     label: 'Launch Coordination Network',
-    url: 'https://coordination.heraja.com',
+    // The `-web` hostname, matching the pattern the other apps use.
+    // Confirmed 404 on 2026-08-16 — genuinely not deployed, unlike Farm
+    // Intelligence above, which only looked that way.
+    url: 'https://coordination-web.heraja.com',
     live: false,
     note: 'Same as Farm Intelligence: domain attached, no deployment. coordination-web exists in haos-frontend.',
   },

@@ -25,6 +25,13 @@ export interface FooterColumn {
 export interface BreadcrumbItem {
   label: string;
   href: string;
+  /**
+   * False for a segment that names a section but is not a page of its own —
+   * /company and /resources both redirect to a child. Such a crumb renders as
+   * text so the hierarchy still reads without offering a link that only
+   * bounces the visitor through a redirect.
+   */
+  linkable?: boolean;
 }
 
 export interface PlatformModule {

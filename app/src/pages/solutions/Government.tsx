@@ -32,9 +32,9 @@ export default function Government() {
       ]}
       infrastructure={[
         { title: 'HAOS', description: 'Workflow coordination for multi-agency programs', href: '/platform/haos' },
-        { title: 'Traceability', description: 'Compliance verification and audit trails', href: '/platform/traceability' },
-        { title: 'Operational Intelligence', description: 'Program analytics and outcome measurement', href: '/platform/operational-intelligence' },
-        { title: 'Identity & Access', description: 'Role-based access for agencies and partners', href: '/platform/identity' },
+        { title: 'Traceability', description: 'Compliance verification and audit trails', href: '/platform/haos' },
+        { title: 'Operational Intelligence', description: 'Program analytics and outcome measurement', href: '/platform/haos' },
+        { title: 'Identity & Access', description: 'Role-based access for agencies and partners', href: '/platform/architecture' },
       ]}
       benefits={[
         'A verified national agricultural data model',

@@ -104,7 +104,7 @@ export default function SolutionTemplate({
                 {howPoints.map((p) => (
                   <li key={p} className="flex items-center gap-3 text-body">
                     <div className="w-5 h-5 rounded-full bg-brand-secondary/20 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-3 h-3 text-brand-secondary" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      <svg className="w-3 h-3 text-brand-accent" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </div>
                     {p}
                   </li>
@@ -115,8 +115,8 @@ export default function SolutionTemplate({
               <h3 className="text-h4 mb-4">Infrastructure Used</h3>
               <div className="space-y-4">
                 {infrastructure.map((item) => (
-                  <Link key={item.href} to={item.href} className="group block p-4 bg-white rounded-lg border border-neutral-100 hover:border-brand-secondary transition-colors">
-                    <p className="font-medium text-brand-primary group-hover:text-brand-secondary transition-colors flex items-center gap-2">
+                  <Link key={item.href} to={item.href} className="group block p-4 bg-white rounded-lg border border-neutral-100 hover:border-brand-accent transition-colors">
+                    <p className="font-medium text-brand-primary group-hover:text-brand-accent transition-colors flex items-center gap-2">
                       {item.title}
                       <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </p>
@@ -149,7 +149,7 @@ export default function SolutionTemplate({
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 rounded-full bg-brand-secondary/20 flex items-center justify-center flex-shrink-0">
-                      <span className="text-sm font-bold text-brand-secondary">{i + 1}</span>
+                      <span className="text-sm font-bold text-brand-primary">{i + 1}</span>
                     </div>
                     {i < workflow.length - 1 && <div className="w-px flex-1 bg-neutral-200 my-2" />}
                   </div>
@@ -181,7 +181,7 @@ export default function SolutionTemplate({
                 className="flex items-start gap-3 p-4 bg-surface-elevated rounded-lg"
               >
                 <div className="w-6 h-6 rounded-full bg-brand-secondary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3.5 h-3.5 text-brand-secondary" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <svg className="w-3.5 h-3.5 text-brand-accent" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </div>
                 <p className="text-body">{b}</p>
               </motion.div>

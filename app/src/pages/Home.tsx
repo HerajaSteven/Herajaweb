@@ -60,9 +60,9 @@ function CapabilityCard({ icon: Icon, title, description, href, color }: {
       <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4" style={{ backgroundColor: `${color}15` }}>
         <Icon className="w-5 h-5" style={{ color }} />
       </div>
-      <h3 className="text-h4 mb-2 group-hover:text-brand-secondary transition-colors">{title}</h3>
+      <h3 className="text-h4 mb-2 group-hover:text-brand-accent transition-colors">{title}</h3>
       <p className="text-body-small text-neutral-600 mb-3">{description}</p>
-      <span className="inline-flex items-center gap-1 text-sm font-medium text-brand-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+      <span className="inline-flex items-center gap-1 text-sm font-medium text-brand-accent opacity-0 group-hover:opacity-100 transition-opacity">
         Explore <ArrowRight className="w-3.5 h-3.5" />
       </span>
     </Link>
@@ -76,10 +76,10 @@ function ResourceCard({ title, excerpt, category, href, icon: Icon }: {
   return (
     <Link to={href} className="group card-elevate block bg-surface rounded-lg border border-neutral-100 p-6">
       <div className="flex items-center gap-2 mb-3">
-        <Icon className="w-4 h-4 text-brand-secondary" />
-        <span className="text-label text-brand-secondary uppercase">{category}</span>
+        <Icon className="w-4 h-4 text-brand-accent" />
+        <span className="text-label text-brand-accent uppercase">{category}</span>
       </div>
-      <h3 className="text-h4 mb-2 group-hover:text-brand-secondary transition-colors">{title}</h3>
+      <h3 className="text-h4 mb-2 group-hover:text-brand-accent transition-colors">{title}</h3>
       <p className="text-body-small text-neutral-600">{excerpt}</p>
     </Link>
   );
@@ -98,9 +98,9 @@ function PathwayCard({ title, description, href, delay }: {
       transition={{ delay, duration: 0.5 }}
     >
       <Link to={href} className="group card-elevate block bg-surface rounded-lg border border-neutral-100 p-6 h-full">
-        <h3 className="text-h4 mb-2 group-hover:text-brand-secondary transition-colors">{title}</h3>
+        <h3 className="text-h4 mb-2 group-hover:text-brand-accent transition-colors">{title}</h3>
         <p className="text-body-small text-neutral-600">{description}</p>
-        <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-brand-secondary group-hover:translate-x-1 transition-all mt-3" />
+        <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-brand-accent group-hover:translate-x-1 transition-all mt-3" />
       </Link>
     </motion.div>
   );
@@ -222,7 +222,7 @@ export default function Home() {
       <section className="bg-brand-primary">
         <div className="container-heraja py-10 lg:py-12">
           <p className="text-h3 text-white text-center max-w-3xl mx-auto">
-            Agriculture does not only need financing. It needs <span className="text-brand-secondary">operational coordination infrastructure.</span>
+            Agriculture does not only need financing. It needs <span className="text-brand-accent">operational coordination infrastructure.</span>
           </p>
         </div>
       </section>
@@ -241,7 +241,7 @@ export default function Home() {
                 {['Shared operational backbone', 'Connected stakeholders', 'Verified data flows', 'Enterprise-grade coordination'].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-body">
                     <div className="w-5 h-5 rounded-full bg-brand-secondary/20 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-3 h-3 text-brand-secondary" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      <svg className="w-3 h-3 text-brand-accent" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </div>
                     {item}
                   </li>
@@ -307,12 +307,12 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <CapabilityCard icon={Database} title="HAOS" description="Agricultural Operating Infrastructure — the workflow engine powering coordinated operations." href="/platform/haos" color="#231F20" />
             <CapabilityCard icon={Sprout} title="Farm Intelligence" description="Production monitoring, field reporting, and operational visibility across every farm." href="/platform/farm-intelligence" color="#7AC142" />
-            <CapabilityCard icon={Radio} title="Coordination Network" description="Real-time communication connecting farmers, field agents, and partners." href="/platform/coordination-network" color="#4F9D5C" />
+            <CapabilityCard icon={Radio} title="Coordination Network" description="Real-time communication connecting farmers, field agents, and partners." href="/platform/roadmap" color="#4F9D5C" />
             <CapabilityCard icon={Truck} title="Logistics" description="Movement coordination for aggregation, transportation, and delivery across regions." href="/platform/logistics" color="#F99D1C" />
             <CapabilityCard icon={ShoppingCart} title="Marketplace" description="Market coordination infrastructure connecting verified supply with authenticated demand." href="/platform/marketplace" color="#7AC142" />
-            <CapabilityCard icon={Fingerprint} title="Traceability" description="Verified operations from farm to buyer — every stage documented and auditable." href="/platform/traceability" color="#4F9D5C" />
-            <CapabilityCard icon={Brain} title="Operational Intelligence" description="Real-time monitoring, predictive analytics, and AI-driven operational insights." href="/platform/operational-intelligence" color="#C9782B" />
-            <CapabilityCard icon={Shield} title="Identity & Security" description="Digital profiles, access management, and enterprise-grade security compliance." href="/platform/identity" color="#F99D1C" />
+            <CapabilityCard icon={Fingerprint} title="Traceability" description="Verified operations from farm to buyer — every stage documented and auditable." href="/platform/haos" color="#4F9D5C" />
+            <CapabilityCard icon={Brain} title="Operational Intelligence" description="Real-time monitoring, predictive analytics, and AI-driven operational insights." href="/platform/haos" color="#C9782B" />
+            <CapabilityCard icon={Shield} title="Identity & Security" description="Digital profiles, access management, and enterprise-grade security compliance." href="/platform/architecture" color="#F99D1C" />
             <CapabilityCard icon={BarChart3} title="API & Integrations" description="Developer-ready APIs for connecting external systems to Heraja infrastructure." href="/platform/apis" color="#5FA83D" />
           </div>
         </div>
@@ -325,23 +325,45 @@ export default function Home() {
             <p className="text-overline mb-3">Enterprise Trust</p>
             <h2 className="text-h1 max-w-2xl mx-auto text-white">Built for Every Agricultural Organization</h2>
           </div>
+          {/*
+            This was a three-figure metric strip: "6+ Organization Types",
+            "Composable", and "99.9% Uptime Target".
+
+            The uptime figure was the problem. Nothing in the estate measures
+            or publishes availability, so it was a number the company could not
+            answer a question about — and this audience asks. Phase 1 (D1)
+            removed outcome metrics for exactly that reason, and an unverifiable
+            SLA-shaped claim is the most expensive kind to leave standing in
+            front of a government or finance evaluator.
+
+            What replaces it is the one thing on this page a reader can check
+            without trusting anyone: the applications are deployed, and the
+            links open them.
+          */}
           <div className="grid sm:grid-cols-3 gap-8 mb-12">
             <div className="text-center">
-              <p className="text-4xl font-bold text-brand-secondary mb-2">6+</p>
-              <p className="text-body text-neutral-300">Organization Types Supported</p>
+              <p className="text-h2 text-brand-secondary mb-2">Four applications</p>
+              <p className="text-body text-neutral-300">Deployed and publicly reachable today</p>
             </div>
             <div className="text-center">
-              <p className="text-4xl font-bold text-brand-secondary mb-2">Composable</p>
-              <p className="text-body text-neutral-300">Workflow Engine Across Every Module</p>
+              <p className="text-h2 text-brand-secondary mb-2">One platform</p>
+              <p className="text-body text-neutral-300">Shared identity, verification and audit across all of them</p>
             </div>
             <div className="text-center">
-              <p className="text-4xl font-bold text-brand-secondary mb-2">99.9%</p>
-              <p className="text-body text-neutral-300">Uptime Target</p>
+              <p className="text-h2 text-brand-secondary mb-2">Multi-tenant</p>
+              <p className="text-body text-neutral-300">Each organisation operates its own data boundary</p>
             </div>
           </div>
           <div className="text-center">
-            <Link to="/ecosystem/enterprise-clients" className="inline-flex items-center gap-2 text-brand-secondary hover:underline font-medium">
-              View Enterprise Clients <ArrowRight className="w-4 h-4" />
+            {/*
+              Zimo Clan is a Heraja subsidiary as well as a client. Phase 1 §9
+              requires that relationship to be disclosed before the deployment
+              is described, so the link says what the page is rather than
+              "View Enterprise Clients", which implied an arm's-length customer
+              roster that does not exist.
+            */}
+            <Link to="/evidence/zimo-clan" className="inline-flex items-center gap-2 text-brand-secondary hover:underline font-medium">
+              How a Heraja subsidiary runs on HAOS <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -355,13 +377,13 @@ export default function Home() {
             <h2 className="text-h1 max-w-2xl mx-auto">Featured Resources</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <ResourceCard title="HAOS Whitepaper" excerpt="Technical deep-dive into the Agricultural Operating Infrastructure architecture." category="Whitepaper" href="/resources/whitepaper" icon={FileText} />
+            <ResourceCard title="HAOS Whitepaper" excerpt="Technical deep-dive into the Agricultural Operating Infrastructure architecture." category="Whitepaper" href="/resources/corporate-brochure" icon={FileText} />
             <ResourceCard title="Corporate Brochure" excerpt="Enterprise capability overview for decision-makers and procurement teams." category="Brochure" href="/resources/corporate-brochure" icon={BookOpen} />
-            <ResourceCard title="Platform Documentation" excerpt="Complete technical documentation for developers and system architects." category="Documentation" href="/resources/documentation" icon={FileText} />
-            <ResourceCard title="Research Insights" excerpt="Industry research on digital agricultural infrastructure transformation." category="Research" href="/resources/research" icon={Microscope} />
+            <ResourceCard title="Platform Documentation" excerpt="Complete technical documentation for developers and system architects." category="Documentation" href="/platform/apis" icon={FileText} />
+            <ResourceCard title="Research Insights" excerpt="Industry research on digital agricultural infrastructure transformation." category="Research" href="/platform/innovation" icon={Microscope} />
           </div>
           <div className="text-center mt-8">
-            <Link to="/resources" className="btn-secondary">
+            <Link to="/resources/corporate-brochure" className="btn-secondary">
               View All Resources
             </Link>
           </div>
@@ -379,12 +401,12 @@ export default function Home() {
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <PathwayCard title="Enterprise Client" description="Large-scale operational coordination and digital infrastructure deployment." href="/solutions/enterprise" delay={0} />
+            <PathwayCard title="Enterprise Client" description="Large-scale operational coordination and digital infrastructure deployment." href="/solutions/agribusiness" delay={0} />
             <PathwayCard title="Government Agency" description="National and regional agricultural digital transformation programs." href="/solutions/government" delay={0.1} />
             <PathwayCard title="Cooperative" description="Member coordination, shared operations, and marketplace access." href="/solutions/cooperatives" delay={0.2} />
             <PathwayCard title="Agribusiness" description="Supply chain optimization, processing coordination, and market access." href="/solutions/agribusiness" delay={0.3} />
             <PathwayCard title="Development Partner" description="Impact measurement, program coordination, and regional deployment." href="/solutions/development-organizations" delay={0.4} />
-            <PathwayCard title="Technology Partner" description="API integration, platform extension, and joint solution development." href="/solutions/technology-partners" delay={0.5} />
+            <PathwayCard title="Technology Partner" description="API integration, platform extension, and joint solution development." href="/platform/apis" delay={0.5} />
           </div>
         </div>
       </section>

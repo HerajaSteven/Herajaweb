@@ -16,33 +16,56 @@ export default function CTABlock({ title, description, primaryCta, secondaryCta,
   const isDark = variant === 'dark';
 
   return (
+    /*
+     * Structure note. This used to put `container-heraja` and `max-w-3xl` on
+     * the same element. Both set max-width, so which one won depended on the
+     * order Tailwind happened to emit them — and the losing declaration took
+     * the container's horizontal padding out of play with it, letting the
+     * block run past the viewport on narrow screens. Every page ends with a
+     * CTA, so that single collision was the site's most widespread source of
+     * horizontal scroll on mobile.
+     *
+     * They are separate elements now: the container handles gutters and the
+     * page's maximum width, the inner element handles the measure of the text.
+     */
     <section ref={ref} className={`section-padding ${isDark ? 'bg-surface-dark' : 'bg-surface-elevated'}`}>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
-        className="container-heraja text-center max-w-3xl mx-auto"
-      >
-        <h2 className={`text-h1 mb-4 ${isDark ? 'text-white' : ''}`}>{title}</h2>
-        {description && (
-          <p className={`text-body-large mb-8 ${isDark ? 'text-neutral-300' : 'text-neutral-700'}`}>
-            {description}
-          </p>
-        )}
-        <div className="flex flex-wrap justify-center gap-4">
-          {primaryCta && (
-            <Link to={primaryCta.href} className={`btn-primary ${isDark ? 'bg-brand-secondary text-brand-primary hover:bg-[#00E0B5]' : ''}`}>
-              {primaryCta.label}
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+      <div className="container-heraja">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto"
+        >
+          <h2 className={`text-h1 mb-4 ${isDark ? 'text-white' : ''}`}>{title}</h2>
+          {description && (
+            <p className={`text-body-large mb-8 ${isDark ? 'text-neutral-300' : 'text-neutral-700'}`}>
+              {description}
+            </p>
           )}
-          {secondaryCta && (
-            <Link to={secondaryCta.href} className={`btn-secondary ${isDark ? 'border-white/30 text-white hover:bg-white/10' : ''}`}>
-              {secondaryCta.label}
-            </Link>
-          )}
-        </div>
-      </motion.div>
+          <div className="flex flex-wrap justify-center gap-4">
+            {primaryCta && (
+              /*
+               * The dark-variant hover was #00E0B5 — a teal from an older
+               * palette, sitting in the same file as the navy button hover and
+               * belonging to the brand no more than that one did. It is now a
+               * lift of the logo green, which is what this button already is.
+               */
+              <Link
+                to={primaryCta.href}
+                className={`btn-primary ${isDark ? 'bg-brand-secondary text-brand-primary hover:bg-[#8ACD54] active:bg-[#6BAF38]' : ''}`}
+              >
+                {primaryCta.label}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            )}
+            {secondaryCta && (
+              <Link to={secondaryCta.href} className={`btn-secondary ${isDark ? 'border-white/30 text-white hover:bg-white/10' : ''}`}>
+                {secondaryCta.label}
+              </Link>
+            )}
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

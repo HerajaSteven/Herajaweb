@@ -1,5 +1,6 @@
 import PlatformTemplate from '@/components/layout/PlatformTemplate';
 import { launchCtaFor } from '@/config/liveApps';
+import { APPLICATION_EVIDENCE } from '@/config/productEvidence';
 import {
   Truck,
   MapPin,
@@ -54,7 +55,11 @@ export default function Logistics() {
       title="Coordinated Movement, From Aggregation to Delivery"
       description="Movement coordination for aggregation, transportation, and operational delivery across regions — with live tracking and proof-of-delivery built into every shipment."
       launchCta={launchCtaFor('logistics')}
-      heroCta={{ label: 'Explore Traceability', href: '/platform/traceability' }}
+      productEvidence={{
+        title: 'Logistics, running',
+        items: [APPLICATION_EVIDENCE.logistics],
+      }}
+      heroCta={{ label: 'Explore Traceability', href: '/platform/haos' }}
       problemTitle="Fragmented Logistics Drive Losses and Delays"
       problemDescription="Without coordinated movement, product sits too long at aggregation points, routes are planned reactively, and buyers have no visibility into when a shipment will actually arrive — driving post-production losses and weak buyer confidence."
       whyTitle="Movement Coordinated Like Everything Else"
@@ -65,11 +70,11 @@ export default function Logistics() {
       benefits={benefits}
       faq={faq}
       relatedPages={[
-        { title: 'Coordination Network', href: '/platform/coordination-network', description: 'Real-time communication' },
-        { title: 'Traceability', href: '/platform/traceability', description: 'Verified operations' },
+        { title: 'Coordination Network', href: '/platform/roadmap', description: 'Real-time communication' },
+        { title: 'Traceability', href: '/platform/haos', description: 'Verified operations' },
         { title: 'Marketplace', href: '/platform/marketplace', description: 'Trade coordination' },
         { title: 'Farm Intelligence', href: '/platform/farm-intelligence', description: 'Production visibility' },
-        { title: 'Operational Intelligence', href: '/platform/operational-intelligence', description: 'Analytics' },
+        { title: 'Operational Intelligence', href: '/platform/haos', description: 'Analytics' },
       ]}
     />
   );

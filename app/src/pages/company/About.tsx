@@ -45,7 +45,7 @@ export default function About() {
           <p className="text-body-large text-neutral-700 mb-4">
             That gap is what Heraja was built to close — not with another lending product or another app that asks farmers to change how they work, but with the connective layer underneath: registration, reporting, movement, and verification, all in one place. We started deliberately narrow, with a poultry and fish farming pilot, to prove the model on fast-cycling sectors before expanding into livestock, grains, and beyond.
           </p>
-          <p className="text-h4 text-brand-primary border-l-4 border-brand-secondary pl-4">
+          <p className="text-h4 text-brand-primary border-l-4 border-brand-accent pl-4">
             Agriculture does not only need financing. It needs operational coordination infrastructure.
           </p>
         </div>
@@ -76,7 +76,7 @@ export default function About() {
               <motion.div key={v.title} initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * 0.1 }}
                 className="bg-surface rounded-lg border border-neutral-100 p-6 text-center">
                 <div className="w-12 h-12 rounded-lg bg-brand-secondary/20 flex items-center justify-center mx-auto mb-4">
-                  <v.icon className="w-6 h-6 text-brand-secondary" />
+                  <v.icon className="w-6 h-6 text-brand-accent" />
                 </div>
                 <h3 className="text-h4 mb-2">{v.title}</h3>
                 <p className="text-body-small text-neutral-600">{v.desc}</p>

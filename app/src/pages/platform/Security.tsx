@@ -43,7 +43,7 @@ export default function Security() {
       overline="Security & Compliance"
       title="Enterprise Security Framework"
       description="Comprehensive security infrastructure providing encryption, access control, audit logging, threat detection, and compliance management for agricultural organizations."
-      heroCta={{ label: 'Explore Identity', href: '/platform/identity' }}
+      heroCta={{ label: 'Explore Identity', href: '/platform/architecture' }}
       problemTitle="Agricultural Data Needs Enterprise Protection"
       problemDescription="Agricultural organizations handle sensitive operational, financial, and personal data. Without enterprise-grade security, this data is vulnerable to breaches, misuse, and compliance violations."
       whyTitle="Security Is Infrastructure"
@@ -54,9 +54,9 @@ export default function Security() {
       benefits={benefits}
       faq={faq}
       relatedPages={[
-        { title: 'Identity & Access', href: '/platform/identity', description: 'Identity management' },
+        { title: 'Identity & Access', href: '/platform/architecture', description: 'Identity management' },
         { title: 'APIs', href: '/platform/apis', description: 'API security' },
-        { title: 'Infrastructure Services', href: '/platform/infrastructure-services', description: 'Platform services' },
+        { title: 'Infrastructure Services', href: '/platform/architecture', description: 'Platform services' },
         { title: 'Architecture', href: '/platform/architecture', description: 'Full stack' },
       ]}
     />

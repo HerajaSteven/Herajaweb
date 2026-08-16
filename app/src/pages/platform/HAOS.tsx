@@ -66,9 +66,9 @@ export default function HAOS() {
       faq={faq}
       relatedPages={[
         { title: 'Marketplace', href: '/platform/marketplace', description: 'Market coordination' },
-        { title: 'Traceability', href: '/platform/traceability', description: 'Verified operations' },
-        { title: 'Operational Intelligence', href: '/platform/operational-intelligence', description: 'Analytics and AI' },
-        { title: 'Identity & Access', href: '/platform/identity', description: 'Digital profiles' },
+        { title: 'Traceability', href: '/platform/haos', description: 'Verified operations' },
+        { title: 'Operational Intelligence', href: '/platform/haos', description: 'Analytics and AI' },
+        { title: 'Identity & Access', href: '/platform/architecture', description: 'Digital profiles' },
         { title: 'APIs & Integrations', href: '/platform/apis', description: 'Developer tools' },
         { title: 'Architecture', href: '/platform/architecture', description: 'Full stack view' },
       ]}
