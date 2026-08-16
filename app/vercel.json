@@ -1,5 +1,161 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/ecosystem",
+      "destination": "/evidence",
+      "permanent": true
+    },
+    {
+      "source": "/ecosystem/zimo-clan",
+      "destination": "/evidence/zimo-clan",
+      "permanent": true
+    },
+    {
+      "source": "/ecosystem/pilot-programs",
+      "destination": "/evidence/pilot",
+      "permanent": true
+    },
+    {
+      "source": "/ecosystem/enterprise-clients",
+      "destination": "/evidence/zimo-clan",
+      "permanent": true
+    },
+    {
+      "source": "/ecosystem/implementation-stories",
+      "destination": "/evidence/zimo-clan",
+      "permanent": true
+    },
+    {
+      "source": "/ecosystem/partners",
+      "destination": "/evidence",
+      "permanent": true
+    },
+    {
+      "source": "/ecosystem/regional-programs",
+      "destination": "/evidence",
+      "permanent": true
+    },
+    {
+      "source": "/platform/coordination-network",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/platform/traceability",
+      "destination": "/platform/haos",
+      "permanent": true
+    },
+    {
+      "source": "/platform/operational-intelligence",
+      "destination": "/platform/haos",
+      "permanent": true
+    },
+    {
+      "source": "/platform/identity",
+      "destination": "/platform/architecture",
+      "permanent": true
+    },
+    {
+      "source": "/platform/infrastructure-services",
+      "destination": "/platform/architecture",
+      "permanent": true
+    },
+    {
+      "source": "/innovation",
+      "destination": "/platform/innovation",
+      "permanent": true
+    },
+    {
+      "source": "/innovation/ai",
+      "destination": "/platform/innovation",
+      "permanent": true
+    },
+    {
+      "source": "/innovation/research",
+      "destination": "/platform/innovation",
+      "permanent": true
+    },
+    {
+      "source": "/innovation/open-innovation",
+      "destination": "/platform/roadmap",
+      "permanent": true
+    },
+    {
+      "source": "/innovation/future-infrastructure",
+      "destination": "/platform/roadmap",
+      "permanent": true
+    },
+    {
+      "source": "/resources",
+      "destination": "/resources/corporate-brochure",
+      "permanent": true
+    },
+    {
+      "source": "/resources/whitepaper",
+      "destination": "/resources/corporate-brochure",
+      "permanent": true
+    },
+    {
+      "source": "/resources/media-kit",
+      "destination": "/resources/corporate-brochure",
+      "permanent": true
+    },
+    {
+      "source": "/resources/documentation",
+      "destination": "/platform/apis",
+      "permanent": true
+    },
+    {
+      "source": "/resources/case-studies",
+      "destination": "/evidence",
+      "permanent": true
+    },
+    {
+      "source": "/resources/blog",
+      "destination": "/platform/innovation",
+      "permanent": true
+    },
+    {
+      "source": "/resources/research",
+      "destination": "/platform/innovation",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/enterprise",
+      "destination": "/solutions/agribusiness",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/technology-partners",
+      "destination": "/platform/apis",
+      "permanent": true
+    },
+    {
+      "source": "/company",
+      "destination": "/company/about",
+      "permanent": true
+    },
+    {
+      "source": "/company/vision",
+      "destination": "/company/about",
+      "permanent": true
+    },
+    {
+      "source": "/company/news",
+      "destination": "/company/about",
+      "permanent": true
+    },
+    {
+      "source": "/company/legal",
+      "destination": "/company/privacy",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }

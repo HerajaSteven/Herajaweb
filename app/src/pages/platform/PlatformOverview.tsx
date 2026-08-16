@@ -77,16 +77,16 @@ export default function PlatformOverview() {
       relatedPages={[
         { title: 'HAOS', href: '/platform/haos', description: 'Agricultural Operating Infrastructure' },
         { title: 'Farm Intelligence', href: '/platform/farm-intelligence', description: 'Production visibility' },
-        { title: 'Coordination Network', href: '/platform/coordination-network', description: 'Real-time communication' },
+        { title: 'Coordination Network', href: '/platform/roadmap', description: 'Real-time communication' },
         { title: 'Logistics', href: '/platform/logistics', description: 'Movement coordination' },
         { title: 'Marketplace', href: '/platform/marketplace', description: 'Market coordination infrastructure' },
-        { title: 'Traceability', href: '/platform/traceability', description: 'Verified operations' },
-        { title: 'Operational Intelligence', href: '/platform/operational-intelligence', description: 'AI and analytics' },
+        { title: 'Traceability', href: '/platform/haos', description: 'Verified operations' },
+        { title: 'Operational Intelligence', href: '/platform/haos', description: 'AI and analytics' },
       ]}
       resources={[
-        { title: 'Platform Whitepaper', href: '/resources/whitepaper', type: 'Whitepaper' },
-        { title: 'API Documentation', href: '/resources/documentation', type: 'Docs' },
-        { title: 'Security Whitepaper', href: '/resources/whitepaper', type: 'Security' },
+        { title: 'Platform Whitepaper', href: '/resources/corporate-brochure', type: 'Whitepaper' },
+        { title: 'API Documentation', href: '/platform/apis', type: 'Docs' },
+        { title: 'Security Whitepaper', href: '/resources/corporate-brochure', type: 'Security' },
       ]}
     />
   );

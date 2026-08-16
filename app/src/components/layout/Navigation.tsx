@@ -5,10 +5,10 @@ import {
   Menu,
   X,
   ChevronDown,
-  Search,
   ArrowRight,
 } from 'lucide-react';
 import { primaryNav } from '@/config/navigation';
+import { track } from '@/lib/analytics';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -18,6 +18,8 @@ export default function Navigation() {
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mobileTriggerRef = useRef<HTMLButtonElement>(null);
+  const mobilePanelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -37,6 +39,66 @@ export default function Navigation() {
       document.body.style.overflow = '';
     }
     return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
+  /*
+   * Escape closes whichever surface is open, and returns focus to the control
+   * that opened it. Without this a keyboard user who opens the mobile menu has
+   * no way out except tabbing through every link in it — and a dropdown left
+   * open after the pointer moves away traps nothing but confuses everything.
+   */
+  useEffect(() => {
+    if (!mobileOpen && !activeMegaMenu) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      if (mobileOpen) {
+        setMobileOpen(false);
+        mobileTriggerRef.current?.focus();
+      } else if (activeMegaMenu) {
+        setActiveMegaMenu(null);
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [mobileOpen, activeMegaMenu]);
+
+  /*
+   * Focus trap for the mobile overlay. It covers the whole viewport, so Tab
+   * reaching the page behind it would move focus somewhere the user cannot
+   * see — the classic reason an overlay is unusable with a keyboard or a
+   * screen reader even though it looks fine.
+   */
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const panel = mobilePanelRef.current;
+    if (!panel) return;
+
+    const selector =
+      'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    panel.querySelector<HTMLElement>(selector)?.focus();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const items = Array.from(panel.querySelectorAll<HTMLElement>(selector))
+        .filter((el) => el.offsetParent !== null);
+      if (items.length === 0) return;
+
+      const first = items[0];
+      const last = items[items.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    panel.addEventListener('keydown', onKeyDown);
+    return () => panel.removeEventListener('keydown', onKeyDown);
   }, [mobileOpen]);
 
   const handleMouseEnter = (label: string) => {
@@ -120,12 +182,23 @@ export default function Navigation() {
                       className="absolute top-full left-1/2 -translate-x-1/2 pt-2"
                       style={{ transformOrigin: 'top' }}
                     >
+                      {/*
+                        520px for the two-column Platform panel, 280px for the
+                        single-column Solutions list. It was a flat 680px with
+                        a hardcoded 3-column grid, which now that Platform has
+                        two groups would have left an empty third column — and
+                        680px is wide for a panel that has to fit inside a
+                        1024px viewport, which is where the desktop nav now
+                        appears.
+                      */}
                       <div
-                        className="bg-white rounded-lg shadow-xl-token border border-neutral-100 p-8 min-w-[680px]"
+                        className={`bg-white rounded-lg shadow-xl-token border border-neutral-100 p-6 ${
+                          item.children.length > 1 ? 'min-w-[520px]' : 'min-w-[280px]'
+                        }`}
                         onMouseEnter={() => handleMouseEnter(item.label)}
                         onMouseLeave={handleMouseLeave}
                       >
-                        <div className={`grid gap-8 ${item.children.length > 1 ? 'grid-cols-3' : 'grid-cols-1'}`}>
+                        <div className={`grid gap-8 ${item.children.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
                           {item.children.map((section) => (
                             <div key={section.title}>
                               <h3 className="text-label text-neutral-500 mb-4 uppercase tracking-wider">
@@ -138,7 +211,7 @@ export default function Navigation() {
                                       to={link.href}
                                       className="group block"
                                     >
-                                      <span className="text-sm font-medium text-brand-primary group-hover:text-brand-secondary transition-colors flex items-center gap-1">
+                                      <span className="text-sm font-medium text-brand-primary group-hover:text-brand-accent transition-colors flex items-center gap-1">
                                         {link.label}
                                         <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                                       </span>
@@ -162,34 +235,33 @@ export default function Navigation() {
             ))}
           </div>
 
-          {/* Right Actions */}
-          <div className="hidden lg:flex items-center gap-3">
-            <button
-              className="p-2 text-neutral-700 hover:text-brand-primary hover:bg-surface-elevated rounded-md transition-colors"
-              aria-label="Search"
-            >
-              <Search className="w-5 h-5" />
-            </button>
+          {/*
+            One call to action, not two.
+
+            "Book Demo" and "Get Started" competed for the same click and meant
+            the same thing — and "Get Started" implies a self-service signup
+            that does not exist, since every enquiry routes to a conversation.
+            The Search control beside them was removed for a simpler reason: it
+            had no handler and no search index behind it.
+          */}
+          <div className="hidden lg:flex items-center">
             <Link
               to="/company/contact"
-              className="px-4 py-2 text-sm font-medium text-brand-primary border border-neutral-300 rounded-sm hover:bg-surface-elevated hover:border-brand-primary transition-all"
+              className="px-4 py-2 text-sm font-semibold text-white bg-brand-primary rounded-sm hover:bg-[#3D3738] active:bg-[#151213] transition-colors"
+              onClick={() => track('cta_click', { label: 'Talk to us', page: 'header' })}
             >
-              Book Demo
-            </Link>
-            <Link
-              to="/company/contact"
-              className="px-4 py-2 text-sm font-medium text-white bg-brand-primary rounded-sm hover:bg-[#1a3a5c] active:scale-[0.98] transition-all"
-            >
-              Get Started
+              Talk to us
             </Link>
           </div>
 
-          {/* Mobile Toggle */}
+          {/* Mobile Toggle — 44px minimum target */}
           <button
-            className="lg:hidden p-2 text-neutral-700 hover:text-brand-primary rounded-md"
+            ref={mobileTriggerRef}
+            className="lg:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-700 hover:text-brand-primary rounded-md"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-expanded={mobileOpen}
-            aria-label="Toggle navigation"
+            aria-controls="mobile-navigation"
+            aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -213,22 +285,13 @@ export default function Navigation() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              ref={mobilePanelRef}
+              id="mobile-navigation"
               className="fixed top-20 right-0 bottom-0 w-full max-w-sm bg-white z-50 overflow-y-auto lg:hidden shadow-2xl"
               role="dialog"
-              aria-label="Mobile navigation"
+              aria-modal="true"
+              aria-label="Site navigation"
             >
-              {/* Mobile Search */}
-              <div className="p-4 border-b border-neutral-100">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
-                  <input
-                    type="text"
-                    placeholder="Search platform, solutions, resources..."
-                    className="w-full h-10 pl-10 pr-4 text-sm border border-neutral-300 rounded-sm focus:border-brand-secondary focus:ring-2 focus:ring-brand-secondary/10 outline-none"
-                  />
-                </div>
-              </div>
-
               {/* Mobile Accordion Nav */}
               <div className="py-2">
                 {primaryNav.map((item) => (
@@ -299,19 +362,14 @@ export default function Navigation() {
                 ))}
               </div>
 
-              {/* Mobile CTAs */}
-              <div className="p-6 space-y-3 border-t border-neutral-100">
+              {/* Single CTA, pinned below the links */}
+              <div className="p-6 border-t border-neutral-100">
                 <Link
                   to="/company/contact"
-                  className="block w-full text-center px-4 py-3 text-sm font-medium text-white bg-brand-primary rounded-sm"
+                  className="block w-full text-center px-4 py-3 min-h-[44px] text-sm font-semibold text-white bg-brand-primary rounded-sm hover:bg-[#3D3738] transition-colors"
+                  onClick={() => track('cta_click', { label: 'Talk to us', page: 'mobile-nav' })}
                 >
-                  Get Started
-                </Link>
-                <Link
-                  to="/company/contact"
-                  className="block w-full text-center px-4 py-3 text-sm font-medium text-brand-primary border border-neutral-300 rounded-sm"
-                >
-                  Book Demo
+                  Talk to us
                 </Link>
               </div>
             </motion.div>

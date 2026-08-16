@@ -1,63 +1,127 @@
+import { Link } from 'react-router-dom';
+import { Linkedin } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
-import CTABlock from '@/components/sections/CTABlock';
 import Seo from '@/components/Seo';
-import { motion } from 'framer-motion';
-import { Users } from 'lucide-react';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import CTABlock from '@/components/sections/CTABlock';
+import NotFound from '@/pages/NotFound';
+import { leadership, hasLeadership } from '@/config/siteContent';
 
-const team = [
-  { name: 'Chief Executive Officer', role: 'Leading strategy and vision for agricultural infrastructure transformation.' },
-  { name: 'Chief Technology Officer', role: 'Driving technical architecture and platform development.' },
-  { name: 'Chief Operating Officer', role: 'Overseeing operations and enterprise client implementations.' },
-  { name: 'Head of Product', role: 'Defining product strategy and capability roadmap.' },
-  { name: 'Head of Engineering', role: 'Leading engineering teams and technical delivery.' },
-  { name: 'Head of Partnerships', role: 'Building the partner ecosystem and strategic alliances.' },
-];
-
+/**
+ * /company/leadership
+ *
+ * The highest-value credibility page on the site, and the one that stayed
+ * unpublished the longest: a government or finance evaluator checking whether
+ * this company is real opens exactly this page, and a page of placeholders
+ * answers that question worse than no page at all.
+ *
+ * It is now driven by the HAOS admin. Add people in Site Content → Leadership
+ * and the next build publishes the page, links it from the footer, and adds it
+ * to the sitemap. Remove them and all three reverse.
+ *
+ * WHY IT RENDERS NotFound WHEN EMPTY. The route is registered unconditionally
+ * so the router stays static and greppable, but an empty leadership page must
+ * not be reachable. Rendering the 404 means a visitor who guesses the URL, or
+ * follows a stale link, gets the honest answer rather than a heading with
+ * nothing under it. generate-sitemap.mjs reads the same flag, so the page is
+ * not advertised while it is empty either.
+ */
 export default function Leadership() {
-  const { ref, isVisible } = useScrollReveal();
+  if (!hasLeadership) return <NotFound />;
+
   return (
     <Layout>
-      <Seo title="Leadership" description="The people setting the direction — and staying close enough to the field to know if it's the right one." />
-      <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-          <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />
-          <div className="absolute -bottom-32 -left-16 w-64 h-64 rounded-full bg-brand-tertiary/10 blur-3xl" />
-        </div>
-        <div className="container-heraja w-full">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="flex items-center gap-1.5 mb-4" aria-hidden="true">
-              <span className="w-2 h-2 rounded-full bg-brand-tertiary" />
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
-              <span className="w-1 h-1 rounded-full bg-brand-primary" />
-            </div>
+      <Seo
+        title="Leadership"
+        description="The people accountable for Heraja Agro Technologies — the team building and operating HAOS."
+      />
+
+      <section className="section-padding bg-surface">
+        <div className="container-heraja">
+          <div className="max-w-2xl mb-12">
             <p className="text-overline mb-4">Company / Leadership</p>
-            <h1 className="text-display max-w-4xl mb-6">Leadership</h1>
-            <p className="text-body-large text-neutral-700 max-w-2xl">The people setting the direction — and staying close enough to the field to know if it's the right one.</p>
-          </motion.div>
-        </div>
-      </section>
-
-      <section ref={ref} className="section-padding bg-surface-elevated">
-        <div className="container-heraja max-w-3xl">
-          <div className="space-y-6">
-            {team.map((m, i) => (
-              <motion.div key={m.name} initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * 0.1 }}
-                className="bg-surface rounded-lg border border-neutral-100 p-6 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Users className="w-5 h-5 text-brand-primary" />
-                </div>
-                <div>
-                  <h3 className="text-h4 mb-1">{m.name}</h3>
-                  <p className="text-body text-neutral-600">{m.role}</p>
-                </div>
-              </motion.div>
-            ))}
+            <h1 className="text-display mb-6">Leadership</h1>
+            <p className="text-body-large text-neutral-700">
+              The people accountable for what Heraja builds and operates.
+            </p>
           </div>
+
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {leadership.map((person) => (
+              <li key={person.name} className="bg-surface rounded-lg border border-neutral-300 overflow-hidden">
+                {person.photo_url && (
+                  /*
+                   * 4:5 rectangle, not a circle. A circular crop is a
+                   * social-media convention; a rectangular portrait reads as a
+                   * record, which is the right register for a page whose job
+                   * is accountability.
+                   */
+                  <img
+                    src={person.photo_url}
+                    alt={`${person.name}, ${person.role || 'Heraja leadership'}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full aspect-[4/5] object-cover bg-surface-elevated"
+                  />
+                )}
+                <div className="p-6">
+                  <h2 className="text-h3 mb-1">{person.name}</h2>
+                  {person.role && (
+                    <p className="font-mono-data uppercase text-neutral-500 mb-3">{person.role}</p>
+                  )}
+                  {person.bio && <p className="text-body-small text-neutral-700">{person.bio}</p>}
+                  {person.linkedin_url && (
+                    <a
+                      href={person.linkedin_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-4 text-body-small text-brand-accent hover:underline font-medium"
+                    >
+                      <Linkedin className="w-4 h-4" aria-hidden="true" />
+                      {person.name} on LinkedIn
+                    </a>
+                  )}
+                </div>
+
+                {/*
+                  Person structured data, so a search engine can attribute the
+                  role to a named individual rather than to a page of text.
+                */}
+                <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                      '@context': 'https://schema.org',
+                      '@type': 'Person',
+                      name: person.name,
+                      ...(person.role ? { jobTitle: person.role } : {}),
+                      ...(person.photo_url ? { image: person.photo_url } : {}),
+                      ...(person.linkedin_url ? { sameAs: [person.linkedin_url] } : {}),
+                      worksFor: {
+                        '@type': 'Organization',
+                        name: 'Heraja Agro Technologies Limited',
+                      },
+                    }),
+                  }}
+                />
+              </li>
+            ))}
+          </ul>
+
+          <p className="text-body-small text-neutral-500 mt-10">
+            Looking for something else about the company?{' '}
+            <Link to="/company/about" className="text-brand-accent hover:underline font-medium">
+              About Heraja
+            </Link>
+            .
+          </p>
         </div>
       </section>
 
-      <CTABlock title="Join Our Leadership Team" primaryCta={{ label: 'View Careers', href: '/company/careers' }} />
+      <CTABlock
+        title="Talk to the people building this"
+        description="Tell us what you are evaluating and we will point you at the right part of the platform."
+        primaryCta={{ label: 'Talk to us', href: '/company/contact' }}
+      />
     </Layout>
   );
 }

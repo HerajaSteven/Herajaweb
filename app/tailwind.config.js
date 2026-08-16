@@ -48,11 +48,32 @@ module.exports = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Heraja Brand Colors — sourced directly from the Heraja logo mark
+        /*
+         * Heraja Brand Colors — sourced directly from the Heraja logo mark.
+         *
+         * SURFACE RULE (WCAG AA). The logo green and orange are DARK-SURFACE
+         * colours. Measured against #FFFFFF they are 2.20:1 and 2.13:1 —
+         * both well under the 4.5:1 AA needs for text and the 3:1 it needs
+         * for UI components and focus indicators. Against the brand charcoal
+         * they are 7.40:1 and 8.06:1.
+         *
+         * So the same hue is carried by two tokens, and which one you reach
+         * for is decided by the surface behind it, not by preference:
+         *
+         *   dark ground  → secondary / tertiary   (the logo values, unchanged)
+         *   light ground → accent / accent-warm   (same hue, corrected value)
+         *
+         * The logo itself keeps #7AC142 because it is a graphic, not text,
+         * and graphics carry no contrast requirement. Nothing here is a
+         * rebrand — accent is the same green at a darker value, which is why
+         * it reads as the brand rather than as a new colour.
+         */
         brand: {
-          primary: '#231F20',   // logo charcoal/black
-          secondary: '#7AC142', // logo green
-          tertiary: '#F99D1C',  // logo orange
+          primary: '#231F20',        // logo charcoal/black
+          secondary: '#7AC142',      // logo green  — DARK GROUNDS + LOGO ONLY
+          tertiary: '#F99D1C',       // logo orange — DARK GROUNDS ONLY
+          accent: '#3A7F27',         // green on light grounds  — 4.95:1 on white
+          'accent-warm': '#9A5B00',  // orange on light grounds — 5.43:1 on white
         },
         surface: {
           DEFAULT: '#FFFFFF',
@@ -66,30 +87,74 @@ module.exports = {
           300: '#D8D6D5',
           100: '#F3F3F2',
         },
-        // Infrastructure Module Colors — greens/oranges/charcoal tints in the brand family
+        /*
+         * Infrastructure Module Colors — used as capability-card icon tints
+         * across the platform pages (~74 call sites).
+         *
+         * Values darkened to clear 4.5:1 on white. The previous set was mixed
+         * — marketplace was the raw logo green at 2.20:1 and identity the raw
+         * orange at 2.13:1, so those icons were barely visible on the white
+         * cards they sit on. The concept-to-hue mapping is unchanged; only the
+         * values moved, so every existing usage keeps its meaning.
+         */
         infra: {
           haos: '#231F20',
-          marketplace: '#7AC142',
-          traceability: '#4F9D5C',
-          ai: '#C9782B',
-          identity: '#F99D1C',
-          api: '#5FA83D',
+          marketplace: '#3A7F27',
+          traceability: '#336B47',
+          ai: '#8A5216',
+          identity: '#9A5B00',
+          api: '#43792B',
         },
-        // Semantic
-        success: '#7AC142',
-        warning: '#F99D1C',
-        error: '#D64545',
-        info: '#4F9D5C',
+        /*
+         * Semantic. These sit on light surfaces, so they take the light-ground
+         * values. `error` previously disagreed with index.css (#D64545 here vs
+         * #EF4444 there) — one value now, defined here and consumed by the CSS
+         * variable rather than duplicated.
+         */
+        success: '#3A7F27',
+        warning: '#9A5B00',
+        error: '#C0392B',
+        info: '#336B47',
+        /* Focus ring — see the *:focus-visible rule in index.css. */
+        focus: '#3A7F27',
       },
+      /*
+       * Syne and DM Mono are the faces the HAOS product estate already uses
+       * (apps/farm-web/app/layout.tsx imports both from next/font/google).
+       * This site embeds screenshots of those products as its primary
+       * evidence, so sharing their display face is what stops the screenshots
+       * reading as borrowed from somewhere else.
+       *
+       * Inter is deliberately retained for body copy: it is highly readable
+       * at 14–16px on the low-DPI Android screens much of this audience uses,
+       * and swapping it would add a font download for no legibility gain.
+       * Syne is a display face — it is not used below h3.
+       */
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        display: ['Syne', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"DM Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
+      /*
+       * `display`, `h1`, `h2` and `h3` are deliberately NOT defined here.
+       *
+       * They used to be, at fixed sizes — h1 at 3rem, display at 4rem — and
+       * src/index.css separately defines .text-display / .text-h1 / .text-h2 /
+       * .text-h3 with clamp() so headings scale down on small screens.
+       *
+       * Both cannot win, and the utility did: Tailwind emits fontSize keys
+       * into the utilities layer, which outranks the components layer where
+       * the clamp rules live. So every heading on the site rendered at its
+       * full desktop size at every width — a 48px h1 inside a 288px column on
+       * a 320px phone. That was the actual cause of the horizontal scrolling
+       * across the site, and it had nothing to do with the content of any
+       * individual heading.
+       *
+       * Removing these four keys lets the clamp definitions apply. The
+       * remaining keys below have no counterpart in index.css, so they are
+       * the only definition and there is nothing to collide with.
+       */
       fontSize: {
-        'display': ['4rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'h1': ['3rem', { lineHeight: '1.15', letterSpacing: '-0.01em', fontWeight: '700' }],
-        'h2': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '600' }],
-        'h3': ['1.5rem', { lineHeight: '1.3', fontWeight: '600' }],
         'h4': ['1.25rem', { lineHeight: '1.4', fontWeight: '600' }],
         'body-large': ['1.125rem', { lineHeight: '1.6', fontWeight: '400' }],
         'body': ['1rem', { lineHeight: '1.6', fontWeight: '400' }],
@@ -145,13 +210,26 @@ module.exports = {
         'slow': '500ms',
         'dramatic': '800ms',
       },
-      screens: {
-        'xs': '640px',
-        'sm': '768px',
-        'md': '1024px',
-        'lg': '1280px',
-        'xl': '1536px',
-      },
+      /*
+       * `screens` is deliberately NOT overridden.
+       *
+       * It used to be, and every name was shifted one tier off Tailwind's
+       * defaults: sm fired at 768 rather than 640, md at 1024, lg at 1280.
+       * Idiomatic Tailwind — written by a person, copied from the docs, or
+       * generated by a tool — therefore landed one tier wider than intended
+       * everywhere, silently. Layouts looked correct on the machine they were
+       * built on and collapsed a tier late elsewhere.
+       *
+       * Defaults now apply: sm 640 · md 768 · lg 1024 · xl 1280 · 2xl 1536.
+       * Consequences that were checked rather than assumed, since every one
+       * of ~230 responsive utilities now fires one tier EARLIER:
+       *   · desktop nav (hidden lg:flex) appears at 1024, not 1280 — which is
+       *     the intended breakpoint, and the dropdown panel fits at that width
+       *   · .grid-heraja goes 2-up at 640 and 3-up at 1024
+       *   · container padding steps at 640/1024/1280
+       * The removed `xs` alias had no breakpoint call sites; the only "xs:" in
+       * the tree is a cva variant key in ui/input-group.tsx, not a prefix.
+       */
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

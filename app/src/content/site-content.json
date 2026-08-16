@@ -1,0 +1,17 @@
+{
+  "leadership": [],
+  "social": {},
+  "brochure": {
+    "available": false,
+    "url": "",
+    "size_label": "",
+    "updated_at": ""
+  },
+  "contact": {
+    "email": "hello@heraja.com",
+    "phone": "",
+    "office": "",
+    "hours": "",
+    "response_expectation": ""
+  }
+}

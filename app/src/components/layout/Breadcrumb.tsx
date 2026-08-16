@@ -22,7 +22,17 @@ export default function Breadcrumb() {
             >
               {index > 0 && <ChevronRight className="w-3.5 h-3.5 text-neutral-300" aria-hidden="true" />}
               {index === items.length - 1 ? (
-                <span className="breadcrumb-item-current" itemProp="name">{item.label}</span>
+                /*
+                 * aria-current tells a screen-reader user which crumb is the
+                 * page they are on. Without it the trail is just a list of
+                 * names with no indication of position.
+                 */
+                <span className="breadcrumb-item-current" aria-current="page" itemProp="name">
+                  {item.label}
+                </span>
+              ) : item.linkable === false ? (
+                // A section that is not a page — see SECTION_ONLY_PATHS.
+                <span className="breadcrumb-item" itemProp="name">{item.label}</span>
               ) : (
                 <Link to={item.href} className="breadcrumb-item" itemProp="item">
                   <span itemProp="name">{item.label}</span>

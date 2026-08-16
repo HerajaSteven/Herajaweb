@@ -9,6 +9,36 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
 
+    <!--
+      Fonts are served from this origin — see src/fonts.css.
+
+      There is deliberately no preconnect to fonts.googleapis.com or
+      fonts.gstatic.com any more: nothing is fetched from them, and a
+      preconnect to a host you never use is a wasted DNS lookup and TLS
+      handshake.
+
+      These two faces are preloaded because they are what renders above the
+      fold on every page — Inter 400 for body copy and Syne 700 for the
+      heading. Starting them during HTML parse, rather than after the
+      stylesheet has been fetched and parsed, is the whole point. The other
+      weights and the latin-ext subsets are left to load on demand; preloading
+      all eighteen would compete with the ones that matter.
+    -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/assets/fonts/inter-400-latin.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/assets/fonts/syne-700-latin.woff2"
+      crossorigin
+    />
+
     <title>Heraja — Digital Agricultural Infrastructure</title>
     <meta name="description" content="Heraja builds the digital backbone that connects production, coordination, and market access — enabling agricultural organizations to operate with transparency, efficiency, and scale." />
     <link rel="canonical" href="https://www.heraja.com/" />

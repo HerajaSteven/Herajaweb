@@ -9,11 +9,11 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 const audiences = [
   { icon: Landmark, title: 'Government', desc: 'National and regional agricultural transformation programs.', href: '/solutions/government', color: '#231F20' },
   { icon: Users, title: 'Cooperatives', desc: 'Member coordination, shared operations, and market access.', href: '/solutions/cooperatives', color: '#7AC142' },
-  { icon: Building2, title: 'Enterprise', desc: 'Large-scale operational coordination and digital infrastructure.', href: '/solutions/enterprise', color: '#4F9D5C' },
+  { icon: Building2, title: 'Enterprise', desc: 'Large-scale operational coordination and digital infrastructure.', href: '/solutions/agribusiness', color: '#4F9D5C' },
   { icon: Factory, title: 'Agribusiness', desc: 'Supply chain optimization and processing coordination.', href: '/solutions/agribusiness', color: '#C9782B' },
   { icon: Landmark, title: 'Financial Institutions', desc: 'Agricultural finance, risk assessment, and portfolio management.', href: '/solutions/financial-institutions', color: '#F99D1C' },
   { icon: HeartHandshake, title: 'Development Organizations', desc: 'Impact programs, measurement, and regional coordination.', href: '/solutions/development-organizations', color: '#5FA83D' },
-  { icon: Cpu, title: 'Technology Partners', desc: 'API integration and platform extension development.', href: '/solutions/technology-partners', color: '#231F20' },
+  { icon: Cpu, title: 'Technology Partners', desc: 'API integration and platform extension development.', href: '/platform/apis', color: '#231F20' },
 ];
 
 export default function SolutionsOverview() {
@@ -60,9 +60,9 @@ export default function SolutionsOverview() {
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4" style={{ backgroundColor: `${a.color}15` }}>
                     <a.icon className="w-5 h-5" style={{ color: a.color }} />
                   </div>
-                  <h3 className="text-h4 mb-2 group-hover:text-brand-secondary transition-colors">{a.title}</h3>
+                  <h3 className="text-h4 mb-2 group-hover:text-brand-accent transition-colors">{a.title}</h3>
                   <p className="text-body-small text-neutral-600 mb-3">{a.desc}</p>
-                  <span className="inline-flex items-center gap-1 text-sm font-medium text-brand-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-brand-accent opacity-0 group-hover:opacity-100 transition-opacity">
                     Learn more <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </Link>

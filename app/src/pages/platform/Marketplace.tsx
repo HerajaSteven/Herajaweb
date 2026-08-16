@@ -1,5 +1,6 @@
 import PlatformTemplate from '@/components/layout/PlatformTemplate';
 import { launchCtaFor } from '@/config/liveApps';
+import { APPLICATION_EVIDENCE } from '@/config/productEvidence';
 import {
   ShoppingCart,
   TrendingUp,
@@ -54,7 +55,11 @@ export default function Marketplace() {
       title="Coordinating Agricultural Markets Through Shared Infrastructure"
       description="Infrastructure that connects verified agricultural supply with authenticated demand — enabling transparent trade coordination, quality verification, and settlement workflows."
       launchCta={launchCtaFor('marketplace')}
-      heroCta={{ label: 'Explore Traceability', href: '/platform/traceability' }}
+      productEvidence={{
+        title: 'Marketplace, running',
+        items: [APPLICATION_EVIDENCE.marketplace],
+      }}
+      heroCta={{ label: 'Explore Traceability', href: '/platform/haos' }}
       problemTitle="Agricultural Markets Lack Coordination Infrastructure"
       problemDescription="Buyers struggle to find verified supply. Suppliers lack access to authenticated demand. Quality claims are difficult to verify. Pricing is opaque. Settlement is manual and slow."
       whyTitle="Verified Market Coordination"
@@ -66,8 +71,8 @@ export default function Marketplace() {
       faq={faq}
       relatedPages={[
         { title: 'HAOS', href: '/platform/haos', description: 'Operating infrastructure' },
-        { title: 'Traceability', href: '/platform/traceability', description: 'Verification system' },
-        { title: 'Operational Intelligence', href: '/platform/operational-intelligence', description: 'Analytics' },
+        { title: 'Traceability', href: '/platform/haos', description: 'Verification system' },
+        { title: 'Operational Intelligence', href: '/platform/haos', description: 'Analytics' },
         { title: 'APIs', href: '/platform/apis', description: 'Integration layer' },
         { title: 'Security', href: '/platform/security', description: 'Compliance' },
       ]}

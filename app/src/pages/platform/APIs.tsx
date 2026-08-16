@@ -43,7 +43,7 @@ export default function APIs() {
       overline="APIs & Integrations"
       title="Developer-Ready API Infrastructure"
       description="Comprehensive APIs, SDKs, and integration tools that enable developers and technology partners to connect external systems to Heraja infrastructure."
-      heroCta={{ label: 'View Documentation', href: '/resources/documentation' }}
+      heroCta={{ label: 'View Documentation', href: '/platform/apis' }}
       problemTitle="Integration Is Difficult Without Proper APIs"
       problemDescription="Organizations need to connect existing systems — ERPs, accounting, logistics — to their operational infrastructure. Without well-designed APIs, these integrations are fragile and expensive."
       whyTitle="API-First Architecture"
@@ -54,10 +54,10 @@ export default function APIs() {
       benefits={benefits}
       faq={faq}
       relatedPages={[
-        { title: 'Infrastructure Services', href: '/platform/infrastructure-services', description: 'Platform services' },
+        { title: 'Infrastructure Services', href: '/platform/architecture', description: 'Platform services' },
         { title: 'Security', href: '/platform/security', description: 'Security framework' },
         { title: 'HAOS', href: '/platform/haos', description: 'Operating system' },
-        { title: 'Technology Partners', href: '/solutions/technology-partners', description: 'Partner solutions' },
+        { title: 'Technology Partners', href: '/platform/apis', description: 'Partner solutions' },
       ]}
     />
   );

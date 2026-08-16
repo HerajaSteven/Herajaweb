@@ -42,7 +42,7 @@ export default function FAQ() {
       <section className="section-padding bg-surface-elevated">
         <div className="container-heraja max-w-3xl">
           <div className="bg-surface rounded-lg border border-neutral-100 p-6 lg:p-8">
-            <div className="flex items-center gap-3 mb-6"><HelpCircle className="w-6 h-6 text-brand-secondary" /><h2 className="text-h3">General Questions</h2></div>
+            <div className="flex items-center gap-3 mb-6"><HelpCircle className="w-6 h-6 text-brand-accent" /><h2 className="text-h3">General Questions</h2></div>
             <FAQAccordion items={faqItems} />
           </div>
         </div>

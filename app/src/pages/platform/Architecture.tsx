@@ -70,7 +70,7 @@ export default function Architecture() {
               { icon: <Database className="w-6 h-6" />, title: 'API-First', desc: 'Every capability exposed through well-designed, versioned APIs.' },
             ].map((p, i) => (
               <div key={i} className="bg-surface-elevated rounded-lg border border-neutral-100 p-6">
-                <div className="w-10 h-10 rounded-lg bg-brand-secondary/20 flex items-center justify-center text-brand-secondary mb-4">
+                <div className="w-10 h-10 rounded-lg bg-brand-secondary/20 flex items-center justify-center text-brand-accent mb-4">
                   {p.icon}
                 </div>
                 <h3 className="text-h4 mb-2">{p.title}</h3>
@@ -88,19 +88,19 @@ export default function Architecture() {
             {[
               { title: 'HAOS', href: '/platform/haos', desc: 'Operating system' },
               { title: 'Marketplace', href: '/platform/marketplace', desc: 'Trade coordination' },
-              { title: 'Traceability', href: '/platform/traceability', desc: 'Verification' },
-              { title: 'Intelligence', href: '/platform/operational-intelligence', desc: 'Analytics' },
-              { title: 'Identity', href: '/platform/identity', desc: 'Access control' },
-              { title: 'Services', href: '/platform/infrastructure-services', desc: 'Platform services' },
+              { title: 'Traceability', href: '/platform/haos', desc: 'Verification' },
+              { title: 'Intelligence', href: '/platform/haos', desc: 'Analytics' },
+              { title: 'Identity', href: '/platform/architecture', desc: 'Access control' },
+              { title: 'Services', href: '/platform/architecture', desc: 'Platform services' },
               { title: 'APIs', href: '/platform/apis', desc: 'Integration' },
               { title: 'Security', href: '/platform/security', desc: 'Compliance' },
             ].map((m) => (
-              <Link key={m.href} to={m.href} className="group flex items-center gap-3 p-4 bg-surface rounded-lg border border-neutral-100 hover:border-brand-secondary transition-colors">
+              <Link key={m.href} to={m.href} className="group flex items-center gap-3 p-4 bg-surface rounded-lg border border-neutral-100 hover:border-brand-accent transition-colors">
                 <div>
-                  <p className="font-medium text-brand-primary group-hover:text-brand-secondary transition-colors">{m.title}</p>
+                  <p className="font-medium text-brand-primary group-hover:text-brand-accent transition-colors">{m.title}</p>
                   <p className="text-body-small text-neutral-500">{m.desc}</p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-brand-secondary ml-auto flex-shrink-0" />
+                <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-brand-accent ml-auto flex-shrink-0" />
               </Link>
             ))}
           </div>
@@ -110,7 +110,7 @@ export default function Architecture() {
       <CTABlock
         title="Ready to Explore Implementation?"
         description="See how organizations are building on this infrastructure."
-        primaryCta={{ label: 'View Enterprise Clients', href: '/ecosystem/enterprise-clients' }}
+        primaryCta={{ label: 'View Enterprise Clients', href: '/evidence/zimo-clan' }}
         secondaryCta={{ label: 'Contact Our Team', href: '/company/contact' }}
       />
     </Layout>
