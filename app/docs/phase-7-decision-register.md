@@ -300,3 +300,72 @@ visual balance.
 | Neutralised | "Founded in Lagos, Nigeria" |
 | Left withheld | Careers benefits ×6, leadership, brochure, social URLs, Zimo figures |
 | Left unchanged | e-Chimusika |
+
+---
+
+## M · Admin closure — items B, C and G moved out of code
+
+Three of the withheld items were blocked on a developer rather than on a fact.
+They are now entered in the HAOS admin, which changes what "unresolved" means
+for them: the block was never that the answer was unknowable, only that
+recording it required an edit and a deploy.
+
+| Item | Was | Now |
+|---|---|---|
+| Careers benefits (CI-063 → CI-068) | Hardcoded, withheld | `site.careers.benefits` |
+| Careers vacancies | Hardcoded, removed | `site.careers.vacancies` |
+| Founding location (CI-025) | Hardcoded prose | `site.company.founded_location` + `founded_year` |
+| Zimo Clan figures (CI-043 → CI-045) | Hardcoded, removed | `site.zimo_metrics` |
+
+### Why an admin entry counts as verification
+
+These claims were `NEEDS VERIFICATION` because *nobody at the company had
+supplied them* — someone else had written them into a repository. When the
+entry is made in the HAOS admin, the person typing works for the company. The
+act of entering it is the confirmation, and provenance is the entry.
+
+That is a real change in evidential status, not a relabelling.
+
+### Two rules enforced in the data layer, not in templates
+
+**Zimo Clan figures require a source and an as-of date.** `SiteContent::
+zimoMetrics()` drops any row missing either, and the controller validates
+`required_with:metrics.*.value`. It is not possible to store an unattributed
+figure through this screen. That rule lives in the data layer on purpose: a
+template can be edited by someone who does not know why attribution mattered,
+and four surfaces could render this. The page then writes "as reported by X,
+March 2026" rather than stating a bare number.
+
+**Company facts are four fields, not one sentence.** "Founded in Lagos,
+Nigeria" conflated founding, registration, headquarters and current operations
+— four claims checked against four different sources. The form splits them, and
+the site states only the ones answered.
+
+### A defect this uncovered, before it shipped
+
+Populating the admin with a realistic, properly attributed figure **broke the
+content gate**:
+
+* `500+` tripped the `REMOVED` guard for CI-043 — the figure taken down for
+  being *unattributed* — even though the admin form had just forced an
+  attribution onto it.
+* A vacancy typed as `Full-time` failed as an unclassified employment claim.
+
+The company would have done exactly what it was asked to do and broken the
+build. `check-content.mjs` now reads `site-content.json`, treats text that
+arrived that way as `VERIFIED — admin-supplied`, and **lists each one in the
+output** rather than clearing it silently, so the audit still shows what was
+entered.
+
+Verified both ways: with the admin empty, all three sections are absent and the
+gate reports 0 admin-supplied; with it populated, the sections render with
+attribution intact and the gate reports 4.
+
+### What is still genuinely blocked
+
+| Item | Why the admin cannot close it |
+|---|---|
+| Leadership | Already admin-managed. Needs the people. |
+| Social URLs | Already admin-managed. Needs the exact official URLs. |
+| Brochure PDF | Already admin-managed. Needs the file. |
+| Authenticated captures | Not admin-managed. Screenshots carry captions, alt text, crop settings and an ordering constraint that keeps the two contradicting Farm Intelligence screens apart — a larger job, deliberately deferred. |

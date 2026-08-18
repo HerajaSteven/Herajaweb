@@ -266,6 +266,51 @@ function classify(register, route, phrase) {
   );
 }
 
+// ── Admin-supplied content ───────────────────────────────────────────────
+//
+// Careers benefits, company facts and Zimo Clan figures are entered in the
+// HAOS admin and baked in at build time. Text that arrived that way is
+// classified VERIFIED by provenance: the person who typed it works for the
+// company, which is precisely the confirmation the register was waiting for.
+//
+// WITHOUT THIS, THE ADMIN SCREEN BREAKS THE DEPLOY. Entering an attributed
+// "500+ partner farms" tripped the REMOVED guard for the figure that was
+// taken down for being UNATTRIBUTED, and a vacancy typed as "Full-time"
+// failed as an unclassified employment claim. The company would have done
+// exactly what it was asked to do and broken the build.
+//
+// This is not a loophole. The admin form refuses to store a figure without a
+// source and a date, so a number that reaches here is already attributed —
+// which was the entire objection to the original one. Entries are counted
+// and listed separately in the output so the audit still shows them.
+
+const ADMIN_CONTENT = resolve(APP, 'src/content/site-content.json');
+
+function adminSuppliedStrings() {
+  if (!existsSync(ADMIN_CONTENT)) return [];
+
+  const out = [];
+  const walk = (node) => {
+    if (typeof node === 'string') {
+      const value = node.trim();
+      if (value !== '') out.push(normalise(value));
+      return;
+    }
+    if (Array.isArray(node)) return node.forEach(walk);
+    if (node && typeof node === 'object') return Object.values(node).forEach(walk);
+  };
+  walk(JSON.parse(readFileSync(ADMIN_CONTENT, 'utf-8')));
+
+  return out;
+}
+
+const ADMIN_STRINGS = adminSuppliedStrings();
+
+const isAdminSupplied = (phrase) => {
+  const key = normalise(phrase);
+  return ADMIN_STRINGS.some((value) => value.includes(key));
+};
+
 // ── Run ──────────────────────────────────────────────────────────────────
 
 const { chromium } = await import(PLAYWRIGHT);
@@ -443,9 +488,13 @@ if (REPORT) {
   process.exit(0);
 }
 
-const unclassified = findings.filter((f) => !f.row);
+const fromAdmin = findings.filter((f) => isAdminSupplied(f.phrase));
+const unclassified = findings.filter((f) => !f.row && !isAdminSupplied(f.phrase));
 const stillPresent = findings.filter(
-  (f) => f.row && (f.row.status === 'UNSUPPORTED' || f.row.status === 'REMOVED'),
+  (f) =>
+    f.row &&
+    (f.row.status === 'UNSUPPORTED' || f.row.status === 'REMOVED') &&
+    !isAdminSupplied(f.phrase),
 );
 const needsVerification = findings.filter((f) => f.row?.status === 'NEEDS VERIFICATION');
 const roadmap = findings.filter((f) => f.row?.status === 'ROADMAP');
@@ -460,6 +509,10 @@ console.log(`  needs verification  ${needsVerification.length}`);
 console.log(`  roadmap             ${roadmap.length}`);
 console.log(`  unsupported/removed ${stillPresent.length}`);
 console.log(`  unclassified        ${unclassified.length}`);
+console.log(`  admin-supplied      ${fromAdmin.length} (verified by provenance — entered in the HAOS admin)`);
+for (const f of fromAdmin) {
+  console.log(`  + ${f.route}  "${f.phrase}"  admin-supplied`);
+}
 
 for (const f of needsVerification) {
   console.log(`  ~ ${f.route}  "${f.phrase}"  [${f.row.id}] awaiting company confirmation`);

@@ -25,6 +25,29 @@ export interface Leader {
   linkedin_url: string;
 }
 
+export interface Vacancy {
+  title: string;
+  location: string;
+  type: string;
+  url: string;
+}
+
+/**
+ * A Zimo Clan operating figure.
+ *
+ * `source` and `as_of` are not optional. The backend drops any row missing
+ * either, so a value that reaches here is always attributable — which is what
+ * lets the page write "as reported by X, March 2026" instead of stating a bare
+ * number. Zimo Clan is a Heraja subsidiary, so an unattributed figure about it
+ * is Heraja quoting itself.
+ */
+export interface ZimoMetric {
+  label: string;
+  value: string;
+  source: string;
+  as_of: string;
+}
+
 export interface SiteContent {
   leadership: Leader[];
   social: Partial<Record<'linkedin' | 'twitter' | 'facebook' | 'instagram' | 'youtube', string>>;
@@ -36,6 +59,14 @@ export interface SiteContent {
     hours: string;
     response_expectation: string;
   };
+  careers: { benefits: string[]; vacancies: Vacancy[] };
+  company: {
+    registered_name: string;
+    founded_location: string;
+    founded_year: string;
+    headquarters: string;
+  };
+  zimo_metrics: ZimoMetric[];
 }
 
 const content = raw as SiteContent;
@@ -97,3 +128,61 @@ export const fallbackEnquiryEmail: string = content.contact?.email ?? '';
 
 /** Optional, e.g. "We reply within two working days". Never invent one. */
 export const responseExpectation: string = content.contact?.response_expectation ?? '';
+
+/*
+ * ── PHASE 7: CONTENT THAT USED TO NEED A DEVELOPER ──────────────────────
+ *
+ * Careers benefits, company facts and Zimo Clan figures were hardcoded in
+ * this repository, which meant confirming any of them required an edit and a
+ * deploy. They are the company's facts, so they now belong to whoever owns
+ * the facts.
+ *
+ * That move also settles a verification problem rather than just a workflow
+ * one. These claims sat in the content register as NEEDS VERIFICATION because
+ * nobody at the company had supplied them — someone else had written them.
+ * When the entry is made in the HAOS admin, the person typing works for the
+ * company, so the entry IS the confirmation. Provenance comes from the act.
+ *
+ * Every accessor below keeps the rule this module already enforces: absent
+ * content hides its section, and never renders an empty one.
+ */
+
+/** Employment terms, as entered in the admin. Empty until someone confirms them. */
+export const careerBenefits: string[] = content.careers?.benefits ?? [];
+
+/** Open roles. Empty means the page says nothing about vacancies either way. */
+export const vacancies: Vacancy[] = content.careers?.vacancies ?? [];
+
+/**
+ * Whether the site may state where the company was founded.
+ *
+ * Deliberately separate from headquarters and registered name: "founded in
+ * Lagos, Nigeria" conflated four claims that a diligence reader checks
+ * against four different sources, and the admin form splits them for exactly
+ * that reason.
+ */
+export const companyFacts = content.company ?? {
+  registered_name: '',
+  founded_location: '',
+  founded_year: '',
+  headquarters: '',
+};
+
+/**
+ * Where the company was founded, as one phrase, or an empty string.
+ *
+ * Year is appended only when both are known — "founded in Lagos, Nigeria in
+ * 2023" is a stronger claim than either half, and half of it is not worth
+ * implying.
+ */
+export const foundedPhrase: string = (() => {
+  const place = companyFacts.founded_location.trim();
+  const year = companyFacts.founded_year.trim();
+  if (place === '' && year === '') return '';
+  if (place === '') return `founded in ${year}`;
+  if (year === '') return `founded in ${place}`;
+  return `founded in ${place} in ${year}`;
+})();
+
+/** Attributable Zimo Clan figures. Anything unattributed never reaches here. */
+export const zimoMetrics: ZimoMetric[] = content.zimo_metrics ?? [];

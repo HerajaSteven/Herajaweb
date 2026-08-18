@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import ProseTemplate from '@/components/layout/ProseTemplate';
-import { hasLeadership } from '@/config/siteContent';
+import { hasLeadership, foundedPhrase } from '@/config/siteContent';
 
 /*
  * About, as Phase 5 §8.7 specifies it: a prose page in the reading container.
@@ -68,11 +68,12 @@ export default function About() {
         One confirmed sentence restores it.
       */}
       <p className="text-body-large text-neutral-700 mb-4">
-        Heraja Agro Technologies exists because of a pattern that repeats across production
-        regions: strong farmers, real demand from buyers, and almost nothing connecting the two
-        reliably. A producer&apos;s output was invisible to a buyer until it showed up — or
-        didn&apos;t. Losses happened not because crops failed, but because aggregation was late, a
-        truck never arrived, or nobody could confirm what a shipment actually contained.
+        Heraja Agro Technologies{foundedPhrase ? `, ${foundedPhrase}, ` : ' '}exists because of a
+        pattern that repeats across production regions: strong farmers, real demand from buyers,
+        and almost nothing connecting the two reliably. A producer&apos;s output was invisible to a
+        buyer until it showed up — or didn&apos;t. Losses happened not because crops failed, but
+        because aggregation was late, a truck never arrived, or nobody could confirm what a
+        shipment actually contained.
       </p>
       <p className="text-body-large text-neutral-700 mb-6">
         That gap is what Heraja was built to close — not with another lending product or another

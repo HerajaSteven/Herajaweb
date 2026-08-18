@@ -43,6 +43,14 @@ const EMPTY = {
   social: {},
   brochure: { available: false, url: '', size_label: '', updated_at: '' },
   contact: { fallback_email: '', response_expectation: '' },
+  /*
+   * Phase 7: content that used to be hardcoded in this repository. Empty here
+   * means the site simply does not render those sections — the same rule the
+   * four above already follow.
+   */
+  careers: { benefits: [], vacancies: [] },
+  company: { registered_name: '', founded_location: '', founded_year: '', headquarters: '' },
+  zimo_metrics: [],
 };
 
 function keepExisting(reason) {
@@ -91,7 +99,10 @@ try {
     !Array.isArray(data.leadership) ||
     typeof data.social !== 'object' ||
     typeof data.brochure !== 'object' ||
-    typeof data.contact !== 'object'
+    typeof data.contact !== 'object' ||
+    typeof data.careers !== 'object' ||
+    typeof data.company !== 'object' ||
+    !Array.isArray(data.zimo_metrics)
   ) {
     keepExisting('HAOS returned an unexpected shape');
     process.exit(0);
@@ -106,7 +117,10 @@ try {
     `site-content: fetched — ${named} leadership entr${named === 1 ? 'y' : 'ies'}, ` +
       `${social} social link${social === 1 ? '' : 's'}, ` +
       `brochure ${data.brochure.available ? 'available' : 'not set'}, ` +
-      `contact email ${data.contact.email ? 'set' : 'not set'}.`,
+      `contact email ${data.contact.email ? 'set' : 'not set'}, ` +
+      `${data.careers.benefits.length} benefit(s), ` +
+      `${data.careers.vacancies.length} vacancy(ies), ` +
+      `${data.zimo_metrics.length} attributed Zimo figure(s).`,
   );
 } catch (error) {
   keepExisting(`could not reach HAOS (${error.name === 'AbortError' ? 'timed out' : error.message})`);

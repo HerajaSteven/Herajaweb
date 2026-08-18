@@ -70,12 +70,12 @@ if it reappears, because these may be perfectly true.
 
 | ID | Route | Claim | Category | Status | Source | Action |
 | -- | ----- | ----- | -------- | ------ | ------ | ------ |
-| CI-063 | /company/careers | Competitive compensation | employment | NEEDS VERIFICATION | None. Unattributed site copy | **Company to confirm.** Withheld from the page. |
-| CI-064 | /company/careers | Health insurance | employment | NEEDS VERIFICATION | None | **Company to confirm.** An employment term a candidate weighs an offer against. |
-| CI-065 | /company/careers | Flexible working | employment | NEEDS VERIFICATION | None | **Company to confirm.** |
-| CI-066 | /company/careers | Professional development budget | employment | NEEDS VERIFICATION | None | **Company to confirm.** |
-| CI-067 | /company/careers | equity participation | employment | NEEDS VERIFICATION | None | **Company to confirm.** As CI-064, and the harder of the two to retract. |
-| CI-068 | /company/careers | team retreats | employment | NEEDS VERIFICATION | None | **Company to confirm.** |
+| CI-063 | /company/careers | Competitive compensation | employment | NEEDS VERIFICATION | None. Unattributed site copy | **Enter in the HAOS admin** (Site content → Careers). Withheld from the page until then. |
+| CI-064 | /company/careers | Health insurance | employment | NEEDS VERIFICATION | None | **Enter in the HAOS admin.** An employment term a candidate weighs an offer against. |
+| CI-065 | /company/careers | Flexible working | employment | NEEDS VERIFICATION | None | **Enter in the HAOS admin.** |
+| CI-066 | /company/careers | Professional development budget | employment | NEEDS VERIFICATION | None | **Enter in the HAOS admin.** |
+| CI-067 | /company/careers | equity participation | employment | NEEDS VERIFICATION | None | **Enter in the HAOS admin.** As CI-064, and the harder of the two to retract. |
+| CI-068 | /company/careers | team retreats | employment | NEEDS VERIFICATION | None | **Enter in the HAOS admin.** |
 
 ---
 

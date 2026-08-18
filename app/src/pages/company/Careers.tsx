@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import ProseTemplate from '@/components/layout/ProseTemplate';
+import { careerBenefits, vacancies } from '@/config/siteContent';
 
 /*
  * ── WHAT THIS PAGE MAY AND MAY NOT SAY ───────────────────────────────────
@@ -70,13 +71,62 @@ export default function Careers() {
         are the most honest description of it on this site.
       </p>
 
+      {/*
+        Both sections below appear only when someone has entered them in the
+        HAOS admin. Empty means the page says nothing about benefits or
+        vacancies — not "no benefits", not "no current openings", because those
+        are assertions too and nobody has made them.
+      */}
+      {vacancies.length > 0 && (
+        <>
+          <h2 className="text-h2 mb-4">Open roles</h2>
+          <ul className="space-y-3 mb-12 list-none p-0">
+            {vacancies.map((role) => (
+              <li
+                key={`${role.title}-${role.location}`}
+                className="bg-surface-elevated rounded-lg border border-neutral-300 p-5 min-w-0"
+              >
+                <h3 className="text-h4 mb-1">{role.title}</h3>
+                <p className="text-body-small text-neutral-600">
+                  {[role.location, role.type].filter(Boolean).join(' · ')}
+                </p>
+                {role.url && (
+                  <a
+                    href={role.url}
+                    className="inline-flex items-center gap-1.5 mt-3 text-body-small font-medium text-brand-accent underline underline-offset-2"
+                  >
+                    Apply <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      {careerBenefits.length > 0 && (
+        <>
+          <h2 className="text-h2 mb-4">What we offer</h2>
+          <ul className="space-y-2 mb-12 list-none p-0">
+            {careerBenefits.map((benefit) => (
+              <li key={benefit} className="flex items-start gap-3 text-body-large text-neutral-700">
+                <Check
+                  className="w-4 h-4 text-brand-accent flex-shrink-0 mt-1.5"
+                  aria-hidden="true"
+                />
+                <span>{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
       <h2 className="text-h2 mb-4">How to reach us</h2>
       <div className="bg-surface-elevated rounded-lg border border-neutral-300 p-6">
         <p className="text-body text-neutral-700 mb-4">
-          We do not publish a vacancy list on this site. If this is the kind of work you want to
-          do, write to us — tell us what you have built and where you think you would fit, and it
-          will reach the people who make the decision. Terms are discussed directly, with the
-          people who can answer for them.
+          {vacancies.length > 0
+            ? 'If none of the roles above is quite right, write to us anyway — tell us what you have built and where you think you would fit, and it will reach the people who make the decision.'
+            : 'We do not publish a vacancy list on this site. If this is the kind of work you want to do, write to us — tell us what you have built and where you think you would fit, and it will reach the people who make the decision. Terms are discussed directly, with the people who can answer for them.'}
         </p>
         <Link to="/company/contact?enquiry=careers" className="btn-primary">
           Write to us <ArrowRight className="w-4 h-4" aria-hidden="true" />

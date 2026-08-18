@@ -2,6 +2,7 @@ import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import CTABlock from '@/components/sections/CTABlock';
 import { motion } from 'framer-motion';
+import { zimoMetrics } from '@/config/siteContent';
 
 /*
  * ── DISCLOSURE IS STRUCTURAL HERE, NOT EDITORIAL (Phase 5 §8.2) ───────────
@@ -160,6 +161,46 @@ export default function ZimoClan() {
           </ul>
         </div>
       </section>
+
+      {/*
+        OPERATING FIGURES — only ever attributed, and only when supplied.
+
+        This section does not exist until someone enters figures in the HAOS
+        admin, and the admin cannot store one without a source and a date: the
+        backend drops any row missing either, so an unattributed number cannot
+        reach this page through any route.
+
+        That is Phase 1 §9 made structural. The wording below states the figure
+        as Zimo Clan's — "as reported by X" — never as something Heraja
+        facilitated, because Heraja owns Zimo Clan and the distinction is the
+        whole reason the original numbers came down.
+      */}
+      {zimoMetrics.length > 0 && (
+        <section className="section-padding bg-surface">
+          <div className="container-heraja">
+            <div className="max-w-[720px] mb-10">
+              <p className="text-overline mb-3">Operating figures</p>
+              <h2 className="text-h1 mb-4">What Zimo Clan reports</h2>
+              <p className="text-body-large text-neutral-700">
+                Each figure below is Zimo Clan&apos;s own, attributed and dated. Heraja owns Zimo
+                Clan, so treat these as a subsidiary&apos;s self-reported operating data rather
+                than as independently audited numbers.
+              </p>
+            </div>
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-neutral-300 border border-neutral-300 rounded-lg overflow-hidden list-none p-0 m-0">
+              {zimoMetrics.map((metric) => (
+                <li key={metric.label} className="bg-surface p-6 min-w-0">
+                  <p className="text-h2 text-brand-primary mb-1">{metric.value}</p>
+                  <p className="text-body font-medium text-brand-primary mb-2">{metric.label}</p>
+                  <p className="text-body-small text-neutral-600">
+                    As reported by {metric.source}, {metric.as_of}.
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/*
         The section that makes this page evidence rather than a case study.

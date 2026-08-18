@@ -13,5 +13,16 @@
     "office": "",
     "hours": "",
     "response_expectation": ""
-  }
+  },
+  "careers": {
+    "benefits": [],
+    "vacancies": []
+  },
+  "company": {
+    "registered_name": "",
+    "founded_location": "",
+    "founded_year": "",
+    "headquarters": ""
+  },
+  "zimo_metrics": []
 }
