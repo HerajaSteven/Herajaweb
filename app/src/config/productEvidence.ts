@@ -71,7 +71,14 @@ export const FARM_INTELLIGENCE_EVIDENCE: EvidenceItem[] = [
     caption:
       'Reporting happens twice a day, and the form asks what was served rather than what was eaten — the product does not claim a measurement it cannot make.',
     annotation: '“Which round is this? Morning / Evening” · “Feed served (kg)” · “Water served (litres)”',
-    alt: 'Farm Intelligence daily report form for a broiler batch on day 24, with a morning and evening selector, and fields for mortality count, feed served in kilograms, water served in litres, flock condition and treatment applied.',
+    /*
+       Recaptured after the estate moved to Poppins. The alt no longer says
+       "for a broiler batch on day 24" — this capture is the form itself,
+       with no batch selected, and describing a batch day that is not on
+       screen would be a small lie in the one place a screen-reader user
+       cannot check it against the image.
+    */
+    alt: 'Farm Intelligence daily report form, with a morning and evening selector, and fields for mortality count, feed served in kilograms, water served in litres, flock condition and treatment applied.',
   },
   {
     src: '/assets/product/fi-livestock.png',
@@ -90,7 +97,13 @@ export const FARM_INTELLIGENCE_EVIDENCE: EvidenceItem[] = [
     crop: 'full',
     caption:
       'Vaccinations are recorded by name, route and batch lot number — the level of detail an audit needs, not a checkbox.',
-    alt: 'Farm Intelligence vaccination logging screen listing named poultry vaccines including Newcastle Disease and Gumboro.',
+    /*
+       Gumboro is gone from this alt: it sits inside an unopened select in
+       the new capture, so it is in the product but not on the image. The
+       fields named below are all visible, which is what an alt has to be
+       true to.
+    */
+    alt: 'Farm Intelligence vaccination logging screen with the vaccine set to Newcastle Disease (Lasota), and fields for number of birds vaccinated, route of administration, who administered it, an optional batch or lot number, observations and the date.',
   },
   {
     src: '/assets/product/fi-profile.png',
