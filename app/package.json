@@ -17,7 +17,8 @@
     "check:redirects": "node scripts/check-redirects.mjs",
     "check:content": "node scripts/check-content.mjs",
     "check:all": "node scripts/check-links.mjs && node scripts/check-redirects.mjs",
-    "content:fetch": "node scripts/fetch-site-content.mjs"
+    "content:fetch": "node scripts/fetch-site-content.mjs",
+    "check:tone": "node scripts/check-tone.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

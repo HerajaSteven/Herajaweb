@@ -17,9 +17,9 @@ export default function DevelopmentOrganizations() {
       faq={[{ question: 'How does Heraja support development programs?', answer: 'It gives program staff, partners, and beneficiaries one shared record for implementation, monitoring, and evaluation — so outcome claims are backed by data captured in the field, not assembled afterward.' }]}
       evidence={{
         emphasis: 'pilot',
-        title: "A pilot, described honestly",
+        title: "The pilot, and what it has not answered",
         description:
-          "Two sectors — poultry and fish — with the method, what is being measured, the current status, and what is not yet known all stated. A pilot page that lists its own open questions is more useful to a programme designer than one that does not.",
+          "Two sectors — poultry and fish — with the method, what is being measured, where it has reached, and the questions still open.",
         link: { label: "Read the pilot", href: '/evidence/pilot' },
       }}
       cta={{
