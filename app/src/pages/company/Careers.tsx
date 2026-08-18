@@ -68,7 +68,7 @@ export default function Careers() {
         <Link to="/platform/farm-intelligence" className="text-brand-accent underline underline-offset-2">
           product screenshots
         </Link>{' '}
-        are the most honest description of it on this site.
+        show it better than this page can.
       </p>
 
       {/*

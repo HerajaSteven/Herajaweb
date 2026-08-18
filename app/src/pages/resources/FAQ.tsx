@@ -78,7 +78,7 @@ const faqItems = [
   {
     question: 'What does it cost?',
     answer:
-      'There is no published price list. Pricing depends on which applications an organization uses and at what scale, and quoting a figure here that did not survive the first conversation would waste your time. Ask us with your scope and we will give you a straight answer.',
+      'There is no published price list. Pricing depends on which applications an organization uses and at what scale, and quoting a figure here that did not survive the first conversation would waste your time. Tell us your scope and we will price it.',
   },
   {
     question: 'How do we get started?',
@@ -90,7 +90,7 @@ const faqItems = [
 export default function FAQ() {
   return (
     <Layout>
-      <Seo title="Frequently Asked Questions" description="Straight answers about what exists today, what is not claimed, and how to evaluate the platform." />
+      <Seo title="Frequently Asked Questions" description="What exists today, what is not claimed, and how to evaluate the platform." />
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />
@@ -105,7 +105,7 @@ export default function FAQ() {
             </div>
             <p className="text-overline mb-4">Resources / FAQ</p>
             <h1 className="text-display max-w-4xl mb-6 min-w-0">Frequently Asked Questions</h1>
-            <p className="text-body-large text-neutral-700 max-w-2xl">Straight answers about what exists today, what is not claimed, and how to evaluate the platform — including the questions whose honest answer is &ldquo;no&rdquo;.</p>
+            <p className="text-body-large text-neutral-700 max-w-2xl">What exists today, what is not claimed, and how to evaluate the platform — including the questions where the answer is no.</p>
           </motion.div>
         </div>
       </section>

@@ -7,9 +7,9 @@
     "node": ">=20.19.0 <21 || >=22.12.0"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "node init && vite",
     "prebuild": "node scripts/fetch-site-content.mjs && node scripts/generate-sitemap.mjs && node scripts/check-links.mjs && node scripts/check-redirects.mjs",
-    "build": "tsc -b && vite build",
+    "build": "node init && tsc -b && vite build",
     "generate-assets": "node scripts/generate-assets.mjs",
     "lint": "eslint .",
     "preview": "vite preview --host 0.0.0.0 --port ${PORT:-4173}",
@@ -17,7 +17,8 @@
     "check:redirects": "node scripts/check-redirects.mjs",
     "check:content": "node scripts/check-content.mjs",
     "check:all": "node scripts/check-links.mjs && node scripts/check-redirects.mjs",
-    "content:fetch": "node scripts/fetch-site-content.mjs"
+    "content:fetch": "node scripts/fetch-site-content.mjs",
+    "check:tone": "node scripts/check-tone.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
@@ -51,5 +52,5 @@
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4"
   },
-  "description": "heraja.com — Heraja Agro Technologies corporate site."
+  "description": "heraja.com \u2014 Heraja Agro Technologies corporate site."
 }
