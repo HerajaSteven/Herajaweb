@@ -11,9 +11,24 @@ export default function DevelopmentOrganizations() {
       howTitle="Measurable Development Impact"
       howDescription="Partners, beneficiaries, and field agents work from the same program record, so outcome data is captured as it happens rather than reconstructed for a final report — and the system keeps running after the program ends."
       howPoints={['Multi-stakeholder coordination', 'Verified outcome tracking', 'Impact measurement dashboards', 'Transparent reporting', 'Sustainable infrastructure transfer']}
-      workflow={[{ step: 'Program Design', description: 'Define outcomes, indicators, and coordination requirements.' }, { step: 'Stakeholder Setup', description: 'Onboard partners, beneficiaries, and verification agents.' }, { step: 'Implementation', description: 'Run program activities with real-time tracking.' }, { step: 'Monitoring', description: 'Track indicators and verify outcomes through the platform.' }, { step: 'Evaluation', description: 'Generate comprehensive impact reports with verified data.' }]}
+      workflow={[{ step: 'Program Design', description: 'Define outcomes, indicators, and coordination requirements.' }, { step: 'Stakeholder Setup', description: 'Onboard partners, beneficiaries, and verification agents.' }, { step: 'Implementation', description: 'Run program activities with progress recorded as it happens.' }, { step: 'Monitoring', description: 'Track indicators and verify outcomes through the platform.' }, { step: 'Evaluation', description: 'Generate comprehensive impact reports with verified data.' }]}
       infrastructure={[{ title: 'HAOS', description: 'Program coordination', href: '/platform/haos' }, { title: 'Traceability', description: 'Outcome verification', href: '/platform/haos' }, { title: 'Intelligence', description: 'Impact analytics', href: '/platform/haos' }, { title: 'Identity', description: 'Beneficiary management', href: '/platform/architecture' }]}
       benefits={['Verified impact data', 'Improved coordination', 'Transparent reporting', 'Sustainable infrastructure', 'Reduced monitoring costs']}
-      faq={[{ question: 'How does Heraja support development programs?', answer: 'It gives program staff, partners, and beneficiaries one shared record for implementation, monitoring, and evaluation — so outcome claims are backed by data captured in the field, not assembled afterward.' }]} />
+      faq={[{ question: 'How does Heraja support development programs?', answer: 'It gives program staff, partners, and beneficiaries one shared record for implementation, monitoring, and evaluation — so outcome claims are backed by data captured in the field, not assembled afterward.' }]}
+      evidence={{
+        emphasis: 'pilot',
+        title: "A pilot, described honestly",
+        description:
+          "Two sectors — poultry and fish — with the method, what is being measured, the current status, and what is not yet known all stated. A pilot page that lists its own open questions is more useful to a programme designer than one that does not.",
+        link: { label: "Read the pilot", href: '/evidence/pilot' },
+      }}
+      cta={{
+        label: "Discuss a programme",
+        enquiryType: 'development-organization',
+        title: "Discuss a programme",
+        description:
+          "Tell us what you need to measure and we will be direct about what the platform can and cannot evidence today.",
+      }}
+    />
   );
 }

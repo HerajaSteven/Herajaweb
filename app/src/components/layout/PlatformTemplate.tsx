@@ -34,6 +34,42 @@ interface PlatformTemplateProps {
    * simply omits the section.
    */
   productEvidence?: { title: string; intro?: string; items: EvidenceItem[] };
+  /*
+   * Phase 5 §5.1 §2 — who uses it.
+   *
+   * Two named roles, not personas: the organisation that deploys it and the
+   * person who opens it daily. A platform page that cannot say who operates
+   * the thing is describing a capability rather than a product, and this
+   * audience reads that difference.
+   *
+   * Optional because the concept pages (HAOS, Security, APIs) describe
+   * platform properties rather than something a named role operates.
+   */
+  users?: { organisation: string; endUser: string };
+  /*
+   * Phase 5 §5.1 §6 — what it records, and what makes that trustworthy.
+   * The strongest section on the page for a lender or programme audience,
+   * because it is the one that distinguishes a record from a claim.
+   */
+  dataAndVerification?: { title: string; description: string; points?: string[] };
+  /*
+   * Phase 5 §5.1 §9 — what deploying it involves. Prose, reading width.
+   * No timelines and no pricing: neither is established anywhere in the
+   * approved material, and inventing either here would be a business claim.
+   */
+  implementation?: { title: string; description: string; steps?: string[] };
+  /*
+   * Phase 5 §5.1 §10. Configurable because the default was wrong: it read
+   * "View Enterprise Clients" pointing at Zimo Clan, which frames a Heraja
+   * subsidiary as an arm's-length customer roster — exactly the impression
+   * Phase 1 §9 requires the site never to give.
+   */
+  cta?: {
+    title: string;
+    description?: string;
+    primary?: { label: string; href: string };
+    secondary?: { label: string; href: string };
+  };
   capabilities: { title: string; description: string; icon?: React.ReactNode }[];
   workflow?: { step: string; description: string }[];
   benefits?: string[];
@@ -73,6 +109,10 @@ export default function PlatformTemplate({
   whyPoints,
   architecture,
   productEvidence,
+  users,
+  dataAndVerification,
+  implementation,
+  cta,
   capabilities,
   workflow,
   benefits,
@@ -155,9 +195,35 @@ export default function PlatformTemplate({
         </div>
       )}
 
+      {/*
+        Phase 5 §5.1 §2 — who uses it.
+
+        Two named roles rather than personas, and placed immediately after the
+        proposition because "who operates this?" is the second question an
+        evaluator asks and the site previously never answered it. Omitted on
+        the concept pages, where there is no single operator to name.
+      */}
+      {users && (
+        <section className="section-padding bg-surface">
+          <div className="container-heraja">
+            <p className="text-overline mb-3">Who uses it</p>
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mt-6">
+              <div className="min-w-0 border-l-2 border-brand-accent pl-6">
+                <h2 className="text-h3 mb-2">The organisation</h2>
+                <p className="text-body text-neutral-700">{users.organisation}</p>
+              </div>
+              <div className="min-w-0 border-l-2 border-neutral-300 pl-6">
+                <h2 className="text-h3 mb-2">The person using it</h2>
+                <p className="text-body text-neutral-700">{users.endUser}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Problem Statement */}
       <section className="section-padding bg-surface-dark text-white">
-        <div className="container-heraja max-w-3xl">
+        <div className="container-prose">
           <p className="text-overline mb-3">The Challenge</p>
           <h2 className="text-h1 text-white mb-4">{problemTitle}</h2>
           <p className="text-body-large text-neutral-300">{problemDescription}</p>
@@ -257,7 +323,7 @@ export default function PlatformTemplate({
                       {i < workflow.length - 1 && <div className="w-px flex-1 bg-neutral-200 my-2" />}
                     </div>
                     <div className="pb-4">
-                      <h4 className="text-h4 mb-1">{step.step}</h4>
+                      <h3 className="text-h4 mb-1">{step.step}</h3>
                       <p className="text-body text-neutral-600">{step.description}</p>
                     </div>
                   </motion.div>
@@ -274,7 +340,7 @@ export default function PlatformTemplate({
           <div className="container-heraja">
             <div className="text-center mb-12">
               <p className="text-overline mb-3">Outcomes</p>
-              <h2 className="text-h1">Enterprise Benefits</h2>
+              <h2 className="text-h1">What you get</h2>
             </div>
             <div ref={benRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {benefits.map((b, i) => (
@@ -296,9 +362,72 @@ export default function PlatformTemplate({
         </section>
       )}
 
+      {/*
+        Phase 5 §5.1 §6 — data & verification. Reading width, because it is
+        argued in prose rather than shown. For a lender or programme evaluator
+        this is the section that separates a record from an assertion, which is
+        why it sits after the evidence rather than before it: the reader has
+        just seen the product produce the figures being described.
+      */}
+      {dataAndVerification && (
+        <section className="section-padding bg-surface">
+          <div className="container-prose">
+            <p className="text-overline mb-3">Data &amp; verification</p>
+            <h2 className="text-h2 mb-4">{dataAndVerification.title}</h2>
+            <p className="text-body-large text-neutral-700">{dataAndVerification.description}</p>
+            {dataAndVerification.points && (
+              <ul className="mt-6 space-y-3">
+                {dataAndVerification.points.map((p) => (
+                  <li key={p} className="flex items-start gap-3 text-body">
+                    <span
+                      className="mt-2 w-1.5 h-1.5 rounded-full bg-brand-accent flex-shrink-0"
+                      aria-hidden="true"
+                    />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/*
+        Phase 5 §5.1 §9 — implementation. Deliberately contains no timeline and
+        no pricing: neither is established in any approved document, and a
+        deployment schedule invented here would be a business claim the company
+        has not made.
+      */}
+      {implementation && (
+        <section className="section-padding bg-surface-elevated">
+          <div className="container-prose">
+            <p className="text-overline mb-3">Implementation</p>
+            <h2 className="text-h2 mb-4">{implementation.title}</h2>
+            <p className="text-body-large text-neutral-700">{implementation.description}</p>
+            {implementation.steps && (
+              <ol className="mt-8 space-y-6">
+                {implementation.steps.map((step, i) => (
+                  <li key={step} className="flex gap-4">
+                    {/*
+                      Numbering is legitimate here because deployment is a real
+                      sequence — Phase 4 §15 forbids it only where order carries
+                      no information.
+                    */}
+                    <span className="font-mono-data text-neutral-500 flex-shrink-0 pt-0.5">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <p className="text-body min-w-0">{step}</p>
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* FAQ */}
       <section className="section-padding bg-surface">
-        <div className="container-heraja max-w-3xl">
+        <div className="container-reading">
           <div className="text-center mb-12">
             <p className="text-overline mb-3">FAQ</p>
             <h2 className="text-h1">Common Questions</h2>
@@ -342,11 +471,25 @@ export default function PlatformTemplate({
       )}
 
       {/* CTA */}
+      {/*
+        The default used to read "View Enterprise Clients" pointing at
+        /evidence/zimo-clan. Zimo Clan is a Heraja SUBSIDIARY as well as a
+        client, and Phase 1 §9 requires that relationship to be disclosed
+        before any claim built on it — a button labelled "Enterprise Clients"
+        does the opposite, implying an arm's-length customer roster that does
+        not exist. The label now says what the page actually is.
+
+        `cta` is a prop so an application page can offer its own launch action
+        instead of the generic one.
+      */}
       <CTABlock
-        title="Ready to Explore Implementation?"
-        description="See how organizations are building on this infrastructure today."
-        primaryCta={{ label: 'View Enterprise Clients', href: '/evidence/zimo-clan' }}
-        secondaryCta={{ label: 'Contact Our Team', href: '/company/contact' }}
+        title={cta?.title ?? 'See it running'}
+        description={
+          cta?.description ??
+          'The applications are deployed and publicly reachable. Open one, or tell us what you are evaluating.'
+        }
+        primaryCta={cta?.primary ?? { label: 'Talk to us', href: '/company/contact' }}
+        secondaryCta={cta?.secondary ?? { label: 'Explore the platform', href: '/platform' }}
       />
     </Layout>
   );

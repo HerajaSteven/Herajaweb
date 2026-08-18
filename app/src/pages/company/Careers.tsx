@@ -1,93 +1,87 @@
 import { Link } from 'react-router-dom';
-import Layout from '@/components/layout/Layout';
-import CTABlock from '@/components/sections/CTABlock';
-import Seo from '@/components/Seo';
-import { motion } from 'framer-motion';
-import { MapPin, Check } from 'lucide-react';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { ArrowRight } from 'lucide-react';
+import ProseTemplate from '@/components/layout/ProseTemplate';
 
-const roles = [
-  { title: 'Senior Platform Engineer', location: 'Lagos / Remote', type: 'Full-time' },
-  { title: 'Infrastructure Solutions Architect', location: 'Lagos / Remote', type: 'Full-time' },
-  { title: 'Product Manager — Platform', location: 'Lagos', type: 'Full-time' },
-  { title: 'Partnerships Lead', location: 'Lagos / Remote', type: 'Full-time' },
-  { title: 'Developer Relations', location: 'Remote', type: 'Full-time' },
-];
-
-const benefits = [
-  'Competitive compensation',
-  'Health insurance',
-  'Flexible working arrangements',
-  'Professional development budget',
-  'Meaningful equity participation',
-  'Annual team retreats',
-];
-
+/*
+ * ── WHAT THIS PAGE MAY AND MAY NOT SAY ───────────────────────────────────
+ *
+ * Two rounds of fabrication have been removed from this page, and the second
+ * is the subtler one.
+ *
+ * 1 · FIVE INVENTED VACANCIES. "Senior Platform Engineer — Lagos / Remote —
+ *     Full-time" and four like it, each with an Apply button. None came from
+ *     the company. A real engineer could have spent an evening writing an
+ *     application for a role that does not exist, which is a worse outcome
+ *     than any invented statistic produces.
+ *
+ * 2 · SIX BENEFITS. [CONTENT REQUIRED] The page listed:
+ *
+ *         Competitive compensation
+ *         Health insurance
+ *         Flexible working arrangements
+ *         Professional development budget
+ *         Meaningful equity participation
+ *         Annual team retreats
+ *
+ *     These are PLAUSIBLE, and plausible is not verified. Nobody supplied
+ *     them, and "health insurance" and "meaningful equity participation" are
+ *     employment terms — a candidate who reads them forms an expectation about
+ *     what they will be offered, and the company has never agreed to it.
+ *     Health cover and equity in particular are the two terms people weigh an
+ *     offer against.
+ *
+ *     They are recorded as NEEDS VERIFICATION in
+ *     docs/content-integrity-register.md (CI-063 → CI-068), preserved verbatim
+ *     above, and withheld from the page until someone confirms them. Restoring
+ *     them is a paste. Retracting a benefit a candidate accepted an interview
+ *     over is not.
+ *
+ * WHAT MAY NOT BE WRITTEN INSTEAD. "No current openings" and "no benefits" are
+ * assertions too, and equally unsupported — the company may well be hiring on
+ * good terms. Even "We're hiring", which stood in the H1 block, claims more
+ * than is known. What is left is the part that is true: applications are read,
+ * and here is where to send one.
+ */
 export default function Careers() {
-  const { ref, isVisible } = useScrollReveal();
   return (
-    <Layout>
-      <Seo title="Join the Team" description="We're hiring people who'd rather fix a broken supply chain than write another feature nobody asked for." />
-      <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-          <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />
-          <div className="absolute -bottom-32 -left-16 w-64 h-64 rounded-full bg-brand-tertiary/10 blur-3xl" />
-        </div>
-        <div className="container-heraja w-full">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="flex items-center gap-1.5 mb-4" aria-hidden="true">
-              <span className="w-2 h-2 rounded-full bg-brand-tertiary" />
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
-              <span className="w-1 h-1 rounded-full bg-brand-primary" />
-            </div>
-            <p className="text-overline mb-4">Company / Careers</p>
-            <h1 className="text-display max-w-4xl mb-6">Join the Team</h1>
-            <p className="text-body-large text-neutral-700 max-w-2xl">We're hiring people who'd rather fix a broken supply chain than write another feature nobody asked for.</p>
-          </motion.div>
-        </div>
-      </section>
+    <ProseTemplate
+      eyebrow="Company / Careers"
+      title="Working at Heraja"
+      lede="We build operating infrastructure for agriculture — the coordination layer underneath production, movement and market access."
+      description="How to approach Heraja Agro Technologies about work, and what the engineering problem actually is."
+    >
+      <h2 className="text-h2 mb-4">The work</h2>
+      <p className="text-body-large text-neutral-700 mb-6">
+        Heraja builds one platform and the applications that run on it. The problems are
+        operational rather than novel: making a record created on a phone in a field mean the
+        same thing to a buyer, a lender and a programme auditor; keeping one identity and one
+        audit trail consistent across four applications; making all of it work on the handset a
+        farmer already owns, on the bandwidth they already have.
+      </p>
+      <p className="text-body-large text-neutral-700 mb-10">
+        If you want to see the standard before deciding whether to write, the{' '}
+        <Link to="/platform/architecture" className="text-brand-accent underline underline-offset-2">
+          architecture
+        </Link>{' '}
+        and the{' '}
+        <Link to="/platform/farm-intelligence" className="text-brand-accent underline underline-offset-2">
+          product screenshots
+        </Link>{' '}
+        are the most honest description of it on this site.
+      </p>
 
-      <section className="section-padding bg-surface">
-        <div className="container-heraja">
-          <div className="grid lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2">
-              <p className="text-overline mb-3">Open Roles</p>
-              <h2 className="text-h1 mb-6">Current Opportunities</h2>
-              <div className="space-y-4">
-                {roles.map((r, i) => (
-                  <motion.div key={r.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                    className="bg-surface-elevated rounded-lg border border-neutral-100 p-5 flex flex-col sm:flex-row sm:items-center gap-3">
-                    <div className="flex-1">
-                      <h3 className="text-h4">{r.title}</h3>
-                      <div className="flex gap-3 text-body-small text-neutral-500 mt-1">
-                        <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" />{r.location}</span>
-                        <span>{r.type}</span>
-                      </div>
-                    </div>
-                    <Link to={`/company/contact?role=${encodeURIComponent(r.title)}`} className="btn-primary text-sm">Apply</Link>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <p className="text-overline mb-3">Benefits</p>
-              <h2 className="text-h1 mb-6">Why Heraja</h2>
-              <div ref={ref} className="space-y-3">
-                {benefits.map((b, i) => (
-                  <motion.div key={b} initial={{ opacity: 0, x: -10 }} animate={isVisible ? { opacity: 1, x: 0 } : {}} transition={{ delay: i * 0.1 }}
-                    className="flex items-center gap-3">
-                    <Check className="w-4 h-4 text-brand-accent flex-shrink-0" />
-                    <span className="text-body">{b}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <CTABlock title="Don't See Your Role?" description="We're always looking for exceptional talent."
-        primaryCta={{ label: 'Send Your Resume', href: '/company/contact' }} />
-    </Layout>
+      <h2 className="text-h2 mb-4">How to reach us</h2>
+      <div className="bg-surface-elevated rounded-lg border border-neutral-300 p-6">
+        <p className="text-body text-neutral-700 mb-4">
+          We do not publish a vacancy list on this site. If this is the kind of work you want to
+          do, write to us — tell us what you have built and where you think you would fit, and it
+          will reach the people who make the decision. Terms are discussed directly, with the
+          people who can answer for them.
+        </p>
+        <Link to="/company/contact?enquiry=careers" className="btn-primary">
+          Write to us <ArrowRight className="w-4 h-4" aria-hidden="true" />
+        </Link>
+      </div>
+    </ProseTemplate>
   );
 }

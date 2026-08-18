@@ -14,6 +14,21 @@ export default function Agribusiness() {
       workflow={[{ step: 'Supplier Onboarding', description: 'Register and verify supplier network with quality history.' }, { step: 'Procurement Coordination', description: 'Manage procurement workflows with quality requirements.' }, { step: 'Processing Management', description: 'Track processing operations with quality checkpoints.' }, { step: 'Market Coordination', description: 'Access verified market data and coordinate sales.' }, { step: 'Reporting', description: 'Generate comprehensive operational and compliance reports.' }]}
       infrastructure={[{ title: 'Marketplace', description: 'Supplier and buyer coordination', href: '/platform/marketplace' }, { title: 'Traceability', description: 'Quality verification', href: '/platform/haos' }, { title: 'HAOS', description: 'Workflow management', href: '/platform/haos' }, { title: 'Intelligence', description: 'Market analytics', href: '/platform/haos' }]}
       benefits={['Verified supplier network', 'Quality assurance', 'Operational efficiency', 'Market intelligence', 'Compliance documentation', 'Reduced supply risk']}
-      faq={[{ question: 'How does Heraja help agribusinesses?', answer: 'It replaces the patchwork of spreadsheets and phone calls most agribusinesses run on with one system for supplier networks, quality tracking, processing, and market data.' }]} />
+      faq={[{ question: 'How does Heraja help agribusinesses?', answer: 'It replaces the patchwork of spreadsheets and phone calls most agribusinesses run on with one system for supplier networks, quality tracking, processing, and market data.' }]}
+      evidence={{
+        emphasis: 'architecture',
+        title: "One system across every site",
+        description:
+          "HAOS is multi-tenant, so an organisation operates its own tenant with its own users and its own data boundary. Identity, verification, notifications, audit and settlement are shared services rather than per-application rebuilds — which is what makes a record created at one site meaningful at another.",
+        link: { label: "Read the architecture", href: '/platform/architecture' },
+      }}
+      cta={{
+        label: "Talk to us",
+        enquiryType: 'agribusiness',
+        title: "Talk to us about your operations",
+        description:
+          "Tell us how many sites you run and what does not currently reconcile between them.",
+      }}
+    />
   );
 }

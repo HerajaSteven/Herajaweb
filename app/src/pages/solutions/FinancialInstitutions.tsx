@@ -14,6 +14,21 @@ export default function FinancialInstitutions() {
       workflow={[{ step: 'Borrower Assessment', description: 'Review verified operational history and production data.' }, { step: 'Risk Evaluation', description: 'Assess risk using operational analytics and market data.' }, { step: 'Disbursement', description: 'Structure loan with traceability-linked conditions.' }, { step: 'Monitoring', description: 'Track operational performance and compliance post-disbursement.' }, { step: 'Reporting', description: 'Generate portfolio analytics and risk reports.' }]}
       infrastructure={[{ title: 'Traceability', description: 'Verified operational data', href: '/platform/haos' }, { title: 'Operational Intelligence', description: 'Risk analytics and forecasting', href: '/platform/haos' }, { title: 'Identity', description: 'Borrower verification', href: '/platform/architecture' }, { title: 'APIs', description: 'Integration with banking systems', href: '/platform/apis' }]}
       benefits={['A verified borrower data model', 'Reduced information asymmetry at underwriting', 'A structured risk-assessment framework', 'Ongoing portfolio monitoring without field visits', 'An audit-ready compliance record', 'Lower due diligence cost per loan']}
-      faq={[{ question: 'How does Heraja help agricultural lenders?', answer: 'By replacing self-reported borrower claims with operational and traceability records captured independently — the basis for both the initial credit decision and ongoing monitoring.' }]} />
+      faq={[{ question: 'How does Heraja help agricultural lenders?', answer: 'By replacing self-reported borrower claims with operational and traceability records captured independently — the basis for both the initial credit decision and ongoing monitoring.' }]}
+      evidence={{
+        emphasis: 'product',
+        title: "Where the figures come from",
+        description:
+          "Growth is derived from logged weigh-ins and feed conversion from what was actually served — both trace back to records a farmer entered at a known time, not to a number typed into a summary. The product says \"feed served\" rather than \"feed consumed\" for the same reason.",
+        link: { label: "See the recording surface", href: '/platform/farm-intelligence' },
+      }}
+      cta={{
+        label: "Discuss data & risk",
+        enquiryType: 'financial-institution',
+        title: "Discuss data and risk",
+        description:
+          "Tell us what you need to verify before lending and we will show you how the platform records it.",
+      }}
+    />
   );
 }

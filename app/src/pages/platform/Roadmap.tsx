@@ -24,9 +24,26 @@ const roadmapItems: RoadmapItem[] = [
 ];
 
 const regions = [
-  { name: 'West Africa', status: 'Active', milestones: 'Nigeria, Ghana, Cote d\'Ivoire' },
-  { name: 'East Africa', status: 'Planned', milestones: 'Kenya, Uganda, Tanzania' },
-  { name: 'Southern Africa', status: 'Planned', milestones: 'South Africa, Zambia, Zimbabwe' },
+  /*
+   * A GEOGRAPHIC COVERAGE CLAIM THAT WAS NOT TRUE.
+   *
+   * This read "West Africa - Active - Nigeria, Ghana, Côte d’Ivoire", beside
+   * two "Planned" regions naming six more countries. "Active" against three
+   * countries is a deployment claim, and it is the kind an evaluator can
+   * disprove with one call to a ministry in Accra or Abidjan.
+   *
+   * Operations are in Nigeria. Everything else is intent, and intent is what
+   * a roadmap is allowed to describe - so the countries stay, correctly
+   * labelled, rather than being deleted and leaving the section blank.
+   *
+   * The rendered content scanner did not catch this: "Active" is not a
+   * suspicious word and country names are not either. A geographic-coverage
+   * detector has been added to scripts/check-content.mjs so the next one is
+   * found by the tool rather than by someone happening to open the file.
+   */
+  { name: 'Nigeria', status: 'Operating', milestones: 'Where the pilot runs and the applications are used today.' },
+  { name: 'West Africa', status: 'Intended', milestones: 'Ghana and Côte d’Ivoire. No deployment and no agreement in place.' },
+  { name: 'East and Southern Africa', status: 'Intended', milestones: 'Kenya, Uganda, Tanzania, South Africa, Zambia, Zimbabwe. Direction of travel, not a commitment.' },
 ];
 
 function StatusIcon({ status }: { status: string }) {
@@ -38,7 +55,7 @@ function StatusIcon({ status }: { status: string }) {
 function StatusBadge({ status }: { status: string }) {
   const classes = {
     complete: 'bg-brand-secondary/20 text-brand-primary',
-    current: 'bg-brand-tertiary/20 text-brand-tertiary',
+    current: 'bg-brand-tertiary/20 text-brand-accent-warm',
     future: 'bg-neutral-100 text-neutral-500',
   };
   return (
@@ -103,7 +120,7 @@ export default function Roadmap() {
                       <span className="text-label text-neutral-500">{item.phase}</span>
                       <StatusBadge status={item.status} />
                     </div>
-                    <h4 className="text-h4 mb-1">{item.title}</h4>
+                    <h3 className="text-h4 mb-1">{item.title}</h3>
                     <p className="text-body text-neutral-600">{item.description}</p>
                   </div>
                 </motion.div>
@@ -117,7 +134,7 @@ export default function Roadmap() {
         <div className="container-heraja">
           <div className="text-center mb-12">
             <p className="text-overline mb-3">Geographic Expansion</p>
-            <h2 className="text-h1">Regional Deployment</h2>
+            <h2 className="text-h1">Where we operate, and where we intend to</h2>
           </div>
           <div className="grid sm:grid-cols-3 gap-6">
             {regions.map((region, i) => (
@@ -131,7 +148,7 @@ export default function Roadmap() {
               >
                 <MapPin className="w-6 h-6 text-brand-accent mb-3" />
                 <h3 className="text-h4 mb-1">{region.name}</h3>
-                <p className="text-label text-brand-accent mb-2">{region.status}</p>
+                <p className={`text-label mb-2 ${region.status === 'Operating' ? 'text-brand-accent' : 'text-neutral-600'}`}>{region.status}</p>
                 <p className="text-body-small text-neutral-600">{region.milestones}</p>
               </motion.div>
             ))}
@@ -159,11 +176,16 @@ export default function Roadmap() {
         </div>
       </section>
 
+      {/*
+        "Become a Partner" pointed at /evidence — a button offering a partner
+        programme that does not exist, landing on a page that was itself
+        advertising partners it did not have. Both are gone.
+      */}
       <CTABlock
-        title="Join the Infrastructure Journey"
-        description="Partner with us to shape the future of agricultural infrastructure."
-        primaryCta={{ label: 'Become a Partner', href: '/evidence' }}
-        secondaryCta={{ label: 'Contact Our Team', href: '/company/contact' }}
+        title="Is something here what you need?"
+        description="If a roadmap item is the reason you would adopt the platform, tell us — it is the most useful signal we get about what to build next."
+        primaryCta={{ label: 'Talk to us', href: '/company/contact' }}
+        secondaryCta={{ label: 'See what exists today', href: '/platform' }}
       />
     </Layout>
   );

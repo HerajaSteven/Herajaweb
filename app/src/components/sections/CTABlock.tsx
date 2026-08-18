@@ -9,11 +9,29 @@ interface CTABlockProps {
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   variant?: 'default' | 'dark';
+  /*
+   * Render immediately instead of revealing on scroll.
+   *
+   * Phase 5 §4.6 allows the homepage exactly one motion sequence, in the hero,
+   * and rules out the scroll-reveal chain down sections 2–9. Section 9 is this
+   * block, so the homepage passes `static`. Every other page keeps the reveal:
+   * §4.6 is written about the homepage, and changing 25 other pages is a wider
+   * edit than the rule asks for.
+   */
+  static?: boolean;
 }
 
-export default function CTABlock({ title, description, primaryCta, secondaryCta, variant = 'default' }: CTABlockProps) {
+export default function CTABlock({
+  title,
+  description,
+  primaryCta,
+  secondaryCta,
+  variant = 'default',
+  static: isStatic = false,
+}: CTABlockProps) {
   const { ref, isVisible } = useScrollReveal();
   const isDark = variant === 'dark';
+  const shown = isStatic || isVisible;
 
   return (
     /*
@@ -29,10 +47,10 @@ export default function CTABlock({ title, description, primaryCta, secondaryCta,
      * page's maximum width, the inner element handles the measure of the text.
      */
     <section ref={ref} className={`section-padding ${isDark ? 'bg-surface-dark' : 'bg-surface-elevated'}`}>
-      <div className="container-heraja">
+      <div className="container-reading">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          initial={isStatic ? false : { opacity: 0, y: 30 }}
+          animate={shown ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto"
         >

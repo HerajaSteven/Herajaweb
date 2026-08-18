@@ -20,6 +20,21 @@ export default function Cooperatives() {
       workflow={[{ step: 'Cooperative Setup', description: 'Register cooperative structure, define member categories, and configure operational workflows.' }, { step: 'Member Onboarding', description: 'Register and verify members, assign roles, and configure individual production tracking.' }, { step: 'Production Coordination', description: 'Coordinate planting schedules, input distribution, and collection logistics.' }, { step: 'Quality Verification', description: 'Track quality data through inspections and generate verified batch certificates.' }, { step: 'Market Access', description: 'List verified collective supply on the marketplace and coordinate sales.' }]}
       infrastructure={[{ title: 'HAOS', description: 'Member coordination workflows', href: '/platform/haos' }, { title: 'Traceability', description: 'Quality verification and batch tracking', href: '/platform/haos' }, { title: 'Marketplace', description: 'Collective market access', href: '/platform/marketplace' }, { title: 'Identity', description: 'Member profile management', href: '/platform/architecture' }]}
       benefits={['Improved member coordination', 'Verified quality tracking', 'Collective market access', 'Transparent operations', 'Reduced administrative costs', 'Better access to finance', 'Compliance documentation']}
-      faq={[{ question: 'How does Heraja help cooperatives?', answer: 'It replaces scattered member records and paper-based collection logs with one system — member management, production coordination, quality verification, and market access together.' }, { question: 'Can small cooperatives afford this?', answer: 'Yes. Because the underlying system is shared across many organizations rather than built separately for each one, cooperatives of any size get enterprise-grade capability at a cost that scales with them.' }]} />
+      faq={[{ question: 'How does Heraja help cooperatives?', answer: 'It replaces scattered member records and paper-based collection logs with one system — member management, production coordination, quality verification, and market access together.' }, { question: 'Can small cooperatives afford this?', answer: 'The platform is shared across organizations rather than built separately for each one, so a small cooperative uses the same system a large one does without paying to have it built. There is no published price list — tell us your size and what you need and we will give you a straight answer.' }]}
+      evidence={{
+        emphasis: 'product',
+        title: "It runs on the phones members already own",
+        description:
+          "These are screens from the deployed application, captured on a phone. Reporting is twice daily and takes a few taps.",
+        link: { label: "See Farm Intelligence", href: '/platform/farm-intelligence' },
+      }}
+      cta={{
+        label: "See how it works",
+        enquiryType: 'cooperative',
+        title: "See how it works",
+        description:
+          "The applications your members would use are deployed today. Open one, or talk to us about your cooperative.",
+      }}
+    />
   );
 }

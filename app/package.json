@@ -15,6 +15,7 @@
     "preview": "vite preview --host 0.0.0.0 --port ${PORT:-4173}",
     "check:links": "node scripts/check-links.mjs",
     "check:redirects": "node scripts/check-redirects.mjs",
+    "check:content": "node scripts/check-content.mjs",
     "check:all": "node scripts/check-links.mjs && node scripts/check-redirects.mjs",
     "content:fetch": "node scripts/fetch-site-content.mjs"
   },

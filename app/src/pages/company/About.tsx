@@ -1,93 +1,160 @@
-import Layout from '@/components/layout/Layout';
-import CTABlock from '@/components/sections/CTABlock';
-import Seo from '@/components/Seo';
-import { motion } from 'framer-motion';
-import { Target, Eye, Heart } from 'lucide-react';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { Link } from 'react-router-dom';
+import ProseTemplate from '@/components/layout/ProseTemplate';
+import { hasLeadership } from '@/config/siteContent';
 
-const values = [
-  { icon: Target, title: 'Infrastructure First', desc: 'We build foundational capabilities, not features.' },
-  { icon: Eye, title: 'Transparency', desc: 'We verify everything and hide nothing.' },
-  { icon: Heart, title: 'Impact', desc: 'We measure success by organizational outcomes.' },
-];
-
+/*
+ * About, as Phase 5 §8.7 specifies it: a prose page in the reading container.
+ *
+ * WHAT WAS REMOVED. Three "values" cards — Infrastructure First, Transparency,
+ * Impact — with icon tiles and a scroll-reveal, and a closing "Join Our Team /
+ * We're building something transformative". Value cards are the part of an
+ * About page that says nothing: every company claims transparency, so claiming
+ * it transfers no information, and the icon-card treatment gave three slogans
+ * the same visual weight as the two paragraphs that actually explain the
+ * business. The beliefs that survive are the ones with a consequence attached.
+ *
+ * WHAT WAS NOT ADDED, DELIBERATELY. No founding date, no milestones, no team
+ * size, no offices, no funding history, no customer count. None of it was
+ * supplied, and an About page is the first place a diligence reader checks a
+ * claim they can verify independently through a registry.
+ *
+ * WHAT IS KEPT AND FLAGGED. "Founded in Lagos, Nigeria" is the company's own
+ * pre-existing copy, carried over from the site Phase 0 audited. It is
+ * recorded as NEEDS VERIFICATION (CI-055) rather than deleted: it is a
+ * company self-description that only the company can confirm, and removing
+ * where a company was founded would say something too.
+ *
+ * LEADERSHIP (§13, Phase 5 §8.4) stays conditional. The link below appears
+ * only once real people have been entered in the HAOS admin — the same flag
+ * that publishes the page itself and its sitemap entry. No placeholder
+ * executives, no generated portraits, and no sentence implying names exist.
+ */
 export default function About() {
-  const { ref, isVisible } = useScrollReveal();
   return (
-    <Layout>
-      <Seo title="About Heraja" description="Heraja Agro Technologies is a Digital Agricultural Infrastructure Company building the operating backbone for modern agriculture." />
-      <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-          <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-secondary/10 blur-3xl" />
-          <div className="absolute -bottom-32 -left-16 w-64 h-64 rounded-full bg-brand-tertiary/10 blur-3xl" />
-        </div>
-        <div className="container-heraja w-full">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="flex items-center gap-1.5 mb-4" aria-hidden="true">
-              <span className="w-2 h-2 rounded-full bg-brand-tertiary" />
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-secondary" />
-              <span className="w-1 h-1 rounded-full bg-brand-primary" />
-            </div>
-            <p className="text-overline mb-4">Company / About</p>
-            <h1 className="text-display max-w-4xl mb-6">About Heraja</h1>
-            <p className="text-body-large text-neutral-700 max-w-2xl">Heraja Agro Technologies is a Digital Agricultural Infrastructure Company building the operating backbone for modern agriculture.</p>
-          </motion.div>
-        </div>
-      </section>
+    <ProseTemplate
+      eyebrow="Company / About"
+      title="About Heraja"
+      lede="Heraja Agro Technologies builds the operating infrastructure for agriculture — the coordination layer underneath production, movement and market access."
+      cta={{
+        title: 'Talk to us',
+        description:
+          'Tell us what you are evaluating and we will point you at the part of the platform that answers it.',
+        primaryCta: { label: 'Talk to us', href: '/company/contact' },
+        secondaryCta: { label: 'Explore the platform', href: '/platform' },
+      }}
+    >
+      <h2 className="text-h2 mb-4">Why we exist</h2>
+      {/*
+        "WAS FOUNDED IN LAGOS, NIGERIA" WAS REMOVED FROM THIS SENTENCE.
 
-      <section className="section-padding bg-surface">
-        <div className="container-heraja max-w-3xl">
-          <p className="text-overline mb-3">Why We Exist</p>
-          <h2 className="text-h1 mb-4">Founded to Solve Fragmented Coordination</h2>
-          <p className="text-body-large text-neutral-700 mb-4">
-            Heraja Agro Technologies was founded in Lagos, Nigeria after watching the same pattern repeat across production regions: strong farmers, real demand from buyers, and almost nothing connecting the two reliably. A producer's output was invisible to a buyer until it showed up — or didn't. Losses happened not because crops failed, but because aggregation was late, a truck never arrived, or nobody could confirm what a shipment actually contained.
-          </p>
-          <p className="text-body-large text-neutral-700 mb-4">
-            That gap is what Heraja was built to close — not with another lending product or another app that asks farmers to change how they work, but with the connective layer underneath: registration, reporting, movement, and verification, all in one place. We started deliberately narrow, with a poultry and fish farming pilot, to prove the model on fast-cycling sectors before expanding into livestock, grains, and beyond.
-          </p>
-          <p className="text-h4 text-brand-primary border-l-4 border-brand-accent pl-4">
-            Agriculture does not only need financing. It needs operational coordination infrastructure.
-          </p>
-        </div>
-      </section>
+        It was the company's own pre-existing copy, carried over from the site
+        Phase 0 audited — and a previous version of a website is not
+        verification. No incorporation record, registry entry or owner
+        statement supports it in this repository or in the session that
+        produced this page.
 
-      <section className="section-padding bg-surface-elevated">
-        <div className="container-heraja">
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <p className="text-overline mb-3">Mission</p>
-              <h2 className="text-h1 mb-4">Our Mission</h2>
-              <p className="text-body-large text-neutral-700">To give producers, aggregators, and buyers a shared, verifiable record of what's happening on the ground — from planting to delivery — so trust doesn't depend on who you already know.</p>
-            </div>
-            <div>
-              <p className="text-overline mb-3">Vision</p>
-              <h2 className="text-h1 mb-4">Our Vision</h2>
-              <p className="text-body-large text-neutral-700">A future where organizations across Africa's agricultural markets don't each build their own version of the same systems — they connect to one, and compete on how well they use it.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+        It is also four different claims wearing one coat: where the company
+        was founded, where it is registered, where it is headquartered, and
+        where it operates now are separate facts that a diligence reader will
+        check separately, against a public registry.
 
-      <section ref={ref} className="section-padding bg-surface">
-        <div className="container-heraja">
-          <div className="text-center mb-12"><p className="text-overline mb-3">Values</p><h2 className="text-h1">What We Believe</h2></div>
-          <div className="grid sm:grid-cols-3 gap-6">
-            {values.map((v, i) => (
-              <motion.div key={v.title} initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * 0.1 }}
-                className="bg-surface rounded-lg border border-neutral-100 p-6 text-center">
-                <div className="w-12 h-12 rounded-lg bg-brand-secondary/20 flex items-center justify-center mx-auto mb-4">
-                  <v.icon className="w-6 h-6 text-brand-accent" />
-                </div>
-                <h3 className="text-h4 mb-2">{v.title}</h3>
-                <p className="text-body-small text-neutral-600">{v.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+        So the founding-event claim is gone and nothing was guessed in its
+        place. What remains is the observation that motivated the company,
+        which asserts nothing about corporate history. Nigeria as the
+        operating context is supported elsewhere and independently — the
+        pilot, Zimo Clan, and the roadmap's "Nigeria — Operating".
 
-      <CTABlock title="Join Our Team" description="We're building something transformative."
-        primaryCta={{ label: 'View Careers', href: '/company/careers' }} secondaryCta={{ label: 'Contact Us', href: '/company/contact' }} />
-    </Layout>
+        Recorded as NEEDS VERIFICATION in docs/phase-7-decision-register.md §C.
+        One confirmed sentence restores it.
+      */}
+      <p className="text-body-large text-neutral-700 mb-4">
+        Heraja Agro Technologies exists because of a pattern that repeats across production
+        regions: strong farmers, real demand from buyers, and almost nothing connecting the two
+        reliably. A producer&apos;s output was invisible to a buyer until it showed up — or
+        didn&apos;t. Losses happened not because crops failed, but because aggregation was late, a
+        truck never arrived, or nobody could confirm what a shipment actually contained.
+      </p>
+      <p className="text-body-large text-neutral-700 mb-6">
+        That gap is what Heraja was built to close — not with another lending product or another
+        app that asks farmers to change how they work, but with the connective layer underneath:
+        registration, reporting, movement and verification, in one place.
+      </p>
+      <p className="text-h4 text-brand-primary border-l-4 border-brand-accent pl-4 mb-12">
+        Agriculture does not only need financing. It needs operational coordination
+        infrastructure.
+      </p>
+
+      <h2 className="text-h2 mb-4">Why infrastructure rather than software</h2>
+      <p className="text-body-large text-neutral-700 mb-12">
+        Across Africa, mobile money and national digital ID programmes became the shared
+        infrastructure that payments and identity now run on. Agriculture still has no equivalent.
+        Every organisation builds its own registration, its own reporting, its own way of proving
+        what happened — and none of it travels. A cooperative&apos;s records mean nothing to the
+        bank; the bank&apos;s verification means nothing to the programme auditor. Building that
+        layer once, for everyone to connect to, is a different exercise from building another
+        farm app.
+      </p>
+
+      <h2 className="text-h2 mb-4">What we build</h2>
+      <p className="text-body-large text-neutral-700 mb-6">
+        HAOS — the Heraja Agricultural Operating System — is the platform. It holds identity,
+        verification, multi-tenancy and the audit trail, and four applications run on top of it:
+        Farm Intelligence, Marketplace, e-Chimusika and Logistics. An organisation registers once
+        and a record created in one application stays meaningful in the next, which is the whole
+        point of doing it this way.
+      </p>
+      <p className="text-body-large text-neutral-700 mb-12">
+        You can see the shape of it on the{' '}
+        <Link to="/platform/architecture" className="text-brand-accent underline underline-offset-2">
+          architecture page
+        </Link>
+        , and the applications themselves on the{' '}
+        <Link to="/platform" className="text-brand-accent underline underline-offset-2">
+          platform pages
+        </Link>{' '}
+        — every one of them is deployed and publicly reachable, so the claim is checkable rather
+        than asserted.
+      </p>
+
+      <h2 className="text-h2 mb-4">Where it is being proved</h2>
+      <p className="text-body-large text-neutral-700 mb-12">
+        We started deliberately narrow, with a poultry and fish farming pilot, to prove the model
+        on fast-cycling sectors before extending it. Alongside it, Zimo Clan — a Heraja subsidiary
+        — runs its operations on HAOS. That is a real business on the platform rather than
+        independent market validation, and both halves of that sentence matter; the{' '}
+        <Link to="/evidence" className="text-brand-accent underline underline-offset-2">
+          evidence pages
+        </Link>{' '}
+        set out what each one does and does not show.
+      </p>
+
+      <h2 className="text-h2 mb-4">What we believe</h2>
+      <p className="text-body-large text-neutral-700 mb-4">
+        Infrastructure before features. A capability that only one organisation can use is a
+        feature; the work is making it shared, which is slower and harder to demonstrate early.
+      </p>
+      <p className="text-body-large text-neutral-700 mb-4">
+        A record is only worth what can be checked about it. Verification, provenance and the
+        audit trail are not compliance overhead — they are the reason a buyer, a lender and an
+        auditor can all act on the same entry.
+      </p>
+      <p className="text-body-large text-neutral-700">
+        Say what exists. This site carries no customer logos, no testimonials and no outcome
+        statistics, because we do not have ones we could stand behind under questioning. What is
+        here instead is the software, running, with its limits stated.
+      </p>
+
+      {hasLeadership && (
+        <p className="text-body-large text-neutral-700 mt-12">
+          <Link
+            to="/company/leadership"
+            className="text-brand-accent underline underline-offset-2"
+          >
+            The people running the company
+          </Link>{' '}
+          are listed separately.
+        </p>
+      )}
+    </ProseTemplate>
   );
 }

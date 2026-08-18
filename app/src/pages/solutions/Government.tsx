@@ -27,7 +27,7 @@ export default function Government() {
         { step: 'Program Design', description: 'Define program scope, participants, compliance requirements, and success metrics.' },
         { step: 'Stakeholder Onboarding', description: 'Register and verify government agencies, partner organizations, and program participants.' },
         { step: 'Infrastructure Deployment', description: 'Configure HAOS workflows, traceability requirements, and data collection systems.' },
-        { step: 'Program Execution', description: 'Run program operations with real-time monitoring and compliance verification.' },
+        { step: 'Program Execution', description: 'Run program operations with continuous monitoring and compliance verification.' },
         { step: 'Reporting & Evaluation', description: 'Generate comprehensive reports on program outcomes, compliance, and impact.' },
       ]}
       infrastructure={[
@@ -39,7 +39,7 @@ export default function Government() {
       benefits={[
         'A verified national agricultural data model',
         'A multi-agency coordination framework',
-        'Real-time program monitoring capability',
+        'Continuous program monitoring capability',
         'An audit-ready compliance record',
         'A reusable blueprint for regional expansion',
         'Reduced administrative burden across agencies',
@@ -49,7 +49,21 @@ export default function Government() {
         { question: 'How does Heraja support government agricultural programs?', answer: 'Heraja provides the digital infrastructure for coordinating multi-stakeholder agricultural programs — from registration and verification through data collection, compliance monitoring, and outcome reporting.' },
         { question: 'Can this integrate with existing government systems?', answer: 'Yes. Heraja APIs enable integration with existing government ERP, GIS, and data systems.' },
         { question: 'Is data sovereignty supported?', answer: 'Yes. Heraja supports regional data residency and complies with local data protection regulations.' },
-      ]}
+      ]}
+      evidence={{
+        emphasis: 'zimo-clan',
+        title: 'A deployment you can examine',
+        description:
+          'Zimo Clan — a Heraja subsidiary as well as a client — runs its operations on HAOS. That relationship is disclosed before anything is claimed from it, because a related-party deployment is a demonstration that the platform runs a real business rather than independent market validation.',
+        link: { label: 'Read how it is deployed', href: '/evidence/zimo-clan' },
+      }}
+      cta={{
+        label: 'Discuss a programme',
+        enquiryType: 'government',
+        title: 'Discuss a programme',
+        description:
+          'Tell us the programme you are designing and we will walk through how the platform would carry it.',
+      }}
     />
   );
 }

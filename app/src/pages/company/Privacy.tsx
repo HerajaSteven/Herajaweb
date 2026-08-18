@@ -38,7 +38,11 @@ export default function Privacy() {
             <p className="text-body text-neutral-700 mb-6">We use collected information to: provide and maintain our infrastructure services, verify identities and operations, generate analytics and insights, comply with legal obligations, and communicate with platform users.</p>
 
             <h2 className="text-h2 mb-4">4. Data Security</h2>
-            <p className="text-body text-neutral-700 mb-6">We implement enterprise-grade security measures including encryption, access controls, audit logging, and regular security assessments to protect your data.</p>
+            {/* "Enterprise-grade … and regular security assessments" claimed an
+                assessment programme that does not exist. What is listed now is
+                what the platform actually implements — the same account given
+                on /platform/security, which also states what is not held. */}
+            <p className="text-body text-neutral-700 mb-6">We protect your data with role-based access control checked per action, a per-tenant data boundary, an attributed audit trail, and TLS in transit. Heraja holds no third-party security certification; the <a href="/platform/security" className="text-brand-accent underline underline-offset-2">security page</a> sets out both what exists and what is not claimed.</p>
 
             <h2 className="text-h2 mb-4">5. Data Sharing</h2>
             <p className="text-body text-neutral-700 mb-6">We do not sell your data. We share data only as necessary to provide infrastructure services, with your consent, or as required by law.</p>

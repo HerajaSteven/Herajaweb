@@ -39,6 +39,10 @@ export default function InnovationOverview() {
 
       <section ref={ref} className="section-padding bg-surface-elevated">
         <div className="container-heraja">
+          <div className="max-w-[720px] mb-10">
+            <p className="text-overline mb-3">Areas of work</p>
+            <h2 className="text-h1">Where the research effort goes</h2>
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {areas.map((a, i) => (
               <motion.div key={a.href} initial={{ opacity: 0, y: 20 }} animate={isVisible ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * 0.1 }}>

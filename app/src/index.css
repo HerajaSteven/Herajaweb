@@ -176,6 +176,13 @@
    */
   h1, h2, h3, h4, h5, h6,
   .text-display, .text-h1, .text-h2, .text-h3 {
+    /*
+     * A floor, not a layout choice — it only engages when a word genuinely
+     * cannot fit. hyphens:auto is listed first so that when it does engage the
+     * browser breaks at a syllable with a hyphen rather than mid-word; the
+     * document is lang="en", which is what makes that possible.
+     */
+    hyphens: auto;
     overflow-wrap: break-word;
     text-wrap: balance;
   }
@@ -250,15 +257,117 @@
     @apply py-12 lg:py-16 px-4 sm:px-6 lg:px-8 xl:px-12;
   }
 
-  /* Container */
+  /*
+   * ── THE THREE-CONTAINER SYSTEM (Phase 4 §5, Phase 5 §2) ────────────────
+   *
+   * One width cannot serve both a paragraph and a dashboard. The width that
+   * makes prose readable makes a screenshot small; the width that makes a
+   * screenshot legible makes prose unreadable. That single conflict is why
+   * the site read as a stretched 1280 layout at 1920 — a ~320px dead margin
+   * each side and roughly 40% ink coverage above the fold (Phase 3.5 P2-1).
+   *
+   * So which container a section uses is a design decision, not a default:
+   *
+   *   reading  720   prose, problem statements, legal, FAQ answers
+   *   content 1280   cards, grids, nav, forms, metrics, footer, CTA
+   *   visual  1600   screenshots, diagrams, maps, hero media
+   *   canvas  1920   hard cap; beyond this the composition centres
+   *
+   * .container-heraja IS the content container and keeps its name — 72 call
+   * sites depend on it, and renaming them buys nothing. The other two are
+   * additive, so adopting them is per-section and reversible.
+   *
+   * Gutters step 16 / 24 / 32 / 48 / 64 across the tiers.
+   */
   .container-heraja {
-    @apply max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12;
+    @apply max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  }
+
+  /*
+   * Reading. Capped by BOTH this container and a `ch` measure on the text —
+   * belt and braces, because a 72ch cap inside a 1600px band still leaves a
+   * paragraph stranded in the middle of a wide section.
+   *
+   * Left-aligned to the content column from 2xl rather than centred: at 1600+
+   * a centred 720px block floats in the middle of the viewport with no
+   * relationship to anything around it.
+   */
+  .container-reading {
+    @apply max-w-[720px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  }
+
+  /*
+   * Prose that belongs to the page's left edge.
+   *
+   * .container-reading centres, which is right for a deliberately centred
+   * block (a CTA, an FAQ header). It is wrong for a prose section sitting
+   * between content-container sections: at 1920 a centred 720px block starts
+   * around x=664, while the cards above and below it start at x=320. It lines
+   * up with nothing, and reads as stranded rather than composed — which is
+   * exactly what Phase 4 §7.2 means by "left-align to the content column, not
+   * centre".
+   *
+   * Below 2xl the two behave identically: at 1280 the margins are small enough
+   * that centring and left-aligning are the same thing, so the distinction
+   * only appears once there is real space to misuse.
+   */
+  /*
+   * Alignment is structural, not arithmetic.
+   *
+   * The first attempt computed a left margin from `calc((100vw - 1280px) / 2)`
+   * and landed 48px off, because 100vw includes the scrollbar while the
+   * centred content container is laid out against clientWidth. Rather than
+   * chase that difference, this IS the content container — identical box,
+   * identical gutters, so it cannot drift — and the reading measure is applied
+   * to its children instead.
+   *
+   * The result: prose starts exactly where the cards above and below it start,
+   * at every width, and still never exceeds 720px of measure.
+   */
+  .container-prose {
+    @apply max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  }
+
+  .container-prose > * {
+    @apply max-w-[720px];
+  }
+
+  /*
+   * Visual. Wider than content, for things that are read by looking rather
+   * than by reading. Below xl it is identical to the content container —
+   * extra width only becomes available once there is width to spare.
+   */
+  .container-visual {
+    @apply max-w-[1280px] xl:max-w-[1440px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  }
+
+  /*
+   * Canvas cap. Applied to full-bleed bands so that beyond 1920 the whole
+   * composition centres rather than continuing to grow. Stated as a rule so
+   * nobody designs a 2560 layout.
+   */
+  .container-canvas {
+    @apply max-w-[1920px] mx-auto;
   }
 
   /* Typography — display levels carry Syne, the HAOS product estate's face */
+  /*
+   * The mobile floor is 2rem, not 2.25rem.
+   *
+   * At 2.25rem (36px) the longest word the site actually uses —
+   * "Infrastructure" in the homepage H1 — measures ~378px in Syne, wider than
+   * the 358px content column at 390px. Once the grid was stopped from expanding
+   * to accommodate it, overflow-wrap did what it is there for and broke the word
+   * mid-syllable: "Infrastructur / e". Legible, and visibly wrong in a headline.
+   *
+   * 32px brings it to ~336px, so it fits and never breaks. This is the same
+   * headline at a slightly smaller size on the narrowest screens, not a new
+   * type scale — that is Phase 4's decision, and this is only the floor that
+   * stops a defect.
+   */
   .text-display {
     font-family: 'Syne', 'Inter', system-ui, sans-serif;
-    font-size: clamp(2.25rem, 5vw, 4rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.1;
     letter-spacing: -0.03em;
     font-weight: 800;

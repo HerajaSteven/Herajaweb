@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Building2, Users, Factory, Landmark, HeartHandshake, Cpu } from 'lucide-react';
+import { ArrowRight, Users, Factory, Landmark, HeartHandshake, Banknote } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import CTABlock from '@/components/sections/CTABlock';
 import Seo from '@/components/Seo';
@@ -9,12 +9,25 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 const audiences = [
   { icon: Landmark, title: 'Government', desc: 'National and regional agricultural transformation programs.', href: '/solutions/government', color: '#231F20' },
   { icon: Users, title: 'Cooperatives', desc: 'Member coordination, shared operations, and market access.', href: '/solutions/cooperatives', color: '#7AC142' },
-  { icon: Building2, title: 'Enterprise', desc: 'Large-scale operational coordination and digital infrastructure.', href: '/solutions/agribusiness', color: '#4F9D5C' },
   { icon: Factory, title: 'Agribusiness', desc: 'Supply chain optimization and processing coordination.', href: '/solutions/agribusiness', color: '#C9782B' },
-  { icon: Landmark, title: 'Financial Institutions', desc: 'Agricultural finance, risk assessment, and portfolio management.', href: '/solutions/financial-institutions', color: '#F99D1C' },
+  { icon: Banknote, title: 'Financial Institutions', desc: 'Agricultural finance, risk assessment, and portfolio management.', href: '/solutions/financial-institutions', color: '#F99D1C' },
   { icon: HeartHandshake, title: 'Development Organizations', desc: 'Impact programs, measurement, and regional coordination.', href: '/solutions/development-organizations', color: '#5FA83D' },
-  { icon: Cpu, title: 'Technology Partners', desc: 'API integration and platform extension development.', href: '/platform/apis', color: '#231F20' },
 ];
+
+/*
+ * SEVEN CARDS BECAME FIVE — the five audiences Phase 1 approved and Phase 2
+ * gave pages to.
+ *
+ * "Enterprise" was a sixth card pointing at /solutions/agribusiness: the same
+ * destination as the Agribusiness card beside it, so the grid offered two
+ * doors into one room and implied a sixth audience that has no page.
+ *
+ * "Technology Partners — API integration and platform extension development"
+ * was a seventh, pointing out of the section into /platform/apis. Developers
+ * are a real audience but they are not a solutions audience, and a partner
+ * programme is not something this company has. The APIs page is reached from
+ * the platform navigation, where it belongs.
+ */
 
 export default function SolutionsOverview() {
   const { ref, isVisible } = useScrollReveal();

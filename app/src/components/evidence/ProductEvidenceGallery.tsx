@@ -29,8 +29,13 @@ export default function ProductEvidenceGallery({ items, title, intro }: Props) {
 
   return (
     <section className="section-padding bg-surface-elevated">
-      <div className="container-heraja">
-        <div className="mb-10 max-w-2xl">
+      {/*
+        Visual container: screenshots are read by looking, not by reading, so
+        they take the wider measure at xl/2xl while the section intro below
+        stays inside a readable one.
+      */}
+      <div className="container-visual">
+        <div className="mb-10 max-w-[720px]">
           <p className="text-overline mb-3">Inside the product</p>
           <h2 className="text-h2 mb-3">{title}</h2>
           {intro && <p className="text-body-large text-neutral-700">{intro}</p>}
