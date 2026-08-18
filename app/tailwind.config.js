@@ -119,20 +119,28 @@ module.exports = {
         focus: '#3A7F27',
       },
       /*
-       * Syne and DM Mono are the faces the HAOS product estate already uses
-       * (apps/farm-web/app/layout.tsx imports both from next/font/google).
-       * This site embeds screenshots of those products as its primary
-       * evidence, so sharing their display face is what stops the screenshots
-       * reading as borrowed from somewhere else.
+       * Poppins across body and display, with Open Sans named as the
+       * intermediate fallback before the system stack.
        *
-       * Inter is deliberately retained for body copy: it is highly readable
-       * at 14–16px on the low-DPI Android screens much of this audience uses,
-       * and swapping it would add a font download for no legibility gain.
-       * Syne is a display face — it is not used below h3.
+       * This replaced Syne (display) and Inter (body). Two consequences worth
+       * knowing:
+       *
+       *   · `sans` and `display` are now the same stack. They are kept as
+       *     separate tokens because the distinction between body and display
+       *     is still real — it is carried by weight, size and letter-spacing
+       *     in index.css — and collapsing them here would make restoring a
+       *     second display face a larger change than it should be.
+       *
+       *   · This site no longer shares a display face with the HAOS product
+       *     screenshots it publishes, which was the original reason for Syne.
+       *     A deliberate trade, not an oversight.
+       *
+       * DM Mono stays: it is doing a job Poppins cannot, holding figures in
+       * alignment in the data readouts.
        */
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Syne', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Poppins', 'Open Sans', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Poppins', 'Open Sans', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['"DM Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       /*

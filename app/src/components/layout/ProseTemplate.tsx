@@ -62,7 +62,7 @@ export default function ProseTemplate({
             </div>
             <p className="text-overline mb-4">{eyebrow}</p>
             {/* min-w-0: a grid/flex ancestor would otherwise let the longest
-                word in a Syne display heading push past its track at 390px. */}
+                word in a display heading push past its track at 390px. */}
             <h1 className="text-display max-w-4xl mb-6 min-w-0">{title}</h1>
             <p className="text-body-large text-neutral-700 max-w-2xl">{lede}</p>
           </motion.div>

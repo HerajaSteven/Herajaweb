@@ -7,8 +7,9 @@
  * version of this line pointed at fonts.googleapis.com and did cost a serial
  * round trip before first paint.
  *
- * Families: Inter (body), Syne (display — shared with the HAOS product
- * estate), DM Mono (labels and data — likewise).
+ * Families: Poppins carries body and display alike, with Open Sans named as
+ * the intermediate fallback ahead of the system stack. DM Mono remains for
+ * labels and data, where figures have to hold a column.
  */
 @import './fonts.css';
 
@@ -139,7 +140,7 @@
   }
 
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Poppins', 'Open Sans', system-ui, -apple-system, sans-serif;
     color: var(--color-neutral-900);
     background: var(--color-surface);
     line-height: 1.6;
@@ -151,24 +152,31 @@
   }
 
   /*
-   * Syne on the display levels only. It is the face the HAOS applications
-   * use, so the product screenshots this site publishes sit on a page that
-   * shares their voice. h4 and below stay on Inter — Syne is wide and
-   * characterful, and running it down to card titles makes the page noisy
-   * without making it more distinctive.
+   * One family, across every level.
+   *
+   * This used to be two — Syne on the display levels, Inter below them —
+   * chosen so the site shared a voice with the HAOS product screenshots it
+   * publishes. Poppins now carries both roles, so the separation between
+   * display and body comes from weight, size and letter-spacing rather than
+   * from a change of face. Every one of those values is unchanged; only the
+   * family moved.
    */
   h1, h2, h3 {
-    font-family: 'Syne', 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Poppins', 'Open Sans', system-ui, -apple-system, sans-serif;
     letter-spacing: -0.02em;
   }
 
   /*
    * Headings must break rather than overrun.
    *
-   * Syne is materially wider than Inter at the same size, so headings that
-   * fitted before the face changed no longer do — a single long word such as
+   * This rule was written when the display face was Syne, which is materially
+   * wider than Inter at the same size: a single long word such as
    * "Implementation?" in a CTA heading pushed past a 390px viewport and, since
    * every page ends with a CTA, put a horizontal scrollbar on the whole site.
+   *
+   * Poppins is a different face but the same hazard — it is geometric, with
+   * wide round forms and no narrow alternates — so the floor stays. It is
+   * cheap and it only engages when a word genuinely cannot fit.
    *
    * overflow-wrap only engages when a word genuinely cannot fit, so normal
    * headings are unaffected; it is a floor, not a layout choice. text-wrap
@@ -350,12 +358,12 @@
     @apply max-w-[1920px] mx-auto;
   }
 
-  /* Typography — display levels carry Syne, the HAOS product estate's face */
+  /* Typography — one family, separated by weight and letter-spacing */
   /*
    * The mobile floor is 2rem, not 2.25rem.
    *
    * At 2.25rem (36px) the longest word the site actually uses —
-   * "Infrastructure" in the homepage H1 — measures ~378px in Syne, wider than
+   * "Infrastructure" in the homepage H1 — measured ~378px in the old Syne, wider than
    * the 358px content column at 390px. Once the grid was stopped from expanding
    * to accommodate it, overflow-wrap did what it is there for and broke the word
    * mid-syllable: "Infrastructur / e". Legible, and visibly wrong in a headline.
@@ -366,7 +374,7 @@
    * stops a defect.
    */
   .text-display {
-    font-family: 'Syne', 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', 'Open Sans', system-ui, -apple-system, sans-serif;
     font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.1;
     letter-spacing: -0.03em;
@@ -374,7 +382,7 @@
   }
 
   .text-h1 {
-    font-family: 'Syne', 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', 'Open Sans', system-ui, -apple-system, sans-serif;
     font-size: clamp(1.75rem, 4vw, 3rem);
     line-height: 1.15;
     letter-spacing: -0.025em;
@@ -382,7 +390,7 @@
   }
 
   .text-h2 {
-    font-family: 'Syne', 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', 'Open Sans', system-ui, -apple-system, sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.25rem);
     line-height: 1.2;
     letter-spacing: -0.02em;
@@ -390,7 +398,7 @@
   }
 
   .text-h3 {
-    font-family: 'Syne', 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', 'Open Sans', system-ui, -apple-system, sans-serif;
     font-size: clamp(1.25rem, 2vw, 1.5rem);
     line-height: 1.3;
     letter-spacing: -0.015em;

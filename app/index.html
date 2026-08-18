@@ -17,25 +17,29 @@
       preconnect to a host you never use is a wasted DNS lookup and TLS
       handshake.
 
-      These two faces are preloaded because they are what renders above the
-      fold on every page — Inter 400 for body copy and Syne 700 for the
+      These two weights are preloaded because they are what renders above the
+      fold on every page — Poppins 400 for body copy and Poppins 700 for the
       heading. Starting them during HTML parse, rather than after the
       stylesheet has been fetched and parsed, is the whole point. The other
       weights and the latin-ext subsets are left to load on demand; preloading
-      all eighteen would compete with the ones that matter.
+      all ten would compete with the two that matter.
+
+      Both were Inter 400 and Syne 700 until Poppins replaced both families.
+      Two preloads either way — but now they are two weights of one face, so a
+      heading and a paragraph no longer wait on separate downloads.
     -->
     <link
       rel="preload"
       as="font"
       type="font/woff2"
-      href="/assets/fonts/inter-400-latin.woff2"
+      href="/assets/fonts/poppins-400-latin.woff2"
       crossorigin
     />
     <link
       rel="preload"
       as="font"
       type="font/woff2"
-      href="/assets/fonts/syne-700-latin.woff2"
+      href="/assets/fonts/poppins-700-latin.woff2"
       crossorigin
     />
 
