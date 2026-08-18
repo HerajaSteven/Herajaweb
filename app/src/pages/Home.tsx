@@ -343,7 +343,7 @@ export default function Home() {
       */}
       <ProductEvidenceGallery
         title="What the software actually does"
-        intro="Three screens from Farm Intelligence, running against a real batch mid-cycle. Not mockups, and not retouched."
+        intro="Three screens from Farm Intelligence, running against a real batch mid-cycle."
         items={FARM_INTELLIGENCE_EVIDENCE.slice(0, 3)}
       />
 

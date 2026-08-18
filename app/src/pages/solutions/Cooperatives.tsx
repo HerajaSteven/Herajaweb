@@ -25,7 +25,7 @@ export default function Cooperatives() {
         emphasis: 'product',
         title: "It runs on the phones members already own",
         description:
-          "These are screens from the deployed application, captured on a phone. Reporting is twice daily and takes a few taps.",
+          "Reporting is twice daily and takes a few taps, on the phone a member already owns.",
         link: { label: "See Farm Intelligence", href: '/platform/farm-intelligence' },
       }}
       cta={{

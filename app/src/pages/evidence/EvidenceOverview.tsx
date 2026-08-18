@@ -56,7 +56,7 @@ const EVIDENCE = [
   {
     kind: 'The software itself',
     title: 'Screens from the running applications',
-    desc: 'Screenshots captured from the deployed products on a phone, not mockups and not retouched. The strongest evidence here, because you can open the applications yourself.',
+    desc: 'The strongest evidence on this page, because it is the only kind you can check without us: open the applications yourself and compare.',
     href: '/platform/farm-intelligence',
     action: 'See the product',
   },

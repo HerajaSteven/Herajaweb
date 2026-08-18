@@ -110,7 +110,7 @@ export default function FarmIntelligence() {
       cta={{
         title: "Open it and see",
         description:
-          "Farm Intelligence is deployed and publicly reachable. Nothing here is a mockup.",
+          "Farm Intelligence is deployed and publicly reachable — open it and compare.",
         primary: { label: "Launch Farm Intelligence", href: "https://farm-web.heraja.com" },
         secondary: { label: "Talk to us", href: "/company/contact" },
       }}

@@ -83,14 +83,21 @@ export default function ProductEvidenceGallery({ items, title, intro }: Props) {
         </ul>
 
         {/*
-          Told, not implied. A visitor evaluating this company should know
-          these are captures of the running product rather than design
-          comps — it is the whole reason they are on the page.
+          A footnote here used to read "These are screens from the deployed
+          application, captured on a phone. They are not mockups, and they
+          have not been retouched."
+
+          It is gone because insisting the screenshots are real invites a
+          doubt the reader did not arrive with. Nobody looks at a product
+          screenshot and wonders whether it was retouched — until the page
+          raises it, and then they do.
+
+          The rule itself still holds and is still enforced: see the note in
+          config/productEvidence.ts and the crop-only constraint in
+          ProductScreenshot.tsx. It is a constraint on us, not a claim to
+          make at the visitor. What demonstrates it is the launch button on
+          every application page — they can open the thing and compare.
         */}
-        <p className="mt-8 text-body-small text-neutral-500 max-w-2xl">
-          These are screens from the deployed application, captured on a phone. They are not
-          mockups, and they have not been retouched.
-        </p>
       </div>
     </section>
   );
