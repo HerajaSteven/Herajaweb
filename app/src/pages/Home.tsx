@@ -392,9 +392,14 @@ export default function Home() {
               "View Enterprise Clients", which implied an arm's-length customer
               roster that does not exist.
             */}
-            <Link to="/evidence/zimo-clan" className="inline-flex items-center gap-2 text-brand-secondary hover:underline font-medium">
+            <a
+              href="https://zimoclan.heraja.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-brand-secondary hover:underline font-medium"
+            >
               How a Heraja subsidiary runs on HAOS <ArrowRight className="w-4 h-4" />
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -464,8 +469,10 @@ export default function Home() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
-            <Link
-              to="/evidence/zimo-clan"
+            <a
+              href="https://zimoclan.heraja.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group card-elevate block bg-surface rounded-lg border border-neutral-300 p-6 min-w-0"
             >
               <p className="text-overline mb-3">A Heraja subsidiary and client</p>
@@ -480,7 +487,7 @@ export default function Home() {
               <span className="inline-flex items-center gap-1.5 mt-4 text-body-small font-medium text-brand-accent">
                 Read the deployment <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
               </span>
-            </Link>
+            </a>
             <Link
               to="/evidence/pilot"
               className="group card-elevate block bg-surface rounded-lg border border-neutral-300 p-6 min-w-0"

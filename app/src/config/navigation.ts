@@ -112,7 +112,7 @@ export const footerColumns: FooterColumn[] = [
     title: 'Evidence',
     links: [
       { label: 'Overview', href: '/evidence' },
-      { label: 'Zimo Clan', href: '/evidence/zimo-clan' },
+      { label: 'Zimo Clan', href: 'https://zimoclan.heraja.com' },
       { label: 'Pilot', href: '/evidence/pilot' },
     ],
   },

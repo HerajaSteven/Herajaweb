@@ -49,13 +49,14 @@ export default function Government() {
         { question: 'How does Heraja support government agricultural programs?', answer: 'Heraja provides the digital infrastructure for coordinating multi-stakeholder agricultural programs — from registration and verification through data collection, compliance monitoring, and outcome reporting.' },
         { question: 'Can this integrate with existing government systems?', answer: 'Yes. Heraja APIs enable integration with existing government ERP, GIS, and data systems.' },
         { question: 'Is data sovereignty supported?', answer: 'Yes. Heraja supports regional data residency and complies with local data protection regulations.' },
-      ]}
+      ]}
+
       evidence={{
         emphasis: 'zimo-clan',
         title: 'A deployment you can examine',
         description:
           'Zimo Clan — a Heraja subsidiary as well as a client — runs its operations on HAOS. That relationship is disclosed before anything is claimed from it, because a related-party deployment is a demonstration that the platform runs a real business rather than independent market validation.',
-        link: { label: 'Read how it is deployed', href: '/evidence/zimo-clan' },
+        link: { label: 'Read how it is deployed', href: 'https://zimoclan.heraja.com' },
       }}
       cta={{
         label: 'Discuss a programme',

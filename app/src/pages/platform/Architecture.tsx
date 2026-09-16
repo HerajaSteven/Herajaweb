@@ -129,7 +129,7 @@ export default function Architecture() {
       <CTABlock
         title="Ready to Explore Implementation?"
         description="See how organizations are building on this infrastructure."
-        primaryCta={{ label: 'See a deployment', href: '/evidence/zimo-clan' }}
+        primaryCta={{ label: 'See a deployment', href: 'https://zimoclan.heraja.com' }}
         secondaryCta={{ label: 'Talk to us', href: '/company/contact' }}
       />
     </Layout>

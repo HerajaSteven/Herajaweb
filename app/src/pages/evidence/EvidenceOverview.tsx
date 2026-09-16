@@ -43,7 +43,7 @@ const EVIDENCE = [
     kind: 'Related-party deployment',
     title: 'Zimo Clan runs on HAOS',
     desc: 'A Heraja subsidiary operating its business on the platform. Real usage, and not an arm’s-length purchasing decision — the page leads with the relationship and states both.',
-    href: '/evidence/zimo-clan',
+    href: 'https://zimoclan.heraja.com',
     action: 'Read the deployment',
   },
   {

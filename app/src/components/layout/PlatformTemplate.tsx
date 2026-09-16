@@ -188,9 +188,14 @@ export default function PlatformTemplate({
                 {p.title}
               </Link>
             ))}
-            <Link to="/evidence/zimo-clan" className="text-brand-accent hover:underline whitespace-nowrap font-medium ml-auto flex-shrink-0">
+            <a
+              href="https://zimoclan.heraja.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-accent hover:underline whitespace-nowrap font-medium ml-auto flex-shrink-0"
+            >
               See This in Action
-            </Link>
+            </a>
           </div>
         </div>
       )}
