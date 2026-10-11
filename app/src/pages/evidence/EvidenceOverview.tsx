@@ -84,7 +84,7 @@ export default function EvidenceOverview() {
     <Layout>
       <Seo
         title="Evidence"
-        description="What Heraja can actually show: a related-party deployment, a pilot in progress, the running software — and an explicit account of what is not evidenced."
+        description="A related-party deployment, a pilot in progress, the running software — and an explicit account of what is not evidenced."
       />
 
       <section className="relative overflow-hidden bg-surface py-16 sm:py-20 md:py-24">
@@ -100,7 +100,7 @@ export default function EvidenceOverview() {
               <span className="w-1 h-1 rounded-full bg-brand-primary" />
             </div>
             <p className="text-overline mb-4">Evidence</p>
-            <h1 className="text-display max-w-4xl mb-6 min-w-0">What we can actually show</h1>
+            <h1 className="text-display max-w-4xl mb-6 min-w-0">What we can show</h1>
             <p className="text-body-large text-neutral-700 max-w-2xl">
               No customer logos, no testimonials, no outcome statistics. What is here is sorted by
               what kind of evidence it is, so you can weigh each piece for what it is worth rather

@@ -47,7 +47,7 @@ export default function Careers() {
       eyebrow="Company / Careers"
       title="Working at Heraja"
       lede="We build operating infrastructure for agriculture — the coordination layer underneath production, movement and market access."
-      description="How to approach Heraja Agro Technologies about work, and what the engineering problem actually is."
+      description="How to approach Heraja Agro Technologies about work, and what the engineering problem is."
     >
       <h2 className="text-h2 mb-4">The work</h2>
       <p className="text-body-large text-neutral-700 mb-6">
