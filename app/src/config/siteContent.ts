@@ -8,8 +8,6 @@ import raw from '@/content/site-content.json';
  * JSON file — there is no network, no loading state, and no failure mode at
  * runtime.
  *
- * ── THE RULE THIS MODULE ENFORCES ───────────────────────────────────────
- *
  * Absent content hides its section; it never renders an empty one. That is
  * the same rule the site already applies to undeployed applications
  * (liveApps.ts) and to the missing brochure (documents.ts), and it exists
@@ -130,8 +128,6 @@ export const fallbackEnquiryEmail: string = content.contact?.email ?? '';
 export const responseExpectation: string = content.contact?.response_expectation ?? '';
 
 /*
- * ── PHASE 7: CONTENT THAT USED TO NEED A DEVELOPER ──────────────────────
- *
  * Careers benefits, company facts and Zimo Clan figures were hardcoded in
  * this repository, which meant confirming any of them required an edit and a
  * deploy. They are the company's facts, so they now belong to whoever owns

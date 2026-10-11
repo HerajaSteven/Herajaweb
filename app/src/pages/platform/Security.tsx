@@ -2,8 +2,6 @@ import PlatformTemplate from '@/components/layout/PlatformTemplate';
 import { Shield, Lock, Eye, Server, Key, Fingerprint } from 'lucide-react';
 
 /*
- * ── THE MOST EXPENSIVE PAGE ON THE SITE TO GET WRONG ─────────────────────
- *
  * This page claimed, in an FAQ answer collapsed behind a click:
  *
  *     "Heraja follows industry best practices including SOC 2, ISO 27001,
@@ -23,8 +21,6 @@ import { Shield, Lock, Eye, Server, Key, Fingerprint } from 'lucide-react';
  * The same page also claimed multi-factor authentication, end-to-end
  * encryption, automated threat detection, DDoS protection, data-residency
  * options and regular security audits. None of those is supported.
- *
- * ── WHAT IS ACTUALLY TRUE, AND WHY IT IS ENOUGH ──────────────────────────
  *
  * Role-based permissions, a tenant boundary enforced at the query layer, one
  * identity across the applications, and an audit trail on the records: those

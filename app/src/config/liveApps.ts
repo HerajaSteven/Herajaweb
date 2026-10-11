@@ -5,7 +5,7 @@
  * /platform/farm-intelligence pointed at https://farm.heraja.com, which
  * answers 404 (Vercel: DEPLOYMENT_NOT_FOUND — the domain is attached to a
  * project that has no deployment). The link was written when the app was
- * expected to be live and simply outlived that expectation, with nothing
+ * expected to be live and outlived that expectation, with nothing
  * anywhere recording that the two facts were connected.
  *
  * So "is this app actually deployed?" is now a field rather than something
@@ -60,7 +60,7 @@ export const LIVE_APPS = {
      * 404 — but the application was never there. It is deployed at
      * `farm-web.heraja.com` and has been all along, so the gating logic
      * below did exactly what it was designed to do, against a hostname
-     * that was simply wrong.
+     * that was wrong.
      *
      * The cost of that was a live product with its launch button hidden on
      * the page describing it. Worth remembering when adding an app here:

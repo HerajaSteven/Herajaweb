@@ -11,8 +11,6 @@ import ProductEvidenceGallery from '@/components/evidence/ProductEvidenceGallery
 import type { EvidenceItem } from '@/config/productEvidence';
 
 /*
- * ── WHY THIS TEMPLATE CARRIES THREE VARIATION POINTS ────────────────────
- *
  * The failure mode of an audience template is five pages that differ only in
  * a noun. Phase 5 §8.1 prevents that structurally rather than editorially,
  * with three things that genuinely differ per audience:

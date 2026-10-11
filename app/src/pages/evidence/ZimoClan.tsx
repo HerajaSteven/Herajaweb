@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 import { zimoMetrics } from '@/config/siteContent';
 
 /*
- * ── DISCLOSURE IS STRUCTURAL HERE, NOT EDITORIAL (Phase 5 §8.2) ───────────
- *
  * The relationship is the eyebrow, the first line under the H1, and a diagram
  * the reader passes before any description of the deployment. Not a footnote,
  * not a panel at the bottom, not smaller type. A reader cannot reach what Zimo
@@ -17,8 +15,6 @@ import { zimoMetrics } from '@/config/siteContent';
  * arm's-length customer and a subsidiary are different evidence, and
  * presenting the second as the first is the kind of thing that ends a
  * diligence conversation rather than advancing it.
- *
- * ── THE FIGURES THAT WERE REMOVED ────────────────────────────────────────
  *
  * A four-card metric strip stood here:
  *
@@ -42,8 +38,6 @@ import { zimoMetrics } from '@/config/siteContent';
  * [CONTENT REQUIRED] If real, attributable operating figures are ever
  * published, they belong here phrased as Phase 1 §9 requires — "Zimo Clan
  * achieved X on HAOS", never "Heraja facilitated X".
- *
- * ── PROVENANCE OF THE PRODUCT NAMES ──────────────────────────────────────
  *
  * Animal Tracker, Farmer Groups, Farm Logistics and Sell & Earn are Zimo
  * Clan's own names for its four surfaces, verified against Zimo Clan's product

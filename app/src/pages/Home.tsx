@@ -183,7 +183,6 @@ export default function Home() {
       </section>
 
       {/*
-        ─── 2 · The problem · 3 · HAOS (Phase 5 §4.2, §4.5) ────────────────
 
         FOUR SECTIONS USED TO STAND HERE, AND NONE OF THEM WAS THE PROBLEM.
 

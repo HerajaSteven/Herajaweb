@@ -13,8 +13,6 @@ import {
 } from 'lucide-react';
 
 /*
- * ── WRITTEN FROM THE APPLICATION, NOT FROM IMAGINATION ───────────────────
- *
  * Every capability below maps to an endpoint in the deployed application
  * (routes/gateway/haos-marketplace.php, 41 routes) running at
  * marketplace.heraja.com, verified 200 on 2026-08-18. Phase 7 decision

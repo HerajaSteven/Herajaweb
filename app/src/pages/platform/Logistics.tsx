@@ -13,13 +13,9 @@ import {
 } from 'lucide-react';
 
 /*
- * ── WRITTEN FROM THE APPLICATION, NOT FROM IMAGINATION ───────────────────
- *
  * Every capability below maps to an endpoint in the deployed application
  * (routes/gateway/logistics.php, 76 routes) running at logistics.heraja.com,
  * verified 200 on 2026-08-18. Phase 7 decision register §J holds the mapping.
- *
- * ── THE "REAL-TIME" CORRECTION, WHICH OVERTURNS A PHASE 6 DECISION ───────
  *
  * This page said "Live Tracking — real-time visibility into where a shipment
  * is between aggregation and final delivery", and the Phase 6 content register
@@ -38,8 +34,6 @@ import {
  * quietly applied, because a register that hides its own corrections is not
  * worth keeping.
  *
- * ── ALSO REMOVED ─────────────────────────────────────────────────────────
- *
  *  · "Route Planning — routing that accounts for aggregation points, ROAD
  *    CONDITIONS, and delivery windows." Route TEMPLATES are matched to a job.
  *    Nothing reads road conditions, and the map carries no traffic layer —
@@ -47,8 +41,6 @@ import {
  *  · "Reduced post-production losses in transit" — an outcome with no
  *    measurement behind it.
  *  · "Foundation for regional expansion" — a geography claim by implication.
- *
- * ── ADDED, BECAUSE IT IS REAL AND WAS GOING UNCLAIMED ────────────────────
  *
  * Cold chain: readings against a consignment, a monitor, history, and
  * configurable thresholds, with `requires_cold_chain` carried on the

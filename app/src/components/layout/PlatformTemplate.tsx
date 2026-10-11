@@ -31,7 +31,7 @@ interface PlatformTemplateProps {
    * Farm Intelligence has six captured screens, the others have one each —
    * and forcing every page to fill the same slot would mean either padding
    * the thin ones or holding the deep one back. A page with no evidence
-   * simply omits the section.
+   * omits the section.
    */
   productEvidence?: { title: string; intro?: string; items: EvidenceItem[] };
   /*

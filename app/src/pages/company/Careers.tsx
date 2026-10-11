@@ -4,8 +4,6 @@ import ProseTemplate from '@/components/layout/ProseTemplate';
 import { careerBenefits, vacancies } from '@/config/siteContent';
 
 /*
- * ── WHAT THIS PAGE MAY AND MAY NOT SAY ───────────────────────────────────
- *
  * Two rounds of fabrication have been removed from this page, and the second
  * is the subtler one.
  *

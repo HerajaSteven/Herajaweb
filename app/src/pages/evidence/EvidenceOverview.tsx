@@ -5,8 +5,6 @@ import Seo from '@/components/Seo';
 import CTABlock from '@/components/sections/CTABlock';
 
 /*
- * ── THIS PAGE WAS A ROSTER OF THINGS THAT DO NOT EXIST ───────────────────
- *
  * It was titled "The Heraja Ecosystem" and opened: "Every enterprise client,
  * technology partner, and pilot program running on Heraja". Six cards
  * followed. Three of them named nothing real:
@@ -25,8 +23,6 @@ import CTABlock from '@/components/sections/CTABlock';
  * This is the most damaging page on the site to get wrong. It is where a
  * diligence reader goes specifically to check whether the claims elsewhere
  * are backed, and it was the page inventing the most.
- *
- * ── WHAT AN EVIDENCE PAGE OWES THE READER (Phase 5 §15) ──────────────────
  *
  * Not another marketing layer. It has to let a visitor tell apart: an existing
  * product · a demonstrated interface · related-party evidence · architecture ·

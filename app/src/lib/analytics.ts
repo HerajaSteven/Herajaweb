@@ -1,8 +1,6 @@
 /**
  * Umami analytics — cookieless, self-hosted, off unless configured.
  *
- * ── WHY UMAMI ──────────────────────────────────────────────────────────
- *
  * It is cookieless, so the site needs no consent banner. That matters more
  * than it sounds: a meaningful share of this site's audience is government
  * departments and development organisations, and a cookie dialogue opens a
@@ -12,14 +10,10 @@
  * does our traffic data live" is "our own infrastructure" rather than a
  * third party's. That is the answer a procurement question wants.
  *
- * ── OFF BY DEFAULT, AND THAT IS DELIBERATE ─────────────────────────────
- *
  * Both variables must be set before anything loads. An unconfigured
  * deployment — a preview build, a local dev server, a fork — collects
  * nothing and injects no third-party script. Nobody has to remember to
  * disable it; it was never on.
- *
- * ── NO PERSONAL DATA, EVER ─────────────────────────────────────────────
  *
  * Event properties here carry what was clicked and where, never who did it.
  * `track()` deliberately takes a small, flat property bag rather than an

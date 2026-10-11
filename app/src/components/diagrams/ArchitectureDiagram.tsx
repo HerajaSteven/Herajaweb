@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 /*
  * The platform, drawn to Phase 5 §9.1.
  *
- * ── WHAT THIS REPLACED, AND WHY IT MATTERED ──────────────────────────────
- *
  * The previous version listed an "Application Layer" of Farm Intelligence,
  * Logistics, Marketplace and **Analytics** — and omitted e-Chimusika. Analytics
  * is not an application; nobody can open it. So the site's own architecture
@@ -14,14 +12,10 @@ import { Link } from 'react-router-dom';
  * picture. The tiers below name only things that exist, and every application
  * in the bottom tier is a link you can follow to something running.
  *
- * ── WHY IT IS HTML AND NOT AN SVG ────────────────────────────────────────
- *
  * The tiers are lists of labelled things. HTML gives text selection, real
  * links, sensible screen-reader order and reflow at 390px for free; an SVG
  * would give up all four to gain nothing, because there is no geometry here
  * that a grid cannot express.
- *
- * ── PHASE 5 §9.2, WHICH THIS OBEYS ───────────────────────────────────────
  *
  * Tiers are distinguished by SHAPE, not colour — filled block, dense chips,
  * dashed bands, solid cards — so the diagram survives greyscale printing and

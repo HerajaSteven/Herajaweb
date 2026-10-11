@@ -8,8 +8,6 @@ import type { ProductScreenshotProps } from '@/components/evidence/ProductScreen
  * screens from the application running against a seeded demonstration farm.
  * None is a prototype, a mockup or a render, and none has been retouched.
  *
- * ── EVIDENCE DEPTH IS UNEVEN, ON PURPOSE ────────────────────────────────
- *
  * Farm Intelligence has six screens here; Marketplace, e-Chimusika and
  * Logistics have one each. That asymmetry is real and is left visible. The
  * alternative — padding the thinner products out, or holding Farm
@@ -19,8 +17,6 @@ import type { ProductScreenshotProps } from '@/components/evidence/ProductScreen
 export type EvidenceItem = Omit<ProductScreenshotProps, 'priority'>;
 
 /**
- * ── ORDERING CONSTRAINT: fi-dashboard and fi-livestock ───────────────────
- *
  * The two screens disagree with each other. Captured in the same session,
  * from the same farm and the same batch:
  *

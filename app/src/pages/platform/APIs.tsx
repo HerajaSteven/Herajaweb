@@ -2,8 +2,6 @@ import PlatformTemplate from '@/components/layout/PlatformTemplate';
 import { Code, Webhook, Key, Shield } from 'lucide-react';
 
 /*
- * ── A DEVELOPER PLATFORM THAT DOES NOT EXIST ─────────────────────────────
- *
  * This page described, as present-tense fact:
  *
  *     Official SDKs for popular languages · GraphQL support · an isolated
@@ -19,8 +17,6 @@ import { Code, Webhook, Key, Shield } from 'lucide-react';
  * developer evaluating an integration does not ask whether the SDK exists;
  * they search for it, find nothing, and conclude something about everything
  * else on the page. The cost is paid instantly and in full.
- *
- * ── WHAT IS ACTUALLY TRUE ────────────────────────────────────────────────
  *
  * There is a real HTTP API: it is the one the four applications themselves
  * are clients of, which is a stronger statement than a marketing API page

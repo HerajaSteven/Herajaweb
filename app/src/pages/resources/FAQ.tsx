@@ -6,8 +6,6 @@ import { motion } from 'framer-motion';
 import { HelpCircle } from 'lucide-react';
 
 /*
- * ── FOUR OF THESE EIGHT ANSWERS WERE NOT TRUE ────────────────────────────
- *
  * All four were inside a collapsed accordion, which is why source-reading
  * audits and the first rendered scan both walked past them.
  *

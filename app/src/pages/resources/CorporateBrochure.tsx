@@ -10,7 +10,6 @@ import { track } from '@/lib/analytics';
 /*
  * Two states, and no third (Phase 5 §8.6).
  *
- * ── THE BUTTON ────────────────────────────────────────────────────────────
  * This page shipped a "Download Brochure" control that was a <button> with no
  * handler and no file behind it: clicking it did nothing at all. That is the
  * worst version of a missing dependency, because it looks like it works — a
@@ -21,7 +20,6 @@ import { track } from '@/lib/analytics';
  * There is deliberately no disabled button. It advertises something the
  * visitor cannot have and leaves them nowhere to go.
  *
- * ── "WHAT'S INSIDE" ───────────────────────────────────────────────────────
  * A seven-item contents list stood below — Company Overview · Infrastructure
  * Platform · Core Capabilities · Enterprise Benefits · Implementation Approach
  * · Security & Compliance · Partnership Opportunities — describing the

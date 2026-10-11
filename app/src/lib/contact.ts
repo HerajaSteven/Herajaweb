@@ -8,8 +8,6 @@
  * Contact page — the page asks this module to send an enquiry and renders
  * whatever result it gets back.
  *
- * ── A LIMIT WORTH BEING EXPLICIT ABOUT ──────────────────────────────────
- *
  * This is a static single-page app. Anything it can read, a visitor can read:
  * VITE_* variables are inlined into the published bundle at build time, so
  * CONTACT_ENDPOINT is public by construction. There is no server here to keep
