@@ -183,7 +183,6 @@ export default function Home() {
       </section>
 
       {/*
-
         FOUR SECTIONS USED TO STAND HERE, AND NONE OF THEM WAS THE PROBLEM.
 
         A metric strip ("2 Sectors in Pilot · Built-in · Multi-Region"), a
